@@ -297,9 +297,9 @@ import Layout from '../layouts/Layout.astro';
           </div>
           
           <!-- Floating stat -->
-          <div class="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-xl p-6 animate-float">
-            <div class="text-3xl font-bold text-coral-500 mb-1">60x</div>
-            <div class="text-sm text-gray-600">Faster</div>
+          <div class="absolute -bottom-8 right-4 sm:-bottom-6 sm:-right-6 bg-white rounded-lg shadow-xl p-4 sm:p-6 animate-float">
+            <div class="text-2xl sm:text-3xl font-bold text-coral-500 mb-1">60x</div>
+            <div class="text-xs sm:text-sm text-gray-600">Faster</div>
           </div>
         </div>
       </div>
@@ -328,110 +328,134 @@ import Layout from '../layouts/Layout.astro';
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
         <!-- Card 1 -->
-        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+        <div class="flip-card perspective-1000 cursor-pointer">
           <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
-            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
-              <div class="text-6xl mb-4">📋</div>
-              <h3 class="font-display text-2xl text-charcoal mb-3">Manual Order Entry</h3>
-              <p class="text-gray-600">Customer emails, someone types it into the system, hopes they didn't make a typo</p>
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-between text-center">
+              <div>
+                <div class="text-6xl mb-4">📋</div>
+                <h3 class="font-display text-2xl text-charcoal mb-3">Manual Order Entry</h3>
+                <p class="text-gray-600">Customer emails, someone types it into the system, hopes they didn't make a typo</p>
+              </div>
               <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
             </div>
-            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
-              <div class="text-6xl mb-4">🚀</div>
-              <h3 class="font-display text-2xl mb-3">They have instant order processing</h3>
-              <p>Orders flow directly from website to fulfillment. Zero human touch. Zero errors. 24/7.</p>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-between text-center text-white">
+              <div>
+                <div class="text-6xl mb-4">🚀</div>
+                <h3 class="font-display text-2xl mb-3">They have instant order processing</h3>
+                <p>Orders flow directly from website to fulfillment. Zero human touch. Zero errors. 24/7.</p>
+              </div>
               <div class="mt-4 font-medium">← Tap to go back</div>
             </div>
           </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+        <div class="flip-card perspective-1000 cursor-pointer">
           <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
-            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
-              <div class="text-6xl mb-4">📧</div>
-              <h3 class="font-display text-2xl text-charcoal mb-3">Customer Response Time</h3>
-              <p class="text-gray-600">Lead comes in at 6 PM, gets answered at 9 AM, they already bought elsewhere</p>
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-between text-center">
+              <div>
+                <div class="text-6xl mb-4">📧</div>
+                <h3 class="font-display text-2xl text-charcoal mb-3">Customer Response Time</h3>
+                <p class="text-gray-600">Lead comes in at 6 PM, gets answered at 9 AM, they already bought elsewhere</p>
+              </div>
               <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
             </div>
-            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
-              <div class="text-6xl mb-4">⚡</div>
-              <h3 class="font-display text-2xl mb-3">They respond in 47 seconds</h3>
-              <p>AI answers instantly. Books meetings. Sends info. While you're sleeping.</p>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-between text-center text-white">
+              <div>
+                <div class="text-6xl mb-4">⚡</div>
+                <h3 class="font-display text-2xl mb-3">They respond in 47 seconds</h3>
+                <p>AI answers instantly. Books meetings. Sends info. While you're sleeping.</p>
+              </div>
               <div class="mt-4 font-medium">← Tap to go back</div>
             </div>
           </div>
         </div>
 
         <!-- Card 3 -->
-        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+        <div class="flip-card perspective-1000 cursor-pointer">
           <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
-            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
-              <div class="text-6xl mb-4">💸</div>
-              <h3 class="font-display text-2xl text-charcoal mb-3">Payment Collection</h3>
-              <p class="text-gray-600">Awkward calls, "just checking in" emails, cash flow nightmares</p>
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-between text-center">
+              <div>
+                <div class="text-6xl mb-4">💸</div>
+                <h3 class="font-display text-2xl text-charcoal mb-3">Payment Collection</h3>
+                <p class="text-gray-600">Awkward calls, "just checking in" emails, cash flow nightmares</p>
+              </div>
               <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
             </div>
-            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
-              <div class="text-6xl mb-4">💰</div>
-              <h3 class="font-display text-2xl mb-3">They get paid automatically</h3>
-              <p>Smart follow-ups. Payment links. Gentle escalation. Money just appears.</p>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-between text-center text-white">
+              <div>
+                <div class="text-6xl mb-4">💰</div>
+                <h3 class="font-display text-2xl mb-3">They get paid automatically</h3>
+                <p>Smart follow-ups. Payment links. Gentle escalation. Money just appears.</p>
+              </div>
               <div class="mt-4 font-medium">← Tap to go back</div>
             </div>
           </div>
         </div>
 
         <!-- Card 4 -->
-        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+        <div class="flip-card perspective-1000 cursor-pointer">
           <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
-            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
-              <div class="text-6xl mb-4">📊</div>
-              <h3 class="font-display text-2xl text-charcoal mb-3">Marketing Performance</h3>
-              <p class="text-gray-600">"I think Facebook ads work?" Meanwhile, money disappears into the void</p>
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-between text-center">
+              <div>
+                <div class="text-6xl mb-4">📊</div>
+                <h3 class="font-display text-2xl text-charcoal mb-3">Marketing Performance</h3>
+                <p class="text-gray-600">"I think Facebook ads work?" Meanwhile, money disappears into the void</p>
+              </div>
               <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
             </div>
-            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
-              <div class="text-6xl mb-4">📈</div>
-              <h3 class="font-display text-2xl mb-3">They know every metric</h3>
-              <p>Cost per lead: $47. Conversion rate: 23%. ROI: 347%. Decisions, not guesses.</p>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-between text-center text-white">
+              <div>
+                <div class="text-6xl mb-4">📈</div>
+                <h3 class="font-display text-2xl mb-3">They know every metric</h3>
+                <p>Cost per lead: $47. Conversion rate: 23%. ROI: 347%. Decisions, not guesses.</p>
+              </div>
               <div class="mt-4 font-medium">← Tap to go back</div>
             </div>
           </div>
         </div>
 
         <!-- Card 5 -->
-        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+        <div class="flip-card perspective-1000 cursor-pointer">
           <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
-            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
-              <div class="text-6xl mb-4">🗂️</div>
-              <h3 class="font-display text-2xl text-charcoal mb-3">Document Management</h3>
-              <p class="text-gray-600">"I know I saved it somewhere..." 20 minutes later, still looking</p>
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-between text-center">
+              <div>
+                <div class="text-6xl mb-4">🗂️</div>
+                <h3 class="font-display text-2xl text-charcoal mb-3">Document Management</h3>
+                <p class="text-gray-600">"I know I saved it somewhere..." 20 minutes later, still looking</p>
+              </div>
               <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
             </div>
-            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
-              <div class="text-6xl mb-4">🔍</div>
-              <h3 class="font-display text-2xl mb-3">Everything findable in 2 seconds</h3>
-              <p>Every document, email, note - instantly searchable. Time saved: hours per week.</p>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-between text-center text-white">
+              <div>
+                <div class="text-6xl mb-4">🔍</div>
+                <h3 class="font-display text-2xl mb-3">Everything findable in 2 seconds</h3>
+                <p>Every document, email, note - instantly searchable. Time saved: hours per week.</p>
+              </div>
               <div class="mt-4 font-medium">← Tap to go back</div>
             </div>
           </div>
         </div>
 
         <!-- Card 6 -->
-        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+        <div class="flip-card perspective-1000 cursor-pointer">
           <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
-            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
-              <div class="text-6xl mb-4">👥</div>
-              <h3 class="font-display text-2xl text-charcoal mb-3">Client Onboarding</h3>
-              <p class="text-gray-600">Send contract, wait, follow up, get signature, send welcome email... repeat</p>
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-between text-center">
+              <div>
+                <div class="text-6xl mb-4">👥</div>
+                <h3 class="font-display text-2xl text-charcoal mb-3">Client Onboarding</h3>
+                <p class="text-gray-600">Send contract, wait, follow up, get signature, send welcome email... repeat</p>
+              </div>
               <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
             </div>
-            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
-              <div class="text-6xl mb-4">✨</div>
-              <h3 class="font-display text-2xl mb-3">Clients onboard themselves</h3>
-              <p>Sign up → Contract → Payment → Access → Welcome sequence. You sleep through it all.</p>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-between text-center text-white">
+              <div>
+                <div class="text-6xl mb-4">✨</div>
+                <h3 class="font-display text-2xl mb-3">Clients onboard themselves</h3>
+                <p>Sign up → Contract → Payment → Access → Welcome sequence. You sleep through it all.</p>
+              </div>
               <div class="mt-4 font-medium">← Tap to go back</div>
             </div>
           </div>

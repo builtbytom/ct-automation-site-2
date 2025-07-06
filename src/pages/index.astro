@@ -106,21 +106,21 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Hero image section - hidden on mobile, shown on desktop -->
-        <div class="hidden lg:block relative">
+        <!-- Hero image section - optimized for mobile and desktop -->
+        <div class="relative mt-8 lg:mt-0">
           <div class="relative">
             <img 
               src="/tom-headshot.png" 
               alt="Tom Lucia - Connecticut Business Automation Expert" 
-              class="w-full max-w-md mx-auto rounded-lg shadow-2xl"
+              class="w-full max-w-sm lg:max-w-md mx-auto rounded-lg shadow-2xl"
             />
             
             <!-- Floating credential with animation -->
-            <div class="absolute -bottom-8 -left-8 bg-white rounded-lg shadow-xl p-6 max-w-xs animate-bounce-in">
-              <div class="text-xs text-gray-500 uppercase tracking-wide mb-2">Built & Scaled</div>
-              <div class="font-display text-3xl text-navy-900 mb-1">$100M+</div>
-              <div class="text-sm text-gray-600">in automated operations</div>
-              <div class="text-xs text-coral-500 mt-2">Learned what actually works</div>
+            <div class="absolute -bottom-6 -right-4 lg:-bottom-8 lg:-left-8 lg:right-auto bg-white rounded-lg shadow-xl p-4 lg:p-6 max-w-xs animate-bounce-in">
+              <div class="text-xs text-gray-500 uppercase tracking-wide mb-1 lg:mb-2">Built & Scaled</div>
+              <div class="font-display text-2xl lg:text-3xl text-navy-900 mb-1">$100M+</div>
+              <div class="text-xs lg:text-sm text-gray-600">in automated operations</div>
+              <div class="text-xs text-coral-500 mt-1 lg:mt-2">Learned what actually works</div>
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Sauce Lesson Section -->
-  <section id="sauce-lesson" class="py-16 sm:py-20 px-4 bg-white">
+  <section id="sauce-lesson" class="py-16 sm:py-20 px-4 bg-white overflow-x-hidden">
     <div class="container mx-auto max-w-6xl">
       <div class="text-center mb-12">
         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
@@ -297,7 +297,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
           
           <!-- Floating stat - positioned outside the card -->
-          <div class="absolute -top-8 -right-8 sm:-top-10 sm:-right-10 bg-coral-500 text-white rounded-lg shadow-xl p-3 sm:p-4 animate-float">
+          <div class="absolute -top-6 -right-4 sm:-top-10 sm:-right-10 bg-coral-500 text-white rounded-lg shadow-xl p-3 sm:p-4 animate-float">
             <div class="text-xl sm:text-2xl font-bold">60x</div>
             <div class="text-xs">Faster</div>
           </div>

@@ -66,15 +66,32 @@ import Layout from '../layouts/Layout.astro';
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Content -->
         <div class="text-center lg:text-left">
-          <h1 class="font-display text-white mb-6 text-5xl sm:text-6xl lg:text-7xl leading-tight font-semibold">
+          <h1 class="font-display text-white mb-4 text-5xl sm:text-6xl lg:text-7xl leading-tight font-semibold">
             I Save Your Time
           </h1>
           
-          <p class="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+          <p class="text-lg sm:text-xl text-white/90 mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0">
             Whether it's hunting for information, doing data entry twice, or manually following up with customers - I'll build systems that handle it automatically.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+          <!-- Mobile image placement -->
+          <div class="lg:hidden relative mb-8">
+            <div class="relative max-w-[200px] mx-auto">
+              <img 
+                src="/tom-headshot.png" 
+                alt="Tom Lucia - Connecticut Business Automation Expert" 
+                class="w-full rounded-lg shadow-2xl"
+              />
+              <!-- Floating credential for mobile -->
+              <div class="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-xl p-3 animate-bounce-in">
+                <div class="text-xs text-gray-500 uppercase tracking-wide">Built & Scaled</div>
+                <div class="font-display text-xl text-navy-900">$100M+</div>
+                <div class="text-xs text-gray-600">automated ops</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6 lg:mb-8">
             <a href="#possibilities" class="bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform">
               See What's Possible →
             </a>
@@ -106,21 +123,21 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Hero image section - optimized for mobile and desktop -->
-        <div class="relative mt-8 lg:mt-0">
+        <!-- Hero image section - desktop only -->
+        <div class="hidden lg:block relative">
           <div class="relative">
             <img 
               src="/tom-headshot.png" 
               alt="Tom Lucia - Connecticut Business Automation Expert" 
-              class="w-full max-w-sm lg:max-w-md mx-auto rounded-lg shadow-2xl"
+              class="w-full max-w-md mx-auto rounded-lg shadow-2xl"
             />
             
             <!-- Floating credential with animation -->
-            <div class="absolute -bottom-6 -right-4 lg:-bottom-8 lg:-left-8 lg:right-auto bg-white rounded-lg shadow-xl p-4 lg:p-6 max-w-xs animate-bounce-in">
-              <div class="text-xs text-gray-500 uppercase tracking-wide mb-1 lg:mb-2">Built & Scaled</div>
-              <div class="font-display text-2xl lg:text-3xl text-navy-900 mb-1">$100M+</div>
-              <div class="text-xs lg:text-sm text-gray-600">in automated operations</div>
-              <div class="text-xs text-coral-500 mt-1 lg:mt-2">Learned what actually works</div>
+            <div class="absolute -bottom-8 -left-8 bg-white rounded-lg shadow-xl p-6 max-w-xs animate-bounce-in">
+              <div class="text-xs text-gray-500 uppercase tracking-wide mb-2">Built & Scaled</div>
+              <div class="font-display text-3xl text-navy-900 mb-1">$100M+</div>
+              <div class="text-sm text-gray-600">in automated operations</div>
+              <div class="text-xs text-coral-500 mt-2">Learned what actually works</div>
             </div>
           </div>
         </div>

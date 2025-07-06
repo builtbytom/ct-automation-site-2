@@ -1,16 +1,1045 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Connecticut Business Automation - Stop Drowning in Manual Work">
+  <!-- Mobile Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-navy-900/95 backdrop-blur-sm border-b border-white/10">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="text-white font-medium text-sm sm:text-base">
+          Connecticut Business Automation
+        </div>
+        
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="lg:hidden text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        
+        <!-- Desktop navigation -->
+        <div class="hidden lg:flex gap-8 text-white/90 text-sm items-center">
+          <a href="#services" class="hover:text-white transition-colors">Services</a>
+          <a href="#approach" class="hover:text-white transition-colors">How It Works</a>
+          <a href="#about" class="hover:text-white transition-colors">About</a>
+          <a href="#contact" class="text-white font-medium bg-coral-500 px-5 py-2 rounded-lg hover:bg-coral-400 transition-all">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
+    <div class="absolute inset-0 bg-navy-900/95 backdrop-blur-sm" id="mobile-menu-overlay"></div>
+    <div class="relative flex flex-col h-full">
+      <div class="flex justify-between items-center h-16 px-4 border-b border-white/10">
+        <div class="text-white font-medium">Connecticut Business Automation</div>
+        <button id="mobile-menu-close" class="text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="flex-1 px-6 py-8">
+        <div class="flex flex-col gap-6 text-white text-lg">
+          <a href="#services" class="hover:text-coral-500 transition-colors">Services</a>
+          <a href="#approach" class="hover:text-coral-500 transition-colors">How It Works</a>
+          <a href="#about" class="hover:text-coral-500 transition-colors">About</a>
+          <a href="#contact" class="bg-coral-500 text-white px-6 py-3 rounded-lg text-center hover:bg-coral-400 transition-all">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section - Mobile First -->
+  <section class="relative min-h-screen flex items-center pt-16">
+    <!-- Gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500"></div>
+    
+    <!-- Pattern overlay -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23grid)" /%3E%3C/svg%3E')"></div>
+    </div>
+
+    <div class="relative z-10 container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Content -->
+        <div class="text-center lg:text-left">
+          <h1 class="font-display text-white mb-6 text-5xl sm:text-6xl lg:text-7xl leading-tight font-semibold">
+            I Save Your Time
+          </h1>
+          
+          <p class="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Whether it's hunting for information, doing data entry twice, or manually following up with customers - I'll build systems that handle it automatically.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+            <a href="#possibilities" class="bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform">
+              See What's Possible →
+            </a>
+            <a href="#automate" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-navy-900 transition-all">
+              What Can You Automate?
+            </a>
+          </div>
+
+          <!-- Trust indicators -->
+          <div class="flex flex-wrap gap-4 sm:gap-6 text-white/80 text-sm justify-center lg:justify-start">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              20+ Years Experience
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              Honest Pricing
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              Fast Implementation
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero image section - hidden on mobile, shown on desktop -->
+        <div class="hidden lg:block relative">
+          <div class="relative">
+            <img 
+              src="/tom-headshot.png" 
+              alt="Tom Lucia - Connecticut Business Automation Expert" 
+              class="w-full max-w-md mx-auto rounded-lg shadow-2xl"
+            />
+            
+            <!-- Floating credential with animation -->
+            <div class="absolute -bottom-8 -left-8 bg-white rounded-lg shadow-xl p-6 max-w-xs animate-bounce-in">
+              <div class="text-xs text-gray-500 uppercase tracking-wide mb-2">Built & Scaled</div>
+              <div class="font-display text-3xl text-navy-900 mb-1">$100M+</div>
+              <div class="text-sm text-gray-600">in automated operations</div>
+              <div class="text-xs text-coral-500 mt-2">Learned what actually works</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tasks Section -->
+  <section id="possibilities" class="py-16 sm:py-20 px-4 bg-cream">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
+          The stuff that's eating your day
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          You know the drill. These are the tasks that take forever, happen every day, and make you wonder why you're paying someone $20/hour to do what a computer should handle automatically.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-coral-500 text-5xl font-light mb-4">01</div>
+          <h3 class="font-display text-xl sm:text-2xl mb-3 text-charcoal">
+            Chasing down unpaid invoices from clients
+          </h3>
+          <p class="text-gray-600 mb-4">
+            You send an invoice, then spend weeks following up. Send reminder emails, make awkward phone calls, track who paid what. It's tedious, it's uncomfortable, and it takes forever.
+          </p>
+          <p class="text-sm text-coral-500 font-medium">→ Saves 6 hours/week</p>
+        </div>
+
+        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-coral-500 text-5xl font-light mb-4">02</div>
+          <h3 class="font-display text-xl sm:text-2xl mb-3 text-charcoal">
+            Responding to the same questions over and over
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Someone fills out your contact form at 9 PM. By the time you respond the next morning, they've already called your competitor. Meanwhile, you're answering the same "what's your pricing?" email for the hundredth time.
+          </p>
+          <p class="text-sm text-coral-500 font-medium">→ 3x faster responses</p>
+        </div>
+
+        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-coral-500 text-5xl font-light mb-4">03</div>
+          <h3 class="font-display text-xl sm:text-2xl mb-3 text-charcoal">
+            Entering the same information everywhere
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Customer places an order. Now you're typing their info into QuickBooks, then your CRM, then your inventory system. Same data, three different places, because nothing talks to each other.
+          </p>
+          <p class="text-sm text-coral-500 font-medium">→ Zero double entry</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sauce Lesson Section -->
+  <section id="sauce-lesson" class="py-16 sm:py-20 px-4 bg-white">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
+          The <span class="text-coral-500">$2,000 sauce</span> lesson
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          Let me tell you about the exact moment I realized businesses are hemorrhaging money on stupid tasks
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <!-- Story side -->
+        <div class="space-y-6">
+          <div class="bg-cream p-6 rounded-lg">
+            <p class="text-lg leading-relaxed text-gray-700">
+              I was running a $17M food business. One day, I watched my warehouse manager spend <span class="font-semibold text-charcoal">4 hours</span> figuring out which hot sauce expires first.
+            </p>
+          </div>
+          
+          <p class="text-gray-600 leading-relaxed">
+            He was checking 400 cases. By hand. With a clipboard. Opening boxes, writing dates, sorting them into piles. All to answer one question: "Which sauce should we ship first?"
+          </p>
+          
+          <p class="text-gray-600 leading-relaxed">
+            <span class="font-semibold text-charcoal">That's when it hit me.</span> He makes $25/hour. Those 4 hours cost me $100. And he does this every. single. week.
+          </p>
+          
+          <div class="bg-coral-50 border-l-4 border-coral-500 p-6 my-6">
+            <p class="text-lg font-semibold text-charcoal mb-2">
+              $100/week × 50 weeks = $5,000/year
+            </p>
+            <p class="text-gray-700">
+              Just to sort hot sauce by date. For one SKU. We had 200 SKUs.
+            </p>
+          </div>
+          
+          <p class="text-gray-600 leading-relaxed">
+            So I built a simple system. Scan the barcode when product arrives. System tracks the date. When it's time to ship, the computer tells you exactly which cases to grab. No thinking. No sorting. No clipboards.
+          </p>
+          
+          <p class="text-lg font-semibold text-charcoal">
+            That 4-hour task became 4 seconds.
+          </p>
+        </div>
+
+        <!-- Visual side -->
+        <div class="relative">
+          <div class="bg-gradient-to-br from-navy-900 to-navy-800 rounded-2xl p-8 text-white">
+            <h3 class="text-2xl font-display mb-8 text-center">Before vs After</h3>
+            
+            <!-- Before -->
+            <div class="mb-8">
+              <h4 class="text-coral-500 font-medium mb-4">BEFORE (Manual Process)</h4>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <span class="text-sm">Check 400 cases by hand</span>
+                  <span class="ml-auto text-xs text-gray-400">45 min</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <span class="text-sm">Write dates on clipboard</span>
+                  <span class="ml-auto text-xs text-gray-400">60 min</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <span class="text-sm">Sort into date piles</span>
+                  <span class="ml-auto text-xs text-gray-400">90 min</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <span class="text-sm">Move to shipping area</span>
+                  <span class="ml-auto text-xs text-gray-400">45 min</span>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-white/20">
+                <div class="flex justify-between items-center">
+                  <span class="font-medium">Total Time:</span>
+                  <span class="text-2xl font-bold text-red-400">4 hours</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- After -->
+            <div>
+              <h4 class="text-coral-500 font-medium mb-4">AFTER (Automated System)</h4>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span class="text-sm">Scan barcode on arrival</span>
+                  <span class="ml-auto text-xs text-gray-400">Done</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span class="text-sm">System tracks automatically</span>
+                  <span class="ml-auto text-xs text-gray-400">Always</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span class="text-sm">Click "Show FIFO Order"</span>
+                  <span class="ml-auto text-xs text-gray-400">2 sec</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span class="text-sm">Grab the right cases</span>
+                  <span class="ml-auto text-xs text-gray-400">2 sec</span>
+                </div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-white/20">
+                <div class="flex justify-between items-center">
+                  <span class="font-medium">Total Time:</span>
+                  <span class="text-2xl font-bold text-green-400">4 seconds</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Floating stat -->
+          <div class="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-xl p-6 animate-float">
+            <div class="text-3xl font-bold text-coral-500 mb-1">60x</div>
+            <div class="text-sm text-gray-600">Faster</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-xl text-gray-700 font-medium mb-4">
+          Every business has their "hot sauce problem"
+        </p>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          What's yours? The thing your team does manually that makes you think "there has to be a better way"? 
+          <span class="font-semibold text-charcoal">There is.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competition Flip Cards Section -->
+  <section id="competition" class="py-16 sm:py-20 px-4 bg-cream">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
+          Your competition isn't playing by 2019 rules anymore
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          Here's what's happening in businesses that decided to modernize. Tap each card to see the difference.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Card 1 -->
+        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+          <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
+              <div class="text-6xl mb-4">📋</div>
+              <h3 class="font-display text-2xl text-charcoal mb-3">Manual Order Entry</h3>
+              <p class="text-gray-600">Customer emails, someone types it into the system, hopes they didn't make a typo</p>
+              <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
+            </div>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
+              <div class="text-6xl mb-4">🚀</div>
+              <h3 class="font-display text-2xl mb-3">They have instant order processing</h3>
+              <p>Orders flow directly from website to fulfillment. Zero human touch. Zero errors. 24/7.</p>
+              <div class="mt-4 font-medium">← Tap to go back</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+          <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
+              <div class="text-6xl mb-4">📧</div>
+              <h3 class="font-display text-2xl text-charcoal mb-3">Customer Response Time</h3>
+              <p class="text-gray-600">Lead comes in at 6 PM, gets answered at 9 AM, they already bought elsewhere</p>
+              <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
+            </div>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
+              <div class="text-6xl mb-4">⚡</div>
+              <h3 class="font-display text-2xl mb-3">They respond in 47 seconds</h3>
+              <p>AI answers instantly. Books meetings. Sends info. While you're sleeping.</p>
+              <div class="mt-4 font-medium">← Tap to go back</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+          <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
+              <div class="text-6xl mb-4">💸</div>
+              <h3 class="font-display text-2xl text-charcoal mb-3">Payment Collection</h3>
+              <p class="text-gray-600">Awkward calls, "just checking in" emails, cash flow nightmares</p>
+              <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
+            </div>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
+              <div class="text-6xl mb-4">💰</div>
+              <h3 class="font-display text-2xl mb-3">They get paid automatically</h3>
+              <p>Smart follow-ups. Payment links. Gentle escalation. Money just appears.</p>
+              <div class="mt-4 font-medium">← Tap to go back</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+          <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
+              <div class="text-6xl mb-4">📊</div>
+              <h3 class="font-display text-2xl text-charcoal mb-3">Marketing Performance</h3>
+              <p class="text-gray-600">"I think Facebook ads work?" Meanwhile, money disappears into the void</p>
+              <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
+            </div>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
+              <div class="text-6xl mb-4">📈</div>
+              <h3 class="font-display text-2xl mb-3">They know every metric</h3>
+              <p>Cost per lead: $47. Conversion rate: 23%. ROI: 347%. Decisions, not guesses.</p>
+              <div class="mt-4 font-medium">← Tap to go back</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+          <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
+              <div class="text-6xl mb-4">🗂️</div>
+              <h3 class="font-display text-2xl text-charcoal mb-3">Document Management</h3>
+              <p class="text-gray-600">"I know I saved it somewhere..." 20 minutes later, still looking</p>
+              <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
+            </div>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
+              <div class="text-6xl mb-4">🔍</div>
+              <h3 class="font-display text-2xl mb-3">Everything findable in 2 seconds</h3>
+              <p>Every document, email, note - instantly searchable. Time saved: hours per week.</p>
+              <div class="mt-4 font-medium">← Tap to go back</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="flip-card perspective-1000 h-80 cursor-pointer">
+          <div class="flip-card-inner relative w-full h-full transform-style-preserve-3d transition-transform duration-700">
+            <div class="flip-card-front absolute w-full h-full backface-hidden bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center">
+              <div class="text-6xl mb-4">👥</div>
+              <h3 class="font-display text-2xl text-charcoal mb-3">Client Onboarding</h3>
+              <p class="text-gray-600">Send contract, wait, follow up, get signature, send welcome email... repeat</p>
+              <div class="mt-4 text-coral-500 font-medium">Tap to see →</div>
+            </div>
+            <div class="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-coral-500 to-coral-600 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center text-center text-white">
+              <div class="text-6xl mb-4">✨</div>
+              <h3 class="font-display text-2xl mb-3">Clients onboard themselves</h3>
+              <p>Sign up → Contract → Payment → Access → Welcome sequence. You sleep through it all.</p>
+              <div class="mt-4 font-medium">← Tap to go back</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-xl text-gray-700 font-medium">
+          Every business has a choice. Which path makes more sense for yours?
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 sm:py-20 px-4 bg-white relative overflow-hidden">
+    <div class="container mx-auto max-w-6xl relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Content -->
+        <div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-6">
+            Hi, I'm Tom
+          </h2>
+          
+          <div class="space-y-4 text-gray-600 leading-relaxed">
+            <p class="text-lg">
+              I built and ran a <span class="font-semibold text-charcoal">$100 million Amazon business</span>. Not dropshipping. Not courses. Real products, real warehouse, real headaches.
+            </p>
+            
+            <p>
+              When you're moving that much product, manual processes will bury you. So I became obsessed with automation out of pure survival. Built systems for everything - inventory tracking, order routing, employee management, financial reporting.
+            </p>
+            
+            <p>
+              <span class="font-semibold text-charcoal">The business eventually failed</span> (that's a story for another day), but the systems I built? They worked perfectly till the very end.
+            </p>
+            
+            <p>
+              Now I help Connecticut businesses build the same kind of systems. Except you get them <span class="font-semibold text-charcoal">before</span> you're drowning, not during.
+            </p>
+            
+            <p class="text-lg font-medium text-charcoal pt-4">
+              No corporate speak. No death by PowerPoint. Just systems that actually work.
+            </p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#contact" class="bg-coral-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform">
+              Let's Talk About Your Business →
+            </a>
+          </div>
+        </div>
+
+        <!-- Stats side with floating cards -->
+        <div class="relative h-96 lg:h-auto">
+          <!-- Floating stat cards -->
+          <div class="absolute top-0 right-0 bg-white rounded-lg shadow-xl p-6 animate-float" style="animation-delay: 0s;">
+            <div class="text-4xl font-bold text-coral-500 mb-1">$100M+</div>
+            <div class="text-sm text-gray-600">Systems Built & Tested</div>
+          </div>
+          
+          <div class="absolute top-20 left-0 bg-gradient-to-br from-navy-900 to-navy-800 text-white rounded-lg shadow-xl p-6 animate-float" style="animation-delay: 0.5s;">
+            <div class="text-4xl font-bold mb-1">20+</div>
+            <div class="text-sm text-white/80">Years in Business</div>
+          </div>
+          
+          <div class="absolute bottom-20 right-8 bg-white rounded-lg shadow-xl p-6 animate-float" style="animation-delay: 1s;">
+            <div class="text-4xl font-bold text-coral-500 mb-1">1,000s</div>
+            <div class="text-sm text-gray-600">Hours Saved</div>
+          </div>
+          
+          <div class="absolute bottom-0 left-12 bg-coral-50 rounded-lg shadow-xl p-6 animate-float" style="animation-delay: 1.5s;">
+            <div class="text-4xl font-bold text-charcoal mb-1">0</div>
+            <div class="text-sm text-gray-600">Buzzwords Used</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background decoration -->
+    <div class="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-coral-100 rounded-full blur-3xl opacity-20"></div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section id="timeline" class="py-16 sm:py-20 px-4 bg-cream">
+    <div class="container mx-auto max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
+          From chaos to calm in 30 days
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          Here's exactly how we transform your manual nightmare into automated bliss
+        </p>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline line - hidden on mobile, shown on larger screens -->
+        <div class="hidden sm:block absolute left-8 top-0 bottom-0 w-0.5 bg-coral-300"></div>
+
+        <!-- Timeline items -->
+        <div class="space-y-8 sm:space-y-12">
+          <!-- Week 1 -->
+          <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-8">
+            <div class="flex-shrink-0 sm:w-16">
+              <div class="w-16 h-16 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg relative z-10">
+                1
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-display text-2xl text-charcoal mb-2">Week 1: Figure out what's broken</h3>
+              <p class="text-gray-600 mb-3">
+                I'm not going to sell you automation you don't need. We start by looking at what's actually eating your time and costing you money. Usually takes about an hour to spot the biggest problems.
+              </p>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <p class="text-sm text-gray-500">
+                  <span class="font-medium text-charcoal">Deliverable:</span> Complete audit of your top 10 time-wasters with hours wasted per month
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Week 2 -->
+          <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-8">
+            <div class="flex-shrink-0 sm:w-16">
+              <div class="w-16 h-16 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg relative z-10">
+                2
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-display text-2xl text-charcoal mb-2">Week 2: Build it the right way</h3>
+              <p class="text-gray-600 mb-3">
+                I build systems that fit how you already work, not force you into some template. Everything gets tested before it touches your real business. No 'figure it out as we go' nonsense.
+              </p>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <p class="text-sm text-gray-500">
+                  <span class="font-medium text-charcoal">Deliverable:</span> Visual workflow diagrams + working prototypes
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Week 3 -->
+          <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-8">
+            <div class="flex-shrink-0 sm:w-16">
+              <div class="w-16 h-16 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg relative z-10">
+                3
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-display text-2xl text-charcoal mb-2">Week 3: Test and refine</h3>
+              <p class="text-gray-600 mb-3">
+                Connect your tools. Test everything with real scenarios. Iron out any quirks before it goes live. Your business keeps running normally while we perfect everything behind the scenes.
+              </p>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <p class="text-sm text-gray-500">
+                  <span class="font-medium text-charcoal">Deliverable:</span> Fully tested automations ready for deployment
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Week 4 -->
+          <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-8">
+            <div class="flex-shrink-0 sm:w-16">
+              <div class="w-16 h-16 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg relative z-10">
+                4
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-display text-2xl text-charcoal mb-2">Week 4: Hand it over and get out of your way</h3>
+              <p class="text-gray-600 mb-3">
+                You get systems that actually work, simple training for your team, and me available if something breaks. Then you go back to running your business instead of fighting with technology.
+              </p>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <p class="text-sm text-gray-500">
+                  <span class="font-medium text-charcoal">Deliverable:</span> Live systems + training videos + 30-day support
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beyond -->
+          <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-8">
+            <div class="flex-shrink-0 sm:w-16">
+              <div class="w-16 h-16 bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg relative z-10 animate-pulse">
+                ✓
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-display text-2xl text-charcoal mb-2">Day 31 & Beyond</h3>
+              <p class="text-gray-600 mb-3">
+                You're saving 20+ hours per week. Your team actually likes their jobs again. You wonder why you didn't do this sooner.
+              </p>
+              <div class="bg-gradient-to-r from-coral-50 to-coral-100 p-4 rounded-lg">
+                <p class="text-sm font-medium text-charcoal">
+                  Average client saves 23 hours/week within first month
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-16 sm:py-20 px-4 bg-white">
+    <div class="container mx-auto max-w-3xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
+          Questions I get all the time
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-600">
+          Let's address the elephant in the room
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ 1 -->
+        <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+          <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-display text-lg sm:text-xl text-charcoal pr-4">
+              "This sounds expensive. What's it actually cost?"
+            </span>
+            <svg class="faq-icon w-6 h-6 text-coral-500 transform transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-6 py-4 bg-gray-50">
+            <p class="text-gray-600 mb-3">
+              Most automations cost between $2,000-$8,000. Sounds like a lot until you do the math:
+            </p>
+            <div class="bg-white p-4 rounded-lg mb-3">
+              <p class="text-sm">
+                <span class="font-medium text-charcoal">Example:</span> You pay someone $20/hour. They waste 10 hours/week on manual tasks. That's $200/week, or $10,400/year. A $4,000 automation pays for itself in 5 months. Then it's pure savings forever.
+              </p>
+            </div>
+            <p class="text-gray-600">
+              I'll tell you exactly what it costs after our first call. No "contact us for pricing" nonsense.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+          <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-display text-lg sm:text-xl text-charcoal pr-4">
+              "My business is unique. This won't work for me."
+            </span>
+            <svg class="faq-icon w-6 h-6 text-coral-500 transform transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-6 py-4 bg-gray-50">
+            <p class="text-gray-600 mb-3">
+              I've heard this from plumbers, lawyers, manufacturers, restaurants, and e-commerce stores. They were all wrong.
+            </p>
+            <p class="text-gray-600 mb-3">
+              Every business thinks they're special. But you know what's not unique? Chasing invoices. Entering data twice. Answering the same questions. Following up with leads.
+            </p>
+            <p class="text-gray-600">
+              The tasks might look different, but the problems are identical. And so are the solutions.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+          <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-display text-lg sm:text-xl text-charcoal pr-4">
+              "What if it breaks? I can't afford downtime."
+            </span>
+            <svg class="faq-icon w-6 h-6 text-coral-500 transform transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-6 py-4 bg-gray-50">
+            <p class="text-gray-600 mb-3">
+              Fair concern. Here's how I handle it:
+            </p>
+            <ul class="space-y-2 text-gray-600 mb-3">
+              <li class="flex items-start gap-2">
+                <span class="text-coral-500 mt-1">•</span>
+                <span>Everything has a manual override. If automation fails, you can still work the old way.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-coral-500 mt-1">•</span>
+                <span>30-day support included. Something breaks? I fix it. Usually within hours.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-coral-500 mt-1">•</span>
+                <span>I build simple systems that don't break. Complexity is the enemy of reliability.</span>
+              </li>
+            </ul>
+            <p class="text-gray-600">
+              In 20 years, I've never had a system cause more downtime than the manual process it replaced.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+          <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-display text-lg sm:text-xl text-charcoal pr-4">
+              "My team isn't tech-savvy. They'll never figure this out."
+            </span>
+            <svg class="faq-icon w-6 h-6 text-coral-500 transform transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-6 py-4 bg-gray-50">
+            <p class="text-gray-600 mb-3">
+              My warehouse guys could barely use email. They learned our inventory system in 30 minutes. Why?
+            </p>
+            <p class="text-gray-600 mb-3">
+              Because I build systems for humans, not engineers. If it requires training, I built it wrong.
+            </p>
+            <p class="text-gray-600">
+              Most automations make your team's job easier, not harder. They'll wonder how they ever worked without it.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+          <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-display text-lg sm:text-xl text-charcoal pr-4">
+              "How do I know you're not just another consultant who'll waste my time?"
+            </span>
+            <svg class="faq-icon w-6 h-6 text-coral-500 transform transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-6 py-4 bg-gray-50">
+            <p class="text-gray-600 mb-3">
+              Because I've been in your shoes. Built a business. Scaled it. Felt the pain of manual processes crushing growth.
+            </p>
+            <p class="text-gray-600 mb-3">
+              I don't do 200-slide presentations. I don't speak in buzzwords. I don't bill by the hour.
+            </p>
+            <p class="text-gray-600 mb-3">
+              First call is free. If I can't save you at least 10 hours per week, I'll tell you straight up. No BS.
+            </p>
+            <p class="text-gray-600">
+              Want proof? Ask me about the hot sauce story. Or how we processed 50,000 orders per month with 6 people. Real stories, real results.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contact" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500 relative overflow-hidden">
+    <!-- Pattern overlay -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23grid)" /%3E%3C/svg%3E')"></div>
+    </div>
+
+    <div class="container mx-auto max-w-4xl text-center relative z-10">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-6">
+        Ready to stop drowning in manual work?
+      </h2>
+      
+      <p class="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        Let's talk about your biggest time-wasters. 30-minute call. No sales pitch. Just straight talk about what's possible.
+      </p>
+
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 sm:p-12 max-w-2xl mx-auto mb-8">
+        <h3 class="font-display text-2xl text-white mb-6">
+          Here's what happens next:
+        </h3>
+        
+        <div class="space-y-4 text-left max-w-lg mx-auto">
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
+            <div>
+              <p class="text-white font-medium">Quick call (30 min)</p>
+              <p class="text-white/80 text-sm">You tell me what's driving you crazy. I tell you if I can fix it.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
+            <div>
+              <p class="text-white font-medium">Free automation audit</p>
+              <p class="text-white/80 text-sm">I'll identify your top 3 automation opportunities and potential time savings.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">3</div>
+            <div>
+              <p class="text-white font-medium">Clear next steps</p>
+              <p class="text-white/80 text-sm">Want to move forward? Great. Not ready? No problem. Zero pressure.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <a href="mailto:tom@ctautomation.com" class="inline-flex items-center gap-2 bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform text-lg">
+            <span>Let's Talk</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+          <p class="text-white/70 text-sm mt-4">
+            tom@ctautomation.com • (203) 555-0123
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-6 justify-center text-white/80 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Connecticut Based
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          20+ Years Experience
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Real Business Owner
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-charcoal text-white py-12 px-4">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- Company -->
+        <div>
+          <h3 class="font-display text-xl mb-4">Connecticut Business Automation</h3>
+          <p class="text-white/70 text-sm">
+            Saving Connecticut businesses from manual work, one automation at a time.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-medium mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-white/70 text-sm">
+            <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+            <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-medium mb-4">Get in Touch</h4>
+          <ul class="space-y-2 text-white/70 text-sm">
+            <li>
+              <a href="mailto:tom@ctautomation.com" class="hover:text-white transition-colors">
+                tom@ctautomation.com
+              </a>
+            </li>
+            <li>(203) 555-0123</li>
+            <li>Connecticut</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 text-center text-white/50 text-sm">
+        <p>&copy; 2024 Connecticut Business Automation. All rights reserved.</p>
+        <p class="mt-2">Built by someone who actually understands business.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  // Mobile menu functionality
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+
+  function openMobileMenu() {
+    mobileMenu?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    mobileMenu?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  mobileMenuBtn?.addEventListener('click', openMobileMenu);
+  mobileMenuClose?.addEventListener('click', closeMobileMenu);
+  mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
+
+  mobileMenuLinks?.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // Flip card functionality
+  const flipCards = document.querySelectorAll('.flip-card');
+  
+  flipCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const inner = card.querySelector('.flip-card-inner');
+      inner.classList.toggle('rotate-y-180');
+    });
+
+    // Touch support for mobile
+    card.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      const inner = card.querySelector('.flip-card-inner');
+      inner.classList.toggle('rotate-y-180');
+    }, { passive: false });
+  });
+
+  // FAQ Accordion functionality
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+    
+    question.addEventListener('click', () => {
+      const isOpen = !answer.classList.contains('hidden');
+      
+      // Close all other FAQs
+      faqItems.forEach(otherItem => {
+        const otherAnswer = otherItem.querySelector('.faq-answer');
+        const otherIcon = otherItem.querySelector('.faq-icon');
+        if (otherItem !== item) {
+          otherAnswer.classList.add('hidden');
+          otherIcon.classList.remove('rotate-45');
+        }
+      });
+      
+      // Toggle current FAQ
+      if (isOpen) {
+        answer.classList.add('hidden');
+        icon.classList.remove('rotate-45');
+      } else {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-45');
+      }
+    });
+  });
+
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-up');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      section.classList.add('opacity-0');
+      observer.observe(section);
+    });
+
+    // Add stagger animations to grid items
+    const gridItems = document.querySelectorAll('.grid > *');
+    gridItems.forEach((item, index) => {
+      item.style.animationDelay = `${index * 100}ms`;
+    });
+
+    // Smooth scroll behavior for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+
+  // Add parallax effect to floating elements
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.animate-float');
+    
+    parallaxElements.forEach(element => {
+      const speed = 0.5;
+      const yPos = -(scrolled * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+  });
+</script>

@@ -154,7 +154,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Problems I Solve Section - Premium Bento Grid Design -->
-  <section id="problems" class="py-20 sm:py-24 px-4 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+  <section id="problems" class="py-20 sm:py-24 px-4 bg-gradient-to-b from-cream to-white overflow-hidden">
     <div class="container mx-auto max-w-7xl">
       <div class="text-center mb-16">
         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
@@ -166,212 +166,489 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
             <!-- Premium Bento Grid Layout -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 auto-rows-[minmax(200px,_1fr)]">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-[220px]">
         <!-- Card 1: Invoice Follow-Up (Tall - spans 2 rows) -->
-        <div class="group relative lg:row-span-2 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-          <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-orange-500/10"></div>
+        <div class="group relative lg:row-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
           <div class="relative h-full p-6 flex flex-col">
-            <h3 class="font-display text-xl text-white mb-4">Invoice Follow-Up Nightmare</h3>
+            <h3 class="font-display text-xl text-charcoal mb-4">Invoice Follow-Up Nightmare</h3>
             
-            <!-- Email Thread Visualization -->
-            <div class="flex-grow flex flex-col justify-center space-y-3">
-              <div class="bg-white/10 backdrop-blur rounded-lg p-3 transform transition-all duration-300 hover:translate-x-1">
-                <div class="text-xs text-gray-400 mb-1">Day 1</div>
-                <div class="text-sm text-white">Invoice #1234 sent</div>
+            <!-- Email Client Mockup -->
+            <div class="flex-grow bg-gray-50 rounded-xl p-4 border border-gray-200">
+              <!-- Email Header -->
+              <div class="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span class="text-xs text-gray-500 ml-2">Inbox - 47 unread</span>
               </div>
-              <div class="bg-white/10 backdrop-blur rounded-lg p-3 transform transition-all duration-300 hover:translate-x-2 delay-75">
-                <div class="text-xs text-gray-400 mb-1">Day 7</div>
-                <div class="text-sm text-white">Reminder: Payment due...</div>
-              </div>
-              <div class="bg-white/10 backdrop-blur rounded-lg p-3 transform transition-all duration-300 hover:translate-x-3 delay-150">
-                <div class="text-xs text-gray-400 mb-1">Day 14</div>
-                <div class="text-sm text-white">2nd Reminder: Please pay...</div>
-              </div>
-              <div class="bg-red-500/20 backdrop-blur rounded-lg p-3 border border-red-500/30">
-                <div class="text-xs text-red-400 mb-1">Day 30</div>
-                <div class="text-sm text-white">Awkward phone call time...</div>
+              
+              <!-- Email Stack -->
+              <div class="space-y-2">
+                <div class="bg-white rounded-lg p-3 shadow-sm border border-gray-100 transform transition-all duration-300 hover:translate-x-1">
+                  <div class="flex justify-between items-start mb-1">
+                    <span class="text-xs font-semibold text-gray-700">Invoice #1234</span>
+                    <span class="text-xs text-gray-400">Mar 1</span>
+                  </div>
+                  <div class="text-xs text-gray-600">Payment due for February services...</div>
+                </div>
+                
+                <div class="bg-yellow-50 rounded-lg p-3 shadow-sm border border-yellow-200 transform transition-all duration-300 hover:translate-x-2">
+                  <div class="flex justify-between items-start mb-1">
+                    <span class="text-xs font-semibold text-yellow-700">Re: Invoice #1234</span>
+                    <span class="text-xs text-gray-400">Mar 8</span>
+                  </div>
+                  <div class="text-xs text-gray-600">Friendly reminder: Payment is now...</div>
+                </div>
+                
+                <div class="bg-orange-50 rounded-lg p-3 shadow-sm border border-orange-200 transform transition-all duration-300 hover:translate-x-3">
+                  <div class="flex justify-between items-start mb-1">
+                    <span class="text-xs font-semibold text-orange-700">Re: Invoice #1234</span>
+                    <span class="text-xs text-gray-400">Mar 15</span>
+                  </div>
+                  <div class="text-xs text-gray-600">Second notice: Your invoice is...</div>
+                </div>
+                
+                <div class="bg-red-50 rounded-lg p-3 shadow-sm border border-red-300 animate-pulse">
+                  <div class="flex justify-between items-start mb-1">
+                    <span class="text-xs font-semibold text-red-700">URGENT: Invoice #1234</span>
+                    <span class="text-xs text-gray-400">Mar 30</span>
+                  </div>
+                  <div class="text-xs text-gray-600">Final notice before collections...</div>
+                </div>
               </div>
             </div>
             
-            <div class="mt-4 pt-4 border-t border-white/10">
-              <div class="text-red-400 text-sm font-medium">Steals 4-6 hours/week</div>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-red-500 text-sm font-medium">4-6 hours/week wasted</span>
+              <div class="flex -space-x-2">
+                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                  <span class="text-xs">😓</span>
+                </div>
+                <div class="w-8 h-8 bg-red-200 rounded-full flex items-center justify-center">
+                  <span class="text-xs">📞</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Card 2: Lead Response (Wide - spans 2 columns) -->
-        <div class="group relative lg:col-span-2 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"></div>
+        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
           <div class="relative h-full p-6">
-            <h3 class="font-display text-xl text-white mb-4">Slow Lead Response</h3>
+            <h3 class="font-display text-xl text-charcoal mb-4">Slow Lead Response</h3>
             
-            <!-- Split Phone Mockup -->
-            <div class="flex items-center justify-center gap-4 h-full pb-16">
-              <!-- Left Phone - Lead Submission -->
+            <!-- Phone Comparison -->
+            <div class="flex items-center justify-center gap-6">
+              <!-- Customer Phone -->
               <div class="relative">
-                <div class="bg-gray-800 rounded-2xl p-3 shadow-2xl border border-gray-700">
-                  <div class="bg-gray-900 rounded-xl p-4 h-32 w-28">
-                    <div class="text-xs text-gray-400 mb-2">Contact Form</div>
-                    <div class="bg-blue-500/20 rounded p-2 mb-2">
-                      <div class="text-xs text-blue-400">New Lead!</div>
+                <div class="bg-gray-900 rounded-3xl p-2 shadow-2xl w-32">
+                  <div class="bg-gray-100 rounded-2xl p-3 h-48">
+                    <!-- Status Bar -->
+                    <div class="flex justify-between items-center mb-2 text-xs">
+                      <span class="text-gray-600">9:47 PM</span>
+                      <div class="flex gap-1">
+                        <div class="w-4 h-3 bg-gray-400 rounded-sm"></div>
+                        <div class="w-3 h-3 bg-gray-400 rounded-sm"></div>
+                        <div class="w-1 h-3 bg-gray-400 rounded-sm"></div>
+                      </div>
                     </div>
-                    <div class="text-xs text-gray-500">9:47 PM</div>
+                    
+                    <!-- Form Submission -->
+                    <div class="bg-white rounded-lg p-2 shadow-sm mb-2">
+                      <div class="text-xs font-semibold text-gray-700 mb-1">Contact Form</div>
+                      <div class="space-y-1">
+                        <div class="h-2 bg-gray-200 rounded w-full"></div>
+                        <div class="h-2 bg-gray-200 rounded w-3/4"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-green-500 text-white rounded-lg p-2 text-center animate-bounce">
+                      <div class="text-xs font-bold">Submit ✓</div>
+                    </div>
+                    
+                    <div class="text-center mt-2">
+                      <span class="text-xs text-gray-500">Expecting quick response...</span>
+                    </div>
                   </div>
                 </div>
-                <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white text-xs px-3 py-1 rounded-full">
-                  Lead submits
+                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-lg">
+                  Night inquiry
                 </div>
               </div>
               
-              <!-- Arrow -->
-              <div class="text-gray-600">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <!-- Arrow with Timer -->
+              <div class="flex flex-col items-center">
+                <div class="text-4xl mb-2">⏰</div>
+                <div class="text-xs text-gray-500 font-medium">11.5 hours</div>
+                <svg class="w-8 h-8 text-gray-400 mt-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
               </div>
               
-              <!-- Right Phone - Too Late -->
+              <!-- Business Phone -->
               <div class="relative">
-                <div class="bg-gray-800 rounded-2xl p-3 shadow-2xl border border-gray-700">
-                  <div class="bg-gray-900 rounded-xl p-4 h-32 w-28">
-                    <div class="text-xs text-gray-400 mb-2">Your Response</div>
-                    <div class="bg-red-500/20 rounded p-2 mb-2">
-                      <div class="text-xs text-red-400">Too late!</div>
+                <div class="bg-gray-900 rounded-3xl p-2 shadow-2xl w-32">
+                  <div class="bg-gray-100 rounded-2xl p-3 h-48">
+                    <!-- Status Bar -->
+                    <div class="flex justify-between items-center mb-2 text-xs">
+                      <span class="text-gray-600">9:15 AM</span>
+                      <div class="flex gap-1">
+                        <div class="w-4 h-3 bg-gray-400 rounded-sm"></div>
+                        <div class="w-3 h-3 bg-gray-400 rounded-sm"></div>
+                        <div class="w-1 h-3 bg-gray-400 rounded-sm"></div>
+                      </div>
                     </div>
-                    <div class="text-xs text-gray-500">9:15 AM</div>
+                    
+                    <!-- Competitor Won -->
+                    <div class="bg-white rounded-lg p-2 shadow-sm mb-2">
+                      <div class="text-xs font-semibold text-gray-700 mb-1">Your Email</div>
+                      <div class="text-xs text-gray-500">"Hi, thanks for reaching..."</div>
+                    </div>
+                    
+                    <div class="bg-red-100 border border-red-300 rounded-lg p-2 mt-2">
+                      <div class="text-xs text-red-600 font-medium text-center">Customer Reply:</div>
+                      <div class="text-xs text-red-500 text-center">"Already hired someone"</div>
+                    </div>
+                    
+                    <div class="text-center mt-2">
+                      <span class="text-2xl">😔</span>
+                    </div>
                   </div>
                 </div>
-                <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-3 py-1 rounded-full">
-                  Already gone
+                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-3 py-1 rounded-full shadow-lg">
+                  Too late!
                 </div>
               </div>
             </div>
             
-            <div class="absolute bottom-6 left-6">
-              <div class="text-blue-400 text-sm font-medium">Lost opportunities daily</div>
+            <div class="mt-4 text-center">
+              <div class="text-blue-500 text-sm font-medium">78% of customers go with whoever responds first</div>
             </div>
           </div>
         </div>
 
         <!-- Card 3: Data Entry (Tall - spans 2 rows) -->
-        <div class="group relative lg:row-span-2 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10"></div>
+        <div class="group relative lg:row-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
           <div class="relative h-full p-6 flex flex-col">
-            <h3 class="font-display text-xl text-white mb-4">Repetitive Data Entry</h3>
+            <h3 class="font-display text-xl text-charcoal mb-4">Repetitive Data Entry</h3>
             
-            <!-- Data Flow Visualization -->
-            <div class="flex-grow flex items-center justify-center">
-              <div class="relative">
-                <!-- Central Customer Data -->
-                <div class="bg-white/10 backdrop-blur rounded-lg p-4 mb-8">
-                  <div class="text-xs text-gray-400 mb-1">Customer Info</div>
-                  <div class="text-sm text-white font-mono">John@email.com</div>
+            <!-- Customer Form Visual -->
+            <div class="flex-grow">
+              <!-- Original Data Entry -->
+              <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 mb-4 border border-purple-200">
+                <div class="text-xs font-semibold text-purple-700 mb-2">New Customer Form</div>
+                <div class="space-y-2">
+                  <div class="bg-white rounded px-2 py-1 text-xs border border-purple-100">
+                    <span class="text-gray-500">Name:</span> <span class="font-mono text-purple-600">Sarah Johnson</span>
+                  </div>
+                  <div class="bg-white rounded px-2 py-1 text-xs border border-purple-100">
+                    <span class="text-gray-500">Email:</span> <span class="font-mono text-purple-600">sarah@email.com</span>
+                  </div>
+                  <div class="bg-white rounded px-2 py-1 text-xs border border-purple-100">
+                    <span class="text-gray-500">Phone:</span> <span class="font-mono text-purple-600">(555) 123-4567</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Arrow Down -->
+              <div class="flex justify-center my-2">
+                <div class="text-purple-400">
+                  <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                  </svg>
+                </div>
+              </div>
+              
+              <!-- Multiple System Entries -->
+              <div class="grid grid-cols-2 gap-2">
+                <!-- QuickBooks -->
+                <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div class="flex items-center gap-1 mb-2">
+                    <div class="w-6 h-6 bg-green-500 rounded flex items-center justify-center">
+                      <span class="text-white text-xs font-bold">QB</span>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-600">QuickBooks</span>
+                  </div>
+                  <div class="text-xs text-gray-500">Manually typing same data...</div>
+                  <div class="mt-1 flex items-center gap-1">
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-75"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-150"></div>
+                  </div>
                 </div>
                 
-                <!-- Arrows pointing to different systems -->
-                <div class="absolute top-full left-1/2 transform -translate-x-1/2 space-y-2">
-                  <div class="flex items-center gap-2">
-                    <div class="w-0.5 h-8 bg-purple-500/50"></div>
+                <!-- CRM -->
+                <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div class="flex items-center gap-1 mb-2">
+                    <div class="w-6 h-6 bg-blue-500 rounded flex items-center justify-center">
+                      <span class="text-white text-xs font-bold">C</span>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-600">CRM</span>
                   </div>
-                  
-                  <!-- System Icons -->
-                  <div class="grid grid-cols-3 gap-2">
-                    <div class="bg-white/10 backdrop-blur rounded p-2 text-center">
-                      <div class="text-xs text-purple-400">QB</div>
+                  <div class="text-xs text-gray-500">Copy-pasting again...</div>
+                  <div class="mt-1 flex items-center gap-1">
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-75"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-150"></div>
+                  </div>
+                </div>
+                
+                <!-- Email List -->
+                <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div class="flex items-center gap-1 mb-2">
+                    <div class="w-6 h-6 bg-coral-500 rounded flex items-center justify-center">
+                      <span class="text-white text-xs font-bold">@</span>
                     </div>
-                    <div class="bg-white/10 backdrop-blur rounded p-2 text-center">
-                      <div class="text-xs text-purple-400">CRM</div>
+                    <span class="text-xs font-semibold text-gray-600">Email List</span>
+                  </div>
+                  <div class="text-xs text-gray-500">Adding one more time...</div>
+                  <div class="mt-1 flex items-center gap-1">
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-75"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-150"></div>
+                  </div>
+                </div>
+                
+                <!-- Project Tool -->
+                <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div class="flex items-center gap-1 mb-2">
+                    <div class="w-6 h-6 bg-purple-500 rounded flex items-center justify-center">
+                      <span class="text-white text-xs font-bold">P</span>
                     </div>
-                    <div class="bg-white/10 backdrop-blur rounded p-2 text-center">
-                      <div class="text-xs text-purple-400">Email</div>
-                    </div>
+                    <span class="text-xs font-semibold text-gray-600">Projects</span>
+                  </div>
+                  <div class="text-xs text-gray-500">And again...</div>
+                  <div class="mt-1 flex items-center gap-1">
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-75"></div>
+                    <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-150"></div>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div class="mt-auto pt-4 border-t border-white/10">
-              <div class="text-purple-400 text-sm font-medium">2-3 hours of duplicate work daily</div>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-purple-500 text-sm font-medium">2-3 hours daily</span>
+              <div class="text-2xl">🤯</div>
             </div>
           </div>
         </div>
 
         <!-- Card 4: Scheduling (Wide - spans 2 columns) -->
-        <div class="group relative lg:col-span-2 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-          <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-teal-500/10"></div>
+        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
           <div class="relative h-full p-6">
-            <h3 class="font-display text-xl text-white mb-4">Scheduling Back-and-Forth</h3>
+            <h3 class="font-display text-xl text-charcoal mb-4">Scheduling Back-and-Forth</h3>
             
-            <!-- Calendar Interface -->
-            <div class="bg-white/5 backdrop-blur rounded-xl p-4">
-              <div class="grid grid-cols-7 gap-1 text-xs text-gray-400 mb-2">
-                <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Email Chain -->
+              <div>
+                <div class="text-xs font-semibold text-gray-600 mb-2">The Old Way:</div>
+                <div class="space-y-1">
+                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200">
+                    <div class="font-semibold text-gray-700">You → Client</div>
+                    <div class="text-gray-500">"When works for you?"</div>
+                  </div>
+                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200 ml-2">
+                    <div class="font-semibold text-gray-700">Client → You</div>
+                    <div class="text-gray-500">"Tuesday or Thursday?"</div>
+                  </div>
+                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200">
+                    <div class="font-semibold text-gray-700">You → Client</div>
+                    <div class="text-gray-500">"Tuesday at 2pm?"</div>
+                  </div>
+                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200 ml-2">
+                    <div class="font-semibold text-gray-700">Client → You</div>
+                    <div class="text-gray-500">"Can we do 3pm?"</div>
+                  </div>
+                  <div class="text-center mt-2">
+                    <span class="text-xs text-red-500 font-medium">5 emails later...</span>
+                  </div>
+                </div>
               </div>
-              <div class="grid grid-cols-7 gap-1">
-                <!-- Calendar days with some highlighted -->
-                <div class="aspect-square rounded bg-white/5"></div>
-                <div class="aspect-square rounded bg-white/5"></div>
-                <div class="aspect-square rounded bg-green-500/20 border border-green-500/30 flex items-center justify-center text-xs text-green-400">15</div>
-                <div class="aspect-square rounded bg-white/5"></div>
-                <div class="aspect-square rounded bg-red-500/20 border border-red-500/30 flex items-center justify-center text-xs text-red-400">17</div>
-                <div class="aspect-square rounded bg-white/5"></div>
-                <div class="aspect-square rounded bg-white/5"></div>
+              
+              <!-- Calendar Widget -->
+              <div>
+                <div class="text-xs font-semibold text-gray-600 mb-2">The Smart Way:</div>
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-3 border border-green-200">
+                  <div class="bg-white rounded-lg shadow-sm p-2 mb-2">
+                    <div class="grid grid-cols-7 gap-1 text-xs text-center mb-1">
+                      <div class="text-gray-400">S</div>
+                      <div class="text-gray-400">M</div>
+                      <div class="text-gray-400">T</div>
+                      <div class="text-gray-400">W</div>
+                      <div class="text-gray-400">T</div>
+                      <div class="text-gray-400">F</div>
+                      <div class="text-gray-400">S</div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1">
+                      <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">1</div>
+                      <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">2</div>
+                      <div class="aspect-square rounded bg-green-500 text-white text-xs flex items-center justify-center cursor-pointer transform hover:scale-110 transition-transform">3</div>
+                      <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">4</div>
+                      <div class="aspect-square rounded bg-green-500 text-white text-xs flex items-center justify-center cursor-pointer transform hover:scale-110 transition-transform">5</div>
+                      <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">6</div>
+                      <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">7</div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-xs text-green-600 font-medium">Client picks time</div>
+                    <div class="text-xs text-green-500">Meeting booked instantly!</div>
+                  </div>
+                </div>
               </div>
             </div>
             
-            <div class="absolute bottom-6 left-6">
-              <div class="text-green-400 text-sm font-medium">Wastes 5+ hours/week</div>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-green-500 text-sm font-medium">Save 5+ hours/week</span>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-gray-500">From</span>
+                <span class="text-2xl">😫</span>
+                <span class="text-xs text-gray-500">to</span>
+                <span class="text-2xl">😌</span>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Card 5: Marketing (Wide - spans 2 columns) -->
-        <div class="group relative lg:col-span-2 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-          <div class="absolute inset-0 bg-gradient-to-br from-coral-500/10 to-red-500/10"></div>
+        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
           <div class="relative h-full p-6">
-            <h3 class="font-display text-xl text-white mb-4">Marketing Guesswork</h3>
+            <h3 class="font-display text-xl text-charcoal mb-4">Marketing Guesswork</h3>
             
-            <!-- Analytics Dashboard Mock -->
-            <div class="bg-white/5 backdrop-blur rounded-xl p-4">
-              <div class="flex items-end justify-between h-20 mb-2">
-                <div class="w-8 h-12 bg-coral-500/20 rounded"></div>
-                <div class="w-8 h-16 bg-coral-500/30 rounded"></div>
-                <div class="w-8 h-8 bg-coral-500/20 rounded"></div>
-                <div class="w-8 h-20 bg-coral-500/40 rounded"></div>
-                <div class="w-8 h-14 bg-coral-500/30 rounded"></div>
+            <!-- Split View: Before/After -->
+            <div class="grid grid-cols-2 gap-3">
+              <!-- Before - Guessing -->
+              <div>
+                <div class="text-xs font-semibold text-red-600 mb-2">❌ Without Tracking</div>
+                <div class="bg-red-50 rounded-lg p-3 border border-red-200">
+                  <!-- Pie Chart Mock -->
+                  <div class="relative w-20 h-20 mx-auto mb-2">
+                    <div class="absolute inset-0 bg-gray-300 rounded-full"></div>
+                    <div class="absolute inset-2 bg-red-50 rounded-full"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <span class="text-2xl">❓</span>
+                    </div>
+                  </div>
+                  <div class="text-xs text-center space-y-1">
+                    <div class="text-gray-600">Money spent: <span class="font-bold text-red-600">$5,000</span></div>
+                    <div class="text-gray-600">New customers: <span class="font-bold">???</span></div>
+                    <div class="text-gray-600">From where: <span class="font-bold">🤷‍♂️</span></div>
+                  </div>
+                </div>
               </div>
-              <div class="text-xs text-gray-400">Ad Spend vs Results: <span class="text-red-400">Unknown ROI</span></div>
+              
+              <!-- After - Clear Data -->
+              <div>
+                <div class="text-xs font-semibold text-green-600 mb-2">✅ With Automation</div>
+                <div class="bg-green-50 rounded-lg p-3 border border-green-200">
+                  <!-- Bar Chart Mock -->
+                  <div class="flex items-end justify-center gap-1 h-20 mb-2">
+                    <div class="w-4 bg-blue-500 rounded-t" style="height: 60%">
+                      <div class="text-xs text-white text-center mt-1">FB</div>
+                    </div>
+                    <div class="w-4 bg-green-500 rounded-t" style="height: 80%">
+                      <div class="text-xs text-white text-center mt-1">G</div>
+                    </div>
+                    <div class="w-4 bg-purple-500 rounded-t" style="height: 40%">
+                      <div class="text-xs text-white text-center mt-1">IG</div>
+                    </div>
+                    <div class="w-4 bg-yellow-500 rounded-t" style="height: 30%">
+                      <div class="text-xs text-white text-center mt-1">E</div>
+                    </div>
+                  </div>
+                  <div class="text-xs space-y-1">
+                    <div class="text-gray-600">Best ROI: <span class="font-bold text-green-600">Google Ads</span></div>
+                    <div class="text-gray-600">Cost per lead: <span class="font-bold text-green-600">$23</span></div>
+                    <div class="text-gray-600">Kill this: <span class="font-bold text-red-600">Email</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <div class="absolute bottom-6 left-6">
-              <div class="text-coral-400 text-sm font-medium">Wasted ad spend</div>
+            <div class="mt-3 bg-gray-50 rounded-lg p-2 border border-gray-200">
+              <div class="text-xs text-center text-gray-600">
+                <span class="font-bold text-coral-500">Real numbers</span> = <span class="font-bold text-green-600">Smart decisions</span> = <span class="font-bold">💰 Saved</span>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Card 6: Lost Documents (Wide - spans 2 columns) -->
-        <div class="group relative lg:col-span-2 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-          <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-amber-500/10"></div>
+        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
           <div class="relative h-full p-6">
-            <h3 class="font-display text-xl text-white mb-4">Lost Documents</h3>
+            <h3 class="font-display text-xl text-charcoal mb-4">Lost Documents</h3>
             
-            <!-- File Search Interface -->
-            <div class="bg-white/5 backdrop-blur rounded-xl p-4">
-              <div class="bg-white/10 rounded-lg px-3 py-2 mb-3 flex items-center gap-2">
-                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-                <div class="text-sm text-gray-400 font-mono">contract_final_v3_REAL.pdf</div>
+            <!-- Desktop File Explorer Mock -->
+            <div class="bg-gray-900 rounded-lg p-1 shadow-xl">
+              <!-- Window Header -->
+              <div class="bg-gray-800 rounded-t-lg px-3 py-2 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="flex gap-1">
+                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <span class="text-xs text-gray-400 ml-2">Finder - Searching for "contract"</span>
+                </div>
               </div>
-              <div class="space-y-1">
-                <div class="bg-white/5 h-6 rounded animate-pulse"></div>
-                <div class="bg-white/5 h-6 rounded animate-pulse delay-75"></div>
-                <div class="bg-white/5 h-6 rounded animate-pulse delay-150"></div>
+              
+              <!-- Search Results -->
+              <div class="bg-gray-100 rounded-b-lg p-3">
+                <!-- Search Bar -->
+                <div class="bg-white rounded-lg px-3 py-2 mb-3 flex items-center gap-2 shadow-sm">
+                  <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                  <div class="text-xs text-gray-600 font-mono">contract</div>
+                </div>
+                
+                <!-- Confusing Results -->
+                <div class="space-y-1 text-xs">
+                  <div class="bg-white rounded px-2 py-1 flex items-center gap-2 hover:bg-gray-50">
+                    <span class="text-gray-400">📄</span>
+                    <span class="text-gray-700">contract.pdf</span>
+                    <span class="text-gray-400 ml-auto">Jan 2023</span>
+                  </div>
+                  <div class="bg-white rounded px-2 py-1 flex items-center gap-2 hover:bg-gray-50">
+                    <span class="text-gray-400">📄</span>
+                    <span class="text-gray-700">contract_final.pdf</span>
+                    <span class="text-gray-400 ml-auto">Mar 2023</span>
+                  </div>
+                  <div class="bg-white rounded px-2 py-1 flex items-center gap-2 hover:bg-gray-50">
+                    <span class="text-gray-400">📄</span>
+                    <span class="text-gray-700">contract_final_v2.pdf</span>
+                    <span class="text-gray-400 ml-auto">Mar 2023</span>
+                  </div>
+                  <div class="bg-yellow-50 rounded px-2 py-1 flex items-center gap-2 border border-yellow-200">
+                    <span class="text-gray-400">📄</span>
+                    <span class="text-gray-700 font-semibold">contract_FINAL_FINAL.pdf</span>
+                    <span class="text-gray-400 ml-auto">Apr 2023</span>
+                  </div>
+                  <div class="bg-white rounded px-2 py-1 flex items-center gap-2 hover:bg-gray-50">
+                    <span class="text-gray-400">📄</span>
+                    <span class="text-gray-700">contract_approved.pdf</span>
+                    <span class="text-gray-400 ml-auto">Apr 2023</span>
+                  </div>
+                  <div class="bg-red-50 rounded px-2 py-1 flex items-center gap-2 border border-red-200">
+                    <span class="text-gray-400">📄</span>
+                    <span class="text-gray-700">contract_USE_THIS_ONE.pdf</span>
+                    <span class="text-red-600 ml-auto font-semibold">Which one?!</span>
+                  </div>
+                </div>
+                
+                <div class="text-center mt-2">
+                  <span class="text-xs text-gray-500">237 more results... 😵</span>
+                </div>
               </div>
             </div>
             
-            <div class="absolute bottom-6 left-6">
-              <div class="text-yellow-400 text-sm font-medium">Lost productivity & stress</div>
+            <div class="mt-3 flex items-center justify-between">
+              <span class="text-amber-500 text-sm font-medium">Hours lost searching</span>
+              <div class="text-xs text-gray-600">
+                <span class="font-mono">Time wasted: </span>
+                <span class="font-bold text-red-600">45 min</span>
+                <span class="text-gray-400"> per incident</span>
+              </div>
             </div>
           </div>
         </div>

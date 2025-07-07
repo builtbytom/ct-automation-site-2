@@ -166,9 +166,9 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
             <!-- Premium Bento Grid Layout -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-[220px]">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-[240px]">
         <!-- Card 1: Invoice Follow-Up (Tall - spans 2 rows) -->
-        <div class="group relative lg:row-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+        <div class="group relative lg:row-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-red-200 hover:border-red-300">
           <div class="relative h-full p-6 flex flex-col">
             <h3 class="font-display text-xl text-charcoal mb-4">Invoice Follow-Up Nightmare</h3>
             
@@ -218,14 +218,16 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </div>
             
-            <div class="mt-4 flex items-center justify-between">
-              <span class="text-red-500 text-sm font-medium">4-6 hours/week wasted</span>
-              <div class="flex -space-x-2">
-                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                  <span class="text-xs">😓</span>
-                </div>
-                <div class="w-8 h-8 bg-red-200 rounded-full flex items-center justify-center">
-                  <span class="text-xs">📞</span>
+            <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+              <div class="flex items-center justify-between">
+                <span class="text-red-600 text-sm font-semibold">4-6 hours/week wasted</span>
+                <div class="flex -space-x-2">
+                  <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center border-2 border-white">
+                    <span class="text-xs">😓</span>
+                  </div>
+                  <div class="w-8 h-8 bg-red-200 rounded-full flex items-center justify-center border-2 border-white">
+                    <span class="text-xs">📞</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -233,102 +235,168 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Card 2: Lead Response (Wide - spans 2 columns) -->
-        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-blue-200 hover:border-blue-300">
           <div class="relative h-full p-6">
-            <h3 class="font-display text-xl text-charcoal mb-4">Slow Lead Response</h3>
+            <h3 class="font-display text-xl text-charcoal mb-3">Slow Lead Response</h3>
             
             <!-- Phone Comparison -->
-            <div class="flex items-center justify-center gap-6">
+            <div class="flex items-center justify-center gap-4 h-full pb-12">
               <!-- Customer Phone -->
               <div class="relative">
-                <div class="bg-gray-900 rounded-3xl p-2 shadow-2xl w-32">
-                  <div class="bg-gray-100 rounded-2xl p-3 h-48">
+                <div class="bg-gray-900 rounded-[2rem] p-1.5 shadow-2xl w-36">
+                  <!-- Phone Notch -->
+                  <div class="absolute top-3 left-1/2 transform -translate-x-1/2 bg-gray-900 w-20 h-5 rounded-full"></div>
+                  <div class="bg-white rounded-[1.75rem] p-3 h-56 relative overflow-hidden">
                     <!-- Status Bar -->
-                    <div class="flex justify-between items-center mb-2 text-xs">
-                      <span class="text-gray-600">9:47 PM</span>
-                      <div class="flex gap-1">
-                        <div class="w-4 h-3 bg-gray-400 rounded-sm"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-sm"></div>
-                        <div class="w-1 h-3 bg-gray-400 rounded-sm"></div>
+                    <div class="flex justify-between items-center mb-3 text-xs relative z-10">
+                      <span class="text-gray-800 font-medium">9:47 PM</span>
+                      <div class="flex gap-0.5 items-center">
+                        <svg class="w-4 h-3 text-gray-600" viewBox="0 0 24 18" fill="currentColor">
+                          <path d="M1 6h2v9H1zm4-3h2v12H5zm4-3h2v15H9zm4 3h2v12h-2zm4 3h2v9h-2z"/>
+                        </svg>
+                        <svg class="w-4 h-3 text-gray-600" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M2 17h20v2H2zm1.15-4.05L4 11.47l.85 1.48 1.3-.75-.85-1.48H7v-1.5H5.3l.85-1.48L4.85 7 4 8.47 3.15 7l-1.3.75.85 1.48H1v1.5h1.7l-.85 1.48 1.3.75zm6.7-.75l1.48.85 1.48-.85-.85-1.48H14v-1.5h-2.05l.85-1.48-1.48-.85L10 8.47 8.68 7l-1.48.85.85 1.48H6v1.5h2.05l-.85 1.48zm8 0l1.48.85 1.48-.85-.85-1.48H22v-1.5h-2.05l.85-1.48-1.48-.85L18 8.47 16.68 7l-1.48.85.85 1.48H14v1.5h2.05l-.85 1.48z"/>
+                        </svg>
+                        <div class="w-5 h-3 bg-gray-800 rounded-sm flex items-center justify-center">
+                          <div class="w-4 h-2 bg-green-400 rounded-sm"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Website Header -->
+                    <div class="bg-gray-100 rounded-lg px-3 py-2 mb-3 shadow-sm">
+                      <div class="flex items-center gap-2">
+                        <div class="w-5 h-5 bg-gradient-to-br from-blue-500 to-blue-600 rounded flex items-center justify-center">
+                          <span class="text-white text-xs font-bold">B</span>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-700">YourBusiness.com</span>
                       </div>
                     </div>
                     
                     <!-- Form Submission -->
-                    <div class="bg-white rounded-lg p-2 shadow-sm mb-2">
-                      <div class="text-xs font-semibold text-gray-700 mb-1">Contact Form</div>
-                      <div class="space-y-1">
-                        <div class="h-2 bg-gray-200 rounded w-full"></div>
-                        <div class="h-2 bg-gray-200 rounded w-3/4"></div>
+                    <div class="bg-white rounded-lg p-3 shadow-sm border border-gray-200 mb-3">
+                      <div class="text-xs font-semibold text-gray-700 mb-2">Get a Free Quote</div>
+                      <div class="space-y-2">
+                        <input class="w-full h-6 bg-gray-50 rounded px-2 text-xs border border-gray-200" value="John Smith" readonly />
+                        <input class="w-full h-6 bg-gray-50 rounded px-2 text-xs border border-gray-200" value="john@email.com" readonly />
+                        <textarea class="w-full h-8 bg-gray-50 rounded px-2 py-1 text-xs border border-gray-200 resize-none" readonly>Need help ASAP...</textarea>
                       </div>
                     </div>
                     
-                    <div class="bg-green-500 text-white rounded-lg p-2 text-center animate-bounce">
-                      <div class="text-xs font-bold">Submit ✓</div>
-                    </div>
+                    <button class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg py-2 text-center animate-pulse shadow-lg">
+                      <div class="text-xs font-bold flex items-center justify-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Submitted!
+                      </div>
+                    </button>
                     
                     <div class="text-center mt-2">
-                      <span class="text-xs text-gray-500">Expecting quick response...</span>
+                      <span class="text-xs text-gray-500 italic">"Hope they respond fast..."</span>
                     </div>
                   </div>
                 </div>
-                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-lg">
-                  Night inquiry
+                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs px-3 py-1 rounded-full shadow-lg font-medium">
+                  🌙 9:47 PM
                 </div>
               </div>
               
               <!-- Arrow with Timer -->
-              <div class="flex flex-col items-center">
-                <div class="text-4xl mb-2">⏰</div>
-                <div class="text-xs text-gray-500 font-medium">11.5 hours</div>
-                <svg class="w-8 h-8 text-gray-400 mt-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                </svg>
+              <div class="flex flex-col items-center px-2">
+                <div class="relative">
+                  <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-red-100 rounded-full flex items-center justify-center shadow-lg">
+                    <div class="text-3xl animate-pulse">⏰</div>
+                  </div>
+                  <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold shadow">
+                    11.5 hrs
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <svg class="w-10 h-10 text-red-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                  </svg>
+                </div>
+                <div class="text-xs text-gray-500 font-medium mt-1">Time lost = Money lost</div>
               </div>
               
               <!-- Business Phone -->
               <div class="relative">
-                <div class="bg-gray-900 rounded-3xl p-2 shadow-2xl w-32">
-                  <div class="bg-gray-100 rounded-2xl p-3 h-48">
+                <div class="bg-gray-900 rounded-[2rem] p-1.5 shadow-2xl w-36">
+                  <!-- Phone Notch -->
+                  <div class="absolute top-3 left-1/2 transform -translate-x-1/2 bg-gray-900 w-20 h-5 rounded-full"></div>
+                  <div class="bg-white rounded-[1.75rem] p-3 h-56 relative overflow-hidden">
                     <!-- Status Bar -->
-                    <div class="flex justify-between items-center mb-2 text-xs">
-                      <span class="text-gray-600">9:15 AM</span>
-                      <div class="flex gap-1">
-                        <div class="w-4 h-3 bg-gray-400 rounded-sm"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-sm"></div>
-                        <div class="w-1 h-3 bg-gray-400 rounded-sm"></div>
+                    <div class="flex justify-between items-center mb-3 text-xs relative z-10">
+                      <span class="text-gray-800 font-medium">9:15 AM</span>
+                      <div class="flex gap-0.5 items-center">
+                        <svg class="w-4 h-3 text-gray-600" viewBox="0 0 24 18" fill="currentColor">
+                          <path d="M1 6h2v9H1zm4-3h2v12H5zm4-3h2v15H9zm4 3h2v12h-2zm4 3h2v9h-2z"/>
+                        </svg>
+                        <svg class="w-4 h-3 text-gray-600" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M2 17h20v2H2zm1.15-4.05L4 11.47l.85 1.48 1.3-.75-.85-1.48H7v-1.5H5.3l.85-1.48L4.85 7 4 8.47 3.15 7l-1.3.75.85 1.48H1v1.5h1.7l-.85 1.48 1.3.75zm6.7-.75l1.48.85 1.48-.85-.85-1.48H14v-1.5h-2.05l.85-1.48-1.48-.85L10 8.47 8.68 7l-1.48.85.85 1.48H6v1.5h2.05l-.85 1.48zm8 0l1.48.85 1.48-.85-.85-1.48H22v-1.5h-2.05l.85-1.48-1.48-.85L18 8.47 16.68 7l-1.48.85.85 1.48H14v1.5h2.05l-.85 1.48z"/>
+                        </svg>
+                        <div class="w-5 h-3 bg-gray-800 rounded-sm flex items-center justify-center">
+                          <div class="w-4 h-2 bg-red-400 rounded-sm"></div>
+                        </div>
                       </div>
                     </div>
                     
-                    <!-- Competitor Won -->
-                    <div class="bg-white rounded-lg p-2 shadow-sm mb-2">
-                      <div class="text-xs font-semibold text-gray-700 mb-1">Your Email</div>
-                      <div class="text-xs text-gray-500">"Hi, thanks for reaching..."</div>
+                    <!-- Email App -->
+                    <div class="bg-gray-50 rounded-lg p-2 mb-2">
+                      <div class="flex items-center gap-2 mb-1">
+                        <div class="w-5 h-5 bg-gradient-to-br from-blue-500 to-purple-600 rounded flex items-center justify-center">
+                          <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                          </svg>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-700">Email</span>
+                      </div>
                     </div>
                     
-                    <div class="bg-red-100 border border-red-300 rounded-lg p-2 mt-2">
-                      <div class="text-xs text-red-600 font-medium text-center">Customer Reply:</div>
-                      <div class="text-xs text-red-500 text-center">"Already hired someone"</div>
+                    <!-- Your Late Email -->
+                    <div class="bg-white rounded-lg p-2 shadow-sm mb-2 border border-gray-200">
+                      <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-semibold text-gray-700">To: John Smith</span>
+                        <span class="text-xs text-gray-400">9:15 AM</span>
+                      </div>
+                      <div class="text-xs text-gray-600">"Hi John, thanks for reaching out..."</div>
                     </div>
                     
-                    <div class="text-center mt-2">
-                      <span class="text-2xl">😔</span>
+                    <!-- Customer Reply -->
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 border border-red-300 rounded-lg p-3 shadow-sm">
+                      <div class="flex items-center gap-2 mb-1">
+                        <div class="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+                          <span class="text-white text-xs font-bold">J</span>
+                        </div>
+                        <span class="text-xs font-semibold text-red-700">John's Reply</span>
+                      </div>
+                      <div class="text-xs text-red-600 font-medium">"Sorry, already hired your competitor. They responded within 30 minutes last night."</div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                      <div class="inline-flex items-center gap-1 bg-red-100 px-2 py-1 rounded-full">
+                        <span class="text-lg">💔</span>
+                        <span class="text-xs text-red-600 font-medium">Lost deal</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-3 py-1 rounded-full shadow-lg">
-                  Too late!
+                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs px-3 py-1 rounded-full shadow-lg font-medium">
+                  ⏰ Too late!
                 </div>
               </div>
             </div>
             
-            <div class="mt-4 text-center">
-              <div class="text-blue-500 text-sm font-medium">78% of customers go with whoever responds first</div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-blue-50 border-t border-blue-200">
+              <div class="text-blue-600 text-sm font-semibold text-center">78% of customers go with whoever responds first</div>
             </div>
           </div>
         </div>
 
         <!-- Card 3: Data Entry (Tall - spans 2 rows) -->
-        <div class="group relative lg:row-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+        <div class="group relative lg:row-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-purple-200 hover:border-purple-300">
           <div class="relative h-full p-6 flex flex-col">
             <h3 class="font-display text-xl text-charcoal mb-4">Repetitive Data Entry</h3>
             
@@ -427,91 +495,114 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </div>
             
-            <div class="mt-4 flex items-center justify-between">
-              <span class="text-purple-500 text-sm font-medium">2-3 hours daily</span>
-              <div class="text-2xl">🤯</div>
+            <div class="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
+              <div class="flex items-center justify-between">
+                <span class="text-purple-600 text-sm font-semibold">2-3 hours daily</span>
+                <div class="text-2xl">🤯</div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Card 4: Scheduling (Wide - spans 2 columns) -->
-        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
-          <div class="relative h-full p-6">
-            <h3 class="font-display text-xl text-charcoal mb-4">Scheduling Back-and-Forth</h3>
+        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-green-200 hover:border-green-300">
+          <div class="relative h-full p-6 pb-16">
+            <h3 class="font-display text-xl text-charcoal mb-3">Scheduling Back-and-Forth</h3>
             
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 gap-4 h-full">
               <!-- Email Chain -->
-              <div>
-                <div class="text-xs font-semibold text-gray-600 mb-2">The Old Way:</div>
-                <div class="space-y-1">
-                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200">
-                    <div class="font-semibold text-gray-700">You → Client</div>
-                    <div class="text-gray-500">"When works for you?"</div>
+              <div class="flex flex-col">
+                <div class="text-xs font-semibold text-gray-600 mb-2 flex items-center gap-1">
+                  <span class="text-red-500">❌</span> The Old Way:
+                </div>
+                <div class="space-y-1 flex-grow">
+                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200 transform hover:translate-x-1 transition-transform">
+                    <div class="flex items-center gap-1">
+                      <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span class="font-semibold text-gray-700">You</span>
+                    </div>
+                    <div class="text-gray-500 mt-1">"When works for you?"</div>
                   </div>
-                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200 ml-2">
-                    <div class="font-semibold text-gray-700">Client → You</div>
-                    <div class="text-gray-500">"Tuesday or Thursday?"</div>
+                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200 ml-3 transform hover:translate-x-1 transition-transform">
+                    <div class="flex items-center gap-1">
+                      <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span class="font-semibold text-gray-700">Client</span>
+                    </div>
+                    <div class="text-gray-500 mt-1">"Tuesday or Thursday?"</div>
                   </div>
-                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200">
-                    <div class="font-semibold text-gray-700">You → Client</div>
-                    <div class="text-gray-500">"Tuesday at 2pm?"</div>
+                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200 transform hover:translate-x-1 transition-transform">
+                    <div class="flex items-center gap-1">
+                      <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span class="font-semibold text-gray-700">You</span>
+                    </div>
+                    <div class="text-gray-500 mt-1">"Tuesday at 2pm?"</div>
                   </div>
-                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200 ml-2">
-                    <div class="font-semibold text-gray-700">Client → You</div>
-                    <div class="text-gray-500">"Can we do 3pm?"</div>
+                  <div class="bg-gray-50 rounded-lg p-2 text-xs border border-gray-200 ml-3 transform hover:translate-x-1 transition-transform">
+                    <div class="flex items-center gap-1">
+                      <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span class="font-semibold text-gray-700">Client</span>
+                    </div>
+                    <div class="text-gray-500 mt-1">"Can we do 3pm?"</div>
                   </div>
                   <div class="text-center mt-2">
-                    <span class="text-xs text-red-500 font-medium">5 emails later...</span>
+                    <span class="text-xs text-red-500 font-medium bg-red-50 px-2 py-1 rounded-full">🔄 5+ emails later...</span>
                   </div>
                 </div>
               </div>
               
               <!-- Calendar Widget -->
-              <div>
-                <div class="text-xs font-semibold text-gray-600 mb-2">The Smart Way:</div>
-                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-3 border border-green-200">
-                  <div class="bg-white rounded-lg shadow-sm p-2 mb-2">
+              <div class="flex flex-col">
+                <div class="text-xs font-semibold text-gray-600 mb-2 flex items-center gap-1">
+                  <span class="text-green-500">✅</span> The Smart Way:
+                </div>
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-3 border border-green-200 flex-grow flex flex-col">
+                  <div class="bg-white rounded-lg shadow-sm p-3 mb-2">
+                    <div class="text-xs font-semibold text-gray-700 mb-2 text-center">Your Calendar</div>
                     <div class="grid grid-cols-7 gap-1 text-xs text-center mb-1">
-                      <div class="text-gray-400">S</div>
-                      <div class="text-gray-400">M</div>
-                      <div class="text-gray-400">T</div>
-                      <div class="text-gray-400">W</div>
-                      <div class="text-gray-400">T</div>
-                      <div class="text-gray-400">F</div>
-                      <div class="text-gray-400">S</div>
+                      <div class="text-gray-400 font-medium">S</div>
+                      <div class="text-gray-400 font-medium">M</div>
+                      <div class="text-gray-400 font-medium">T</div>
+                      <div class="text-gray-400 font-medium">W</div>
+                      <div class="text-gray-400 font-medium">T</div>
+                      <div class="text-gray-400 font-medium">F</div>
+                      <div class="text-gray-400 font-medium">S</div>
                     </div>
                     <div class="grid grid-cols-7 gap-1">
                       <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">1</div>
                       <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">2</div>
-                      <div class="aspect-square rounded bg-green-500 text-white text-xs flex items-center justify-center cursor-pointer transform hover:scale-110 transition-transform">3</div>
+                      <div class="aspect-square rounded-lg bg-green-500 text-white text-xs flex items-center justify-center cursor-pointer transform hover:scale-110 transition-all shadow-sm font-bold">3</div>
                       <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">4</div>
-                      <div class="aspect-square rounded bg-green-500 text-white text-xs flex items-center justify-center cursor-pointer transform hover:scale-110 transition-transform">5</div>
+                      <div class="aspect-square rounded-lg bg-green-500 text-white text-xs flex items-center justify-center cursor-pointer transform hover:scale-110 transition-all shadow-sm font-bold">5</div>
                       <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">6</div>
                       <div class="aspect-square rounded text-xs flex items-center justify-center text-gray-300">7</div>
                     </div>
                   </div>
-                  <div class="text-center">
-                    <div class="text-xs text-green-600 font-medium">Client picks time</div>
-                    <div class="text-xs text-green-500">Meeting booked instantly!</div>
+                  <div class="text-center mt-auto">
+                    <div class="bg-green-100 rounded-lg px-3 py-1 inline-block">
+                      <div class="text-xs text-green-700 font-semibold">Client clicks → Instantly booked!</div>
+                    </div>
+                    <div class="text-xs text-green-600 mt-1">✨ Magic!</div>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div class="mt-4 flex items-center justify-between">
-              <span class="text-green-500 text-sm font-medium">Save 5+ hours/week</span>
-              <div class="flex items-center gap-2">
-                <span class="text-xs text-gray-500">From</span>
-                <span class="text-2xl">😫</span>
-                <span class="text-xs text-gray-500">to</span>
-                <span class="text-2xl">😌</span>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-green-50 border-t border-green-200">
+              <div class="flex items-center justify-between">
+                <span class="text-green-600 text-sm font-semibold">Save 5+ hours/week</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-gray-500">From</span>
+                  <span class="text-2xl">😫</span>
+                  <span class="text-xs text-gray-500">to</span>
+                  <span class="text-2xl">😌</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Card 5: Marketing (Wide - spans 2 columns) -->
-        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-coral-200 hover:border-coral-300">
           <div class="relative h-full p-6">
             <h3 class="font-display text-xl text-charcoal mb-4">Marketing Guesswork</h3>
             
@@ -523,8 +614,10 @@ import Layout from '../layouts/Layout.astro';
                 <div class="bg-red-50 rounded-lg p-3 border border-red-200">
                   <!-- Pie Chart Mock -->
                   <div class="relative w-20 h-20 mx-auto mb-2">
-                    <div class="absolute inset-0 bg-gray-300 rounded-full"></div>
-                    <div class="absolute inset-2 bg-red-50 rounded-full"></div>
+                    <svg class="w-20 h-20 transform -rotate-90">
+                      <circle cx="40" cy="40" r="36" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                      <circle cx="40" cy="40" r="36" fill="none" stroke="#f87171" stroke-width="8" stroke-dasharray="226" stroke-dashoffset="169" class="opacity-60"/>
+                    </svg>
                     <div class="absolute inset-0 flex items-center justify-center">
                       <span class="text-2xl">❓</span>
                     </div>
@@ -542,18 +635,30 @@ import Layout from '../layouts/Layout.astro';
                 <div class="text-xs font-semibold text-green-600 mb-2">✅ With Automation</div>
                 <div class="bg-green-50 rounded-lg p-3 border border-green-200">
                   <!-- Bar Chart Mock -->
-                  <div class="flex items-end justify-center gap-1 h-20 mb-2">
-                    <div class="w-4 bg-blue-500 rounded-t" style="height: 60%">
-                      <div class="text-xs text-white text-center mt-1">FB</div>
+                  <div class="flex items-end justify-center gap-2 h-20 mb-2">
+                    <div class="relative group">
+                      <div class="w-5 bg-gradient-to-t from-blue-600 to-blue-400 rounded-t shadow-sm transition-all hover:shadow-md" style="height: 48px">
+                      </div>
+                      <div class="text-xs text-gray-600 text-center mt-1 font-medium">FB</div>
+                      <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">12 leads</div>
                     </div>
-                    <div class="w-4 bg-green-500 rounded-t" style="height: 80%">
-                      <div class="text-xs text-white text-center mt-1">G</div>
+                    <div class="relative group">
+                      <div class="w-5 bg-gradient-to-t from-green-600 to-green-400 rounded-t shadow-sm transition-all hover:shadow-md" style="height: 64px">
+                      </div>
+                      <div class="text-xs text-gray-600 text-center mt-1 font-medium">G</div>
+                      <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">28 leads</div>
                     </div>
-                    <div class="w-4 bg-purple-500 rounded-t" style="height: 40%">
-                      <div class="text-xs text-white text-center mt-1">IG</div>
+                    <div class="relative group">
+                      <div class="w-5 bg-gradient-to-t from-purple-600 to-purple-400 rounded-t shadow-sm transition-all hover:shadow-md" style="height: 32px">
+                      </div>
+                      <div class="text-xs text-gray-600 text-center mt-1 font-medium">IG</div>
+                      <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">8 leads</div>
                     </div>
-                    <div class="w-4 bg-yellow-500 rounded-t" style="height: 30%">
-                      <div class="text-xs text-white text-center mt-1">E</div>
+                    <div class="relative group">
+                      <div class="w-5 bg-gradient-to-t from-yellow-600 to-yellow-400 rounded-t shadow-sm transition-all hover:shadow-md" style="height: 24px">
+                      </div>
+                      <div class="text-xs text-gray-600 text-center mt-1 font-medium">E</div>
+                      <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">2 leads</div>
                     </div>
                   </div>
                   <div class="text-xs space-y-1">
@@ -565,16 +670,20 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </div>
             
-            <div class="mt-3 bg-gray-50 rounded-lg p-2 border border-gray-200">
-              <div class="text-xs text-center text-gray-600">
-                <span class="font-bold text-coral-500">Real numbers</span> = <span class="font-bold text-green-600">Smart decisions</span> = <span class="font-bold">💰 Saved</span>
+            <div class="mt-3 bg-gradient-to-r from-coral-50 to-orange-50 rounded-lg p-3 border border-coral-200">
+              <div class="text-xs text-center text-gray-700">
+                <span class="font-bold text-coral-600">Real numbers</span> 
+                <span class="text-gray-400 mx-1">→</span>
+                <span class="font-bold text-green-600">Smart decisions</span> 
+                <span class="text-gray-400 mx-1">→</span>
+                <span class="font-bold bg-green-100 px-2 py-1 rounded-full">💰 More profit</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Card 6: Lost Documents (Wide - spans 2 columns) -->
-        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+        <div class="group relative lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-amber-200 hover:border-amber-300">
           <div class="relative h-full p-6">
             <h3 class="font-display text-xl text-charcoal mb-4">Lost Documents</h3>
             
@@ -603,36 +712,55 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 
                 <!-- Confusing Results -->
-                <div class="space-y-1 text-xs">
-                  <div class="bg-white rounded px-2 py-1 flex items-center gap-2 hover:bg-gray-50">
-                    <span class="text-gray-400">📄</span>
-                    <span class="text-gray-700">contract.pdf</span>
-                    <span class="text-gray-400 ml-auto">Jan 2023</span>
+                <div class="space-y-1 text-xs overflow-y-auto max-h-32">
+                  <div class="bg-white rounded px-2 py-1.5 flex items-center gap-2 hover:bg-gray-50 cursor-pointer transition-colors">
+                    <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-5L9 2H4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-gray-700">2023_Contracts/</span>
+                    <span class="text-gray-400 ml-auto text-xs">Modified: Jan 15</span>
                   </div>
-                  <div class="bg-white rounded px-2 py-1 flex items-center gap-2 hover:bg-gray-50">
-                    <span class="text-gray-400">📄</span>
-                    <span class="text-gray-700">contract_final.pdf</span>
-                    <span class="text-gray-400 ml-auto">Mar 2023</span>
+                  <div class="bg-white rounded px-2 py-1.5 flex items-center gap-2 hover:bg-gray-50 cursor-pointer transition-colors ml-4">
+                    <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 384 512">
+                      <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/>
+                    </svg>
+                    <span class="text-gray-700">contract_draft.pdf</span>
+                    <span class="text-gray-400 ml-auto">2.1 MB</span>
                   </div>
-                  <div class="bg-white rounded px-2 py-1 flex items-center gap-2 hover:bg-gray-50">
-                    <span class="text-gray-400">📄</span>
-                    <span class="text-gray-700">contract_final_v2.pdf</span>
-                    <span class="text-gray-400 ml-auto">Mar 2023</span>
+                  <div class="bg-white rounded px-2 py-1.5 flex items-center gap-2 hover:bg-gray-50 cursor-pointer transition-colors ml-4">
+                    <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 384 512">
+                      <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/>
+                    </svg>
+                    <span class="text-gray-700">contract_v2_edits.pdf</span>
+                    <span class="text-gray-400 ml-auto">2.3 MB</span>
                   </div>
-                  <div class="bg-yellow-50 rounded px-2 py-1 flex items-center gap-2 border border-yellow-200">
-                    <span class="text-gray-400">📄</span>
-                    <span class="text-gray-700 font-semibold">contract_FINAL_FINAL.pdf</span>
-                    <span class="text-gray-400 ml-auto">Apr 2023</span>
+                  <div class="bg-yellow-50 rounded px-2 py-1.5 flex items-center gap-2 hover:bg-yellow-100 cursor-pointer transition-colors ml-4 border border-yellow-300">
+                    <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 384 512">
+                      <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/>
+                    </svg>
+                    <span class="text-gray-700 font-semibold">contract_FINAL_v3.pdf</span>
+                    <span class="text-yellow-600 ml-auto font-medium">Latest?</span>
                   </div>
-                  <div class="bg-white rounded px-2 py-1 flex items-center gap-2 hover:bg-gray-50">
-                    <span class="text-gray-400">📄</span>
-                    <span class="text-gray-700">contract_approved.pdf</span>
-                    <span class="text-gray-400 ml-auto">Apr 2023</span>
+                  <div class="bg-white rounded px-2 py-1.5 flex items-center gap-2 hover:bg-gray-50 cursor-pointer transition-colors">
+                    <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-5L9 2H4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-gray-700">Old_Contracts/</span>
+                    <span class="text-gray-400 ml-auto text-xs">Modified: Dec 2022</span>
                   </div>
-                  <div class="bg-red-50 rounded px-2 py-1 flex items-center gap-2 border border-red-200">
-                    <span class="text-gray-400">📄</span>
-                    <span class="text-gray-700">contract_USE_THIS_ONE.pdf</span>
-                    <span class="text-red-600 ml-auto font-semibold">Which one?!</span>
+                  <div class="bg-white rounded px-2 py-1.5 flex items-center gap-2 hover:bg-gray-50 cursor-pointer transition-colors ml-4">
+                    <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 384 512">
+                      <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/>
+                    </svg>
+                    <span class="text-gray-700">contract_signed_copy.pdf</span>
+                    <span class="text-gray-400 ml-auto">1.8 MB</span>
+                  </div>
+                  <div class="bg-red-50 rounded px-2 py-1.5 flex items-center gap-2 hover:bg-red-100 cursor-pointer transition-colors border border-red-300 animate-pulse">
+                    <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 384 512">
+                      <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/>
+                    </svg>
+                    <span class="text-gray-700 font-semibold">contract_USE_THIS_ONE!!!.pdf</span>
+                    <span class="text-red-600 ml-auto font-bold text-xs">🤷</span>
                   </div>
                 </div>
                 
@@ -642,12 +770,13 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </div>
             
-            <div class="mt-3 flex items-center justify-between">
-              <span class="text-amber-500 text-sm font-medium">Hours lost searching</span>
-              <div class="text-xs text-gray-600">
-                <span class="font-mono">Time wasted: </span>
-                <span class="font-bold text-red-600">45 min</span>
-                <span class="text-gray-400"> per incident</span>
+            <div class="mt-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-600 text-sm font-semibold">Hours lost searching</span>
+                <div class="text-xs text-gray-700">
+                  <span class="font-mono bg-red-100 px-2 py-1 rounded">45 min</span>
+                  <span class="text-gray-500 ml-1">per incident</span>
+                </div>
               </div>
             </div>
           </div>

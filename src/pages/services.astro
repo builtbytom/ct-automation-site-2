@@ -504,10 +504,85 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
+        <!-- Problem 6: Lost Documents -->
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <!-- Content Side (reversed order on desktop) -->
+          <div class="order-2 lg:order-1">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-400 rounded-xl flex items-center justify-center shadow-lg">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+              <h3 class="font-display text-3xl text-charcoal">Lost Documents</h3>
+            </div>
+            
+            <p class="text-lg text-gray-600 mb-6">
+              "Where's that contract?" You know it's somewhere. 
+              contract_final.pdf? contract_FINAL_v2.pdf? contract_USE_THIS_ONE.pdf? 
+              45 minutes later, you're still searching.
+            </p>
+            
+            <div class="flex items-center gap-6">
+              <div class="text-center">
+                <div class="text-4xl font-bold text-amber-600">45 min</div>
+                <div class="text-sm text-gray-600">per search</div>
+              </div>
+              <div class="text-gray-400">→</div>
+              <div class="text-lg text-gray-600">
+                Every search is a <span class="font-semibold text-charcoal">productivity killer</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Visual Side -->
+          <div class="relative order-1 lg:order-2">
+            <div class="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-3xl p-8 lg:p-12 shadow-lg">
+              <!-- File chaos visualization -->
+              <div class="relative h-48">
+                <div class="absolute top-0 left-4 transform rotate-12 animate-float">
+                  <div class="bg-white rounded-lg shadow-lg p-3 border-2 border-gray-200">
+                    <div class="w-8 h-10 bg-gray-100 rounded mb-1"></div>
+                    <div class="text-xs text-gray-600">contract.pdf</div>
+                  </div>
+                </div>
+                <div class="absolute top-8 right-6 transform -rotate-6 animate-float delay-150">
+                  <div class="bg-white rounded-lg shadow-lg p-3 border-2 border-gray-200">
+                    <div class="w-8 h-10 bg-gray-100 rounded mb-1"></div>
+                    <div class="text-xs text-gray-600">final_v2.pdf</div>
+                  </div>
+                </div>
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 rotate-3 animate-float delay-300">
+                  <div class="bg-yellow-100 rounded-lg shadow-lg p-3 border-2 border-yellow-300">
+                    <div class="w-8 h-10 bg-yellow-200 rounded mb-1"></div>
+                    <div class="text-xs text-yellow-700 font-bold">USE_THIS!</div>
+                  </div>
+                </div>
+                <div class="absolute bottom-0 right-4 transform rotate-12 animate-float delay-75">
+                  <div class="bg-white rounded-lg shadow-lg p-3 border-2 border-gray-200">
+                    <div class="w-8 h-10 bg-gray-100 rounded mb-1"></div>
+                    <div class="text-xs text-gray-600">final.pdf</div>
+                  </div>
+                </div>
+                
+                <!-- Central confusion -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div class="text-6xl animate-pulse">🤔</div>
+                </div>
+              </div>
+              
+              <div class="mt-8 text-center">
+                <div class="font-mono text-sm text-gray-600 bg-white rounded-lg px-4 py-2 inline-block shadow">
+                  contract_FINAL_v2_REAL_USE_THIS.pdf
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 
-      <div class="mt-12 text-center">
+      <div class="mt-20 text-center">
         <p class="text-lg text-gray-600 mb-6">
           Don't see your specific pain point? These are just examples.
         </p>

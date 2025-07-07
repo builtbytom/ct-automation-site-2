@@ -153,58 +153,67 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- What I Automate Section -->
-  <section id="examples" class="py-16 sm:py-20 px-4 bg-cream">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-12">
+  <!-- Problems I Solve Section - Modern Bento Grid Design -->
+  <section id="problems" class="py-16 sm:py-20 px-4 bg-white overflow-hidden">
+    <div class="container mx-auto max-w-7xl">
+      <div class="text-center mb-16">
         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
-          The stuff that's eating your day (and how I fix it)
+          The Problems I Solve
         </h2>
         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-          These are real automations I've built for real businesses. Yours might be different, but the time savings are always real.
+          These are the time-wasters that keep small business owners up at night
         </p>
       </div>
 
-      <!-- Automation Examples Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        <!-- Example 1 -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-4">
-            <div class="text-3xl mb-2">📧</div>
-            <h3 class="text-white font-display text-xl">Invoice & Payment Chasing</h3>
-          </div>
-          <div class="p-6">
-            <div class="text-sm text-gray-500 mb-3">THE PROBLEM</div>
-            <p class="text-gray-700 mb-4">
-              Manually sending payment reminders, tracking who's paid, following up on overdue accounts. Awkward and time-consuming.
+      <!-- Modern Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+        <!-- Problem 1: Invoice Follow-Up - Large Card -->
+        <div class="group relative md:col-span-2 lg:col-span-1 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border border-red-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <!-- Floating accent -->
+          <div class="absolute -top-3 -right-3 w-20 h-20 bg-red-500 rounded-full opacity-10 group-hover:scale-110 transition-transform"></div>
+          
+          <div class="relative z-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-6">
+              <span class="text-3xl">💸</span>
+            </div>
+            
+            <h3 class="font-display text-2xl text-charcoal mb-3">Invoice Follow-Up Nightmare</h3>
+            
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              I help you stop sending invoices, then following up with emails, making awkward phone calls, tracking who paid what. It's uncomfortable and takes forever.
             </p>
-            <div class="text-sm text-gray-500 mb-3">THE SOLUTION</div>
-            <p class="text-gray-700 mb-4">
-              Automated reminders that escalate naturally. Instant payment tracking. Overdue alerts to your phone. Get paid without the chase.
-            </p>
-            <div class="bg-coral-50 rounded-lg p-3">
-              <p class="text-sm font-medium text-coral-700">Saves 8+ hours/week</p>
+            
+            <div class="flex items-center justify-between">
+              <div class="bg-red-100 text-red-700 px-4 py-2 rounded-lg text-sm font-medium">
+                Steals 4-6 hours/week
+              </div>
+              <div class="text-red-500 group-hover:translate-x-2 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Example 2 -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-4">
-            <div class="text-3xl mb-2">💬</div>
-            <h3 class="text-white font-display text-xl">Lead Response & Qualifying</h3>
-          </div>
-          <div class="p-6">
-            <div class="text-sm text-gray-500 mb-3">THE PROBLEM</div>
-            <p class="text-gray-700 mb-4">
-              Contact form fills out at 9 PM. By morning, they've already called someone else. Plus answering the same qualifying questions repeatedly.
+        <!-- Problem 2: Slow Lead Response -->
+        <div class="group relative bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <!-- Floating accent -->
+          <div class="absolute -bottom-3 -left-3 w-24 h-24 bg-blue-500 rounded-full opacity-10 group-hover:scale-110 transition-transform"></div>
+          
+          <div class="relative z-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-6">
+              <span class="text-3xl">⏰</span>
+            </div>
+            
+            <h3 class="font-display text-2xl text-charcoal mb-3">Slow Lead Response</h3>
+            
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              I fix the problem where leads come in at 9 PM, you respond at 9 AM, and they've already called your competitor. Plus answering 'what's your pricing?' for the 100th time.
             </p>
-            <div class="text-sm text-gray-500 mb-3">THE SOLUTION</div>
-            <p class="text-gray-700 mb-4">
-              Instant responses 24/7. Automatic qualifying questions. Hot leads texted to your phone. Never lose another lead to slow response.
-            </p>
-            <div class="bg-coral-50 rounded-lg p-3">
-              <p class="text-sm font-medium text-coral-700">3x conversion rate</p>
+            
+            <div class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium inline-block">
+              Lost opportunities daily
             </div>
           </div>
         </div>
@@ -308,99 +317,6 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- How It Works Section -->
-  <section class="py-16 sm:py-20 px-4 bg-white">
-    <div class="container mx-auto max-w-4xl">
-      <div class="text-center mb-12">
-        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-charcoal mb-4">
-          Here's how we make the magic happen
-        </h2>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-          No six-month implementations. No 200-page requirements docs. Just practical solutions that work.
-        </p>
-      </div>
-
-      <!-- Process Steps -->
-      <div class="space-y-8">
-        <!-- Step 1 -->
-        <div class="flex gap-6 items-start">
-          <div class="flex-shrink-0">
-            <div class="w-12 h-12 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold">
-              1
-            </div>
-          </div>
-          <div>
-            <h3 class="font-display text-xl sm:text-2xl text-charcoal mb-2">
-              We talk about what's driving you crazy
-            </h3>
-            <p class="text-gray-600">
-              15-minute call. You tell me what tasks are eating your day. I tell you what's possible and what it'll cost. No surprises.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="flex gap-6 items-start">
-          <div class="flex-shrink-0">
-            <div class="w-12 h-12 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold">
-              2
-            </div>
-          </div>
-          <div>
-            <h3 class="font-display text-xl sm:text-2xl text-charcoal mb-2">
-              I map out exactly how to fix it
-            </h3>
-            <p class="text-gray-600">
-              $500 automation roadmap (credited to your project). I document your workflows, identify the biggest time-wasters, and show you the ROI of automating each one.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="flex gap-6 items-start">
-          <div class="flex-shrink-0">
-            <div class="w-12 h-12 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold">
-              3
-            </div>
-          </div>
-          <div>
-            <h3 class="font-display text-xl sm:text-2xl text-charcoal mb-2">
-              I build it (while you run your business)
-            </h3>
-            <p class="text-gray-600">
-              2-3 weeks, $2,500-$3,000. I handle the technical stuff. You keep serving customers. We test everything before it goes live.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="flex gap-6 items-start">
-          <div class="flex-shrink-0">
-            <div class="w-12 h-12 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold">
-              4
-            </div>
-          </div>
-          <div>
-            <h3 class="font-display text-xl sm:text-2xl text-charcoal mb-2">
-              You get your time back
-            </h3>
-            <p class="text-gray-600">
-              Simple training for your team. Clear documentation. And me on speed dial if something breaks. Most clients save 20+ hours in the first month.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-12 bg-coral-50 rounded-lg p-8 text-center">
-        <p class="text-lg text-gray-700 mb-2">
-          <span class="font-bold">Optional ongoing support:</span> $400/month
-        </p>
-        <p class="text-gray-600">
-          Because automations need tune-ups as your business grows
-        </p>
-      </div>
-    </div>
-  </section>
 
   <!-- CTA Section -->
   <section id="contact" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500 relative overflow-hidden">

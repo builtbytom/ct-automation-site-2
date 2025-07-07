@@ -218,88 +218,114 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Example 3 -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-4">
-            <div class="text-3xl mb-2">📊</div>
-            <h3 class="text-white font-display text-xl">Data Entry & Syncing</h3>
+        <!-- Problem 3: Data Entry -->
+        <div class="group relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <!-- Animated background pattern -->
+          <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0,0,0,.05) 35px, rgba(0,0,0,.05) 70px);"></div>
           </div>
-          <div class="p-6">
-            <div class="text-sm text-gray-500 mb-3">THE PROBLEM</div>
-            <p class="text-gray-700 mb-4">
-              Same customer info in QuickBooks, CRM, and email marketing. Update one, forget the others. Data gets messy fast.
+          
+          <div class="relative z-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-6">
+              <span class="text-3xl">📊</span>
+            </div>
+            
+            <h3 class="font-display text-2xl text-charcoal mb-3">Repetitive Data Entry</h3>
+            
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              I eliminate typing the same customer info into QuickBooks, then your CRM, then your project management tool. Same data, three different places.
             </p>
-            <div class="text-sm text-gray-500 mb-3">THE SOLUTION</div>
-            <p class="text-gray-700 mb-4">
-              Change it once, updates everywhere. New customer? Automatically in all systems. Clean data, zero double entry.
-            </p>
-            <div class="bg-coral-50 rounded-lg p-3">
-              <p class="text-sm font-medium text-coral-700">Saves 5+ hours/week</p>
+            
+            <div class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium inline-block">
+              2-3 hours of duplicate work daily
             </div>
           </div>
         </div>
 
-        <!-- Example 4 -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-4">
-            <div class="text-3xl mb-2">📅</div>
-            <h3 class="text-white font-display text-xl">Appointment Scheduling</h3>
-          </div>
-          <div class="p-6">
-            <div class="text-sm text-gray-500 mb-3">THE PROBLEM</div>
-            <p class="text-gray-700 mb-4">
-              Back-and-forth emails to find a time. Double bookings. No-shows because they forgot. Your calendar is chaos.
-            </p>
-            <div class="text-sm text-gray-500 mb-3">THE SOLUTION</div>
-            <p class="text-gray-700 mb-4">
-              Clients book themselves. Automatic confirmations and reminders. Syncs with your actual calendar. No more scheduling ping-pong.
-            </p>
-            <div class="bg-coral-50 rounded-lg p-3">
-              <p class="text-sm font-medium text-coral-700">90% fewer no-shows</p>
+        <!-- Problem 4: Scheduling - Wide Card -->
+        <div class="group relative md:col-span-2 bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 border border-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <div class="grid md:grid-cols-2 gap-6 items-center">
+            <div>
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-6">
+                <span class="text-3xl">📅</span>
+              </div>
+              
+              <h3 class="font-display text-2xl text-charcoal mb-3">Scheduling Back-and-Forth</h3>
+              
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                I end the endless emails to find meeting times, double bookings, and no-shows because nobody got reminders.
+              </p>
+              
+              <div class="bg-green-100 text-green-700 px-4 py-2 rounded-lg text-sm font-medium inline-block">
+                Wastes 5+ hours/week
+              </div>
+            </div>
+            
+            <!-- Visual element -->
+            <div class="hidden md:block relative">
+              <div class="absolute inset-0 bg-gradient-to-r from-green-200 to-teal-200 rounded-xl opacity-20 animate-pulse"></div>
+              <div class="relative bg-white rounded-xl p-4 shadow-lg">
+                <div class="space-y-2">
+                  <div class="h-3 bg-gray-200 rounded animate-pulse"></div>
+                  <div class="h-3 bg-gray-200 rounded animate-pulse w-3/4"></div>
+                  <div class="h-3 bg-gray-200 rounded animate-pulse w-1/2"></div>
+                </div>
+                <div class="mt-4 flex gap-2">
+                  <div class="h-8 w-20 bg-green-500 rounded animate-pulse"></div>
+                  <div class="h-8 w-20 bg-gray-200 rounded"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Example 5 -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-4">
-            <div class="text-3xl mb-2">📝</div>
-            <h3 class="text-white font-display text-xl">Customer Onboarding</h3>
+        <!-- Problem 5: Marketing -->
+        <div class="group relative bg-gradient-to-br from-coral-50 to-red-50 rounded-2xl p-8 border border-coral-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <!-- Floating shapes -->
+          <div class="absolute top-4 right-4">
+            <div class="w-8 h-8 bg-coral-300 rounded-full opacity-20 animate-float"></div>
+            <div class="w-6 h-6 bg-coral-400 rounded-full opacity-20 animate-float mt-2" style="animation-delay: 0.5s;"></div>
           </div>
-          <div class="p-6">
-            <div class="text-sm text-gray-500 mb-3">THE PROBLEM</div>
-            <p class="text-gray-700 mb-4">
-              New customer signs up. Now you manually send welcomes, set up accounts, add to systems. Easy to miss steps.
+          
+          <div class="relative z-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-6">
+              <span class="text-3xl">📈</span>
+            </div>
+            
+            <h3 class="font-display text-2xl text-charcoal mb-3">Marketing Guesswork</h3>
+            
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              I help you stop wondering if your Facebook ads work while money disappears. You'll know which leads came from where and what's actually working.
             </p>
-            <div class="text-sm text-gray-500 mb-3">THE SOLUTION</div>
-            <p class="text-gray-700 mb-4">
-              Signature triggers everything. Welcome sequences, account creation, task assignments. Perfect onboarding every time.
-            </p>
-            <div class="bg-coral-50 rounded-lg p-3">
-              <p class="text-sm font-medium text-coral-700">45 min → 0 min per customer</p>
+            
+            <div class="bg-coral-100 text-coral-700 px-4 py-2 rounded-lg text-sm font-medium inline-block">
+              Wasted ad spend
             </div>
           </div>
         </div>
 
-        <!-- Example 6 -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-4">
-            <div class="text-3xl mb-2">📈</div>
-            <h3 class="text-white font-display text-xl">Reports & Tracking</h3>
-          </div>
-          <div class="p-6">
-            <div class="text-sm text-gray-500 mb-3">THE PROBLEM</div>
-            <p class="text-gray-700 mb-4">
-              Pulling numbers from different places. Building the same reports weekly. Never quite trusting if the data's current.
+        <!-- Problem 6: Lost Documents - Tall Card -->
+        <div class="group relative md:row-span-1 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-2xl p-8 border border-yellow-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <div class="relative z-10 h-full flex flex-col">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-6">
+              <span class="text-3xl">🔍</span>
+            </div>
+            
+            <h3 class="font-display text-2xl text-charcoal mb-3">Lost Documents</h3>
+            
+            <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
+              I solve the 'I know I saved it somewhere' problem. No more 20-minute searches for contracts, receipts, and client files.
             </p>
-            <div class="text-sm text-gray-500 mb-3">THE SOLUTION</div>
-            <p class="text-gray-700 mb-4">
-              Automated dashboards pulling live data. Weekly reports in your inbox. Know your numbers without the spreadsheet gymnastics.
-            </p>
-            <div class="bg-coral-50 rounded-lg p-3">
-              <p class="text-sm font-medium text-coral-700">Real-time visibility</p>
+            
+            <div class="mt-auto">
+              <div class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg text-sm font-medium inline-block">
+                Lost productivity & stress
+              </div>
             </div>
           </div>
+          
+          <!-- Decorative element -->
+          <div class="absolute bottom-0 right-0 w-32 h-32 bg-yellow-200 rounded-tl-full opacity-10"></div>
         </div>
       </div>
 

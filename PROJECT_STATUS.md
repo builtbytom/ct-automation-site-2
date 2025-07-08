@@ -1,7 +1,7 @@
 # Connecticut Business Automation - Project Status
 
-## Current Status: Services Page 95% Complete
-**Last Updated**: January 8, 2025
+## Current Status: Core Site Complete, Netlify Deploy Issues
+**Last Updated**: January 8, 2025 - 11:30 AM EST
 
 ## What We've Accomplished Today
 
@@ -53,20 +53,50 @@
 - Simple design matching site aesthetic
 - Hero section consistent with other pages
 
+### 7. Contact Page ✅
+- Adapted from excellent iBuild contact page
+- Form captures: business type, biggest time-waster, timeline
+- Google Meet scheduling option (needs calendar link)
+- Clear 3-step process explanation
+- No BS, 15-minute calls messaging
+
+## Current Challenges
+
+### Netlify Platform Outage
+- Started at 10:26 AM EST (confirmed on status page)
+- "Issues running builds across Netlify" - platform-wide
+- Both CT site and iBuild site affected
+- Manual deploys also hanging in "New" state
+- All code safely pushed to GitHub, will auto-deploy when fixed
+
+### Local Development Issues
+- localhost:4321 refusing to connect
+- Can't preview Real World Examples section
+- Not blocking progress, just annoying
+
 ## What's Next
 
-### Immediate Next Step:
-**Contact Page** 
-- Simple contact form (name, email, phone, message)
-- Maybe add business type dropdown
-- Clear expectations about response time
-- Include phone and email as alternatives
+### Immediate Priority: Comprehensive FAQ Section
+Based on SEO research, we discovered what people are actually searching for:
+1. **Cost concerns** - "How much does automation cost for small business"
+2. **Tech fears** - "no-code automation", "I'm not tech-savvy"
+3. **Invoice automation** - Huge search volume, specific QuickBooks mentions
+4. **AI questions** - Differentiator opportunity, address hype vs reality
+5. **Implementation fears** - Timeline, disruption, business size concerns
 
-### After That:
-1. Review all CTAs across the site
-2. Test mobile responsiveness when Netlify is back
-3. SEO optimization (meta tags, sitemap)
-4. Launch checklist
+### FAQ Strategy:
+- 30-40 questions organized by pain points
+- Based on actual search data from Connecticut
+- Not an accordion - searchable/filterable design
+- Strategic CTAs on high-intent questions
+- Build EEAT and trust throughout
+
+### After FAQ:
+1. AI & Automation educational page
+2. Resources/blog section
+3. Case studies/success stories
+4. Industry-specific landing pages
+5. SEO optimization (meta tags, schema, sitemap)
 
 ## Key Decisions Made
 - Simple over fancy (no more broken bento grids)

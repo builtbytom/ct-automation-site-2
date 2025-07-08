@@ -128,34 +128,37 @@ const { class: className = '' } = Astro.props;
                 Here's What <span x-text="selectedBusiness.name"></span> Gets Back
               </h3>
               
-              <!-- Time Saved Card -->
+              <!-- Main Value Card -->
               <div class="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl p-6 sm:p-8 mb-8 max-w-2xl mx-auto shadow-xl">
-                <div class="text-4xl sm:text-6xl font-bold mb-2">
-                  <span x-text="selectedBusiness.timeSaved"></span> Hours
+                <div class="text-3xl sm:text-5xl font-bold mb-2">
+                  $<span x-text="selectedBusiness.dollarsRecovered.toLocaleString()"></span>/month
                 </div>
-                <div class="text-lg sm:text-xl">Saved Every Week</div>
+                <div class="text-lg sm:text-xl">In New Revenue & Saved Time</div>
+                <div class="text-sm mt-2 opacity-90">
+                  (<span x-text="selectedBusiness.timeSaved"></span> hours/week saved + no more missed opportunities)
+                </div>
               </div>
               
               <!-- Detailed Savings -->
               <div class="bg-gray-50 rounded-xl p-6 max-w-3xl mx-auto">
                 <div class="grid sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
                   <div class="text-center">
-                    <div class="text-2xl sm:text-3xl font-bold text-coral-500">
-                      $<span x-text="selectedBusiness.dollarsRecovered"></span>
+                    <div class="text-xl sm:text-2xl font-semibold text-coral-500">
+                      <span x-text="selectedBusiness.cashFlow"></span>
                     </div>
-                    <div class="text-sm text-gray-600">Revenue Recovered/Month</div>
+                    <div class="text-sm text-gray-600">Cash Flow Impact</div>
                   </div>
                   <div class="text-center">
-                    <div class="text-2xl sm:text-3xl font-bold text-navy-900">
-                      <span x-text="selectedBusiness.tasksAutomated"></span>
+                    <div class="text-xl sm:text-2xl font-semibold text-navy-900">
+                      <span x-text="selectedBusiness.growth"></span>
                     </div>
-                    <div class="text-sm text-gray-600">Tasks Automated</div>
+                    <div class="text-sm text-gray-600">Business Growth</div>
                   </div>
                   <div class="text-center">
                     <div class="text-2xl sm:text-3xl font-bold text-green-600">
-                      <span x-text="Math.round(selectedBusiness.timeSaved * 52)"></span> hrs/year
+                      24/7
                     </div>
-                    <div class="text-sm text-gray-600">That's <span x-text="Math.round(selectedBusiness.timeSaved * 52 / 40)"></span> work weeks!</div>
+                    <div class="text-sm text-gray-600">Always Working</div>
                   </div>
                 </div>
                 
@@ -196,8 +199,8 @@ const { class: className = '' } = Astro.props;
       <!-- Bottom Note -->
       <div class="text-center mt-8">
         <p class="text-gray-600 text-sm max-w-2xl mx-auto">
-          These are real automation workflows I've built for Connecticut businesses. 
-          Every minute saved is a minute you can spend growing your business or enjoying your life.
+          <span x-text="selectedBusiness.name"></span> was losing <span class="font-semibold" x-text="selectedBusiness.missedCalls"></span>. 
+          Now everything happens automatically, 24/7.
         </p>
       </div>
     </div>
@@ -212,45 +215,54 @@ window.automationSimulator = function() {
         id: 'plumber',
         name: 'Plumbing Company',
         icon: '🔧',
-        timeSaved: 15,
-        dollarsRecovered: 4500,
-        tasksAutomated: 8,
-        benefit1: 'Handle 3x more service calls without hiring',
-        benefit2: 'Never miss another emergency call opportunity',
-        benefit3: 'Actually take weekends off'
+        timeSaved: 10,
+        dollarsRecovered: 3200,
+        tasksAutomated: 6,
+        missedCalls: 'Lost $2,400/month from missed emergency calls',
+        cashFlow: 'Got paid 21 days faster on average',
+        growth: 'Added 2 more trucks without adding office staff',
+        benefit1: 'Never miss another $500 emergency call at 9pm',
+        benefit2: 'Get paid in 2 weeks instead of 5 weeks',
+        benefit3: 'Handle 40% more calls with same office staff'
       },
       {
         id: 'restaurant',
         name: 'Local Restaurant',
         icon: '🍕',
-        timeSaved: 20,
-        dollarsRecovered: 3200,
-        tasksAutomated: 10,
-        benefit1: 'Focus on food quality instead of admin work',
-        benefit2: 'Capture every catering opportunity',
-        benefit3: 'Build a loyal customer base with automated marketing'
+        timeSaved: 12,
+        dollarsRecovered: 2800,
+        tasksAutomated: 7,
+        missedCalls: 'Lost $1,800/month from missed catering orders',
+        cashFlow: 'Increased repeat customers by 35%',
+        growth: 'Reviews went from 3.5 to 4.6 stars',
+        benefit1: 'Capture every $300+ catering opportunity',
+        benefit2: 'Turn one-time diners into weekly regulars',
+        benefit3: 'Get 5x more positive reviews automatically'
       },
       {
-        id: 'retailer',
-        name: 'Online Retailer',
-        icon: '🛍️',
-        timeSaved: 25,
-        dollarsRecovered: 6000,
-        tasksAutomated: 12,
-        benefit1: 'Scale to multiple platforms without the chaos',
-        benefit2: 'Never oversell or lose track of inventory',
-        benefit3: 'Compete with bigger stores on customer service'
+        id: 'cleaning',
+        name: 'Cleaning Service',
+        icon: '🏠',
+        timeSaved: 15,
+        dollarsRecovered: 2600,
+        tasksAutomated: 8,
+        missedCalls: 'Lost $1,600/month from phone tag with prospects',
+        cashFlow: 'Reduced no-shows by 80%',
+        growth: 'Grew from 12 to 35 regular clients',
+        benefit1: 'Book new clients even while you\'re cleaning',
+        benefit2: 'Stop losing $125 every time someone no-shows',
+        benefit3: 'Schedule 3x more efficiently with smart routing'
       }
     ],
     
     steps: [
-      { id: 'trigger', title: 'Customer Action', icon: '📥', manualTime: 0 },
-      { id: 'capture', title: 'Data Captured', icon: '💾', manualTime: 5 },
-      { id: 'route', title: 'Smart Routing', icon: '🔀', manualTime: 3 },
-      { id: 'notify', title: 'Instant Notifications', icon: '📱', manualTime: 2 },
-      { id: 'schedule', title: 'Auto-Scheduling', icon: '📅', manualTime: 8 },
-      { id: 'followup', title: 'Follow-Up Queued', icon: '📧', manualTime: 5 },
-      { id: 'complete', title: 'Complete!', icon: '✅', manualTime: 0 }
+      { id: 'trigger', title: 'Customer Reaches Out', icon: '📥', manualTime: 0 },
+      { id: 'capture', title: 'Info Saved Instantly', icon: '💾', manualTime: 5 },
+      { id: 'notify', title: 'You Get Notified', icon: '📱', manualTime: 2 },
+      { id: 'respond', title: 'Customer Gets Answer', icon: '💬', manualTime: 10 },
+      { id: 'schedule', title: 'Booking Confirmed', icon: '📅', manualTime: 8 },
+      { id: 'followup', title: 'Reminders Set', icon: '🔔', manualTime: 5 },
+      { id: 'complete', title: 'Done!', icon: '✅', manualTime: 0 }
     ],
     
     selectedBusiness: null,
@@ -274,7 +286,7 @@ window.automationSimulator = function() {
       
       for (let i = 0; i < this.steps.length; i++) {
         this.currentStep = i;
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 3500));
       }
       
       setTimeout(() => {
@@ -324,12 +336,12 @@ window.automationSimulator = function() {
             return `
               <div class="bg-white rounded-lg border-2 border-gray-200 p-4 max-w-md mx-auto shadow-lg">
                 <div class="flex items-center mb-2">
-                  <span class="text-2xl mr-2">💳</span>
-                  <span class="font-semibold">New Order from Website</span>
+                  <span class="text-2xl mr-2">📞</span>
+                  <span class="font-semibold">New Cleaning Request</span>
                 </div>
                 <div class="text-sm text-gray-600">
-                  <p>Order #1247: 3 items, $127.50</p>
-                  <p class="mt-1">Customer wants expedited shipping</p>
+                  <p>"Need weekly cleaning service starting ASAP"</p>
+                  <p class="mt-1">- 3 bedroom home in Hamden</p>
                 </div>
               </div>
             `;
@@ -343,8 +355,8 @@ window.automationSimulator = function() {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
-              <p class="text-center mt-2 text-sm font-medium">Customer info saved to CRM</p>
-              <p class="text-center text-xs text-gray-600 mt-1">No manual data entry needed!</p>
+              <p class="text-center mt-2 text-sm font-medium">All their info is saved automatically</p>
+              <p class="text-center text-xs text-gray-600 mt-1">Name, phone, address, service needs - done!</p>
             </div>
           `;
           
@@ -384,25 +396,58 @@ window.automationSimulator = function() {
             `;
           }
           
+        case 'respond':
+          if (business.id === 'plumber') {
+            return `
+              <div class="bg-white rounded-lg border-2 border-blue-500 p-4 max-w-md mx-auto shadow-lg">
+                <div class="text-sm text-gray-600 mb-2">Auto-reply sent:</div>
+                <div class="bg-blue-50 p-3 rounded">
+                  <p class="text-sm">"Hi Sarah! Got your emergency request. Mike is on his way, ETA 25 minutes. He'll call you in 5 minutes. Text URGENT if you need immediate guidance."</p>
+                </div>
+                <div class="text-xs text-gray-500 mt-2">Customer knows help is coming!</div>
+              </div>
+            `;
+          } else if (business.id === 'restaurant') {
+            return `
+              <div class="bg-white rounded-lg border-2 border-blue-500 p-4 max-w-md mx-auto shadow-lg">
+                <div class="text-sm text-gray-600 mb-2">Instant response:</div>
+                <div class="bg-blue-50 p-3 rounded">
+                  <p class="text-sm">"Thanks for choosing us for your event! I'll have our catering menu and pricing to you within 30 minutes. Any dietary restrictions?"</p>
+                </div>
+                <div class="text-xs text-gray-500 mt-2">$1,800 catering job secured!</div>
+              </div>
+            `;
+          } else {
+            return `
+              <div class="bg-white rounded-lg border-2 border-blue-500 p-4 max-w-md mx-auto shadow-lg">
+                <div class="text-sm text-gray-600 mb-2">Automatic text sent:</div>
+                <div class="bg-blue-50 p-3 rounded">
+                  <p class="text-sm">"Hi! Thanks for choosing us. I can do a walkthrough tomorrow at 2pm or Thursday at 10am. Which works better? Reply 1 or 2."</p>
+                </div>
+                <div class="text-xs text-gray-500 mt-2">Booking while you're still cleaning!</div>
+              </div>
+            `;
+          }
+          
         case 'schedule':
           return `
             <div class="bg-white rounded-lg border-2 border-green-500 p-4 max-w-md mx-auto shadow-lg">
               <div class="flex items-center justify-between mb-3">
                 <span class="text-2xl">📅</span>
-                <span class="text-sm text-green-600 font-semibold">Auto-Scheduled</span>
+                <span class="text-sm text-green-600 font-semibold">Added to Calendar</span>
               </div>
               <div class="space-y-2 text-sm">
                 <div class="flex justify-between">
-                  <span class="text-gray-600">Time Slot:</span>
-                  <span class="font-medium">Next available</span>
+                  <span class="text-gray-600">When:</span>
+                  <span class="font-medium">Best available slot</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-gray-600">Travel Time:</span>
-                  <span class="font-medium">Calculated ✓</span>
+                  <span class="text-gray-600">Invoice:</span>
+                  <span class="font-medium">Sent ✓</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-gray-600">Conflicts:</span>
-                  <span class="font-medium">Checked ✓</span>
+                  <span class="text-gray-600">Route:</span>
+                  <span class="font-medium">Optimized ✓</span>
                 </div>
               </div>
             </div>
@@ -412,20 +457,23 @@ window.automationSimulator = function() {
           return `
             <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 max-w-md mx-auto">
               <div class="text-center">
-                <span class="text-3xl mb-2">🎯</span>
-                <p class="font-semibold">Follow-Up Sequence Ready</p>
-                <div class="flex justify-center gap-4 mt-3">
+                <span class="text-3xl mb-2">🔔</span>
+                <p class="font-semibold">Everything Set to Happen Automatically</p>
+                <div class="grid grid-cols-3 gap-2 mt-3 text-xs">
                   <div class="text-center">
-                    <div class="text-2xl">📧</div>
-                    <p class="text-xs">Confirmation</p>
+                    <div class="text-xl">📧</div>
+                    <p>Confirmation</p>
+                    <p class="text-gray-500">Now</p>
                   </div>
                   <div class="text-center">
-                    <div class="text-2xl">📱</div>
-                    <p class="text-xs">Reminder</p>
+                    <div class="text-xl">📱</div>
+                    <p>Reminder</p>
+                    <p class="text-gray-500">Day before</p>
                   </div>
                   <div class="text-center">
-                    <div class="text-2xl">⭐</div>
-                    <p class="text-xs">Review Request</p>
+                    <div class="text-xl">⭐</div>
+                    <p>Review ask</p>
+                    <p class="text-gray-500">Day after</p>
                   </div>
                 </div>
               </div>

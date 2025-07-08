@@ -1,0 +1,475 @@
+---
+export interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<section class={`py-16 sm:py-20 px-4 bg-gray-50 ${className}`}>
+  <div class="container mx-auto max-w-6xl">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-navy-900 mb-4">
+        Real Connecticut Businesses, Real Results
+      </h2>
+      <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+        Watch how automation transforms a typical day for businesses just like yours. Pick an industry and see the magic happen.
+      </p>
+    </div>
+
+    <!-- Alpine.js Interactive Component -->
+    <div x-data="automationSimulator()" class="relative">
+      <!-- Business Type Selector -->
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <template x-for="business in businesses" :key="business.id">
+          <button
+            @click="selectBusiness(business)"
+            :class="selectedBusiness.id === business.id ? 'bg-coral-500 text-white shadow-lg scale-105' : 'bg-white text-navy-900 border-2 border-gray-200 hover:border-coral-500'"
+            class="px-6 py-3 rounded-xl font-semibold transition-all"
+          >
+            <span class="text-2xl mr-2" x-text="business.icon"></span>
+            <span x-text="business.name"></span>
+          </button>
+        </template>
+      </div>
+
+      <!-- Simulation Container -->
+      <div class="relative bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-12 border border-gray-100">
+        <!-- Progress Steps (Desktop) -->
+        <div class="hidden sm:flex justify-between items-center mb-12 max-w-5xl mx-auto relative">
+          <template x-for="(step, index) in steps" :key="step.id">
+            <div
+              :class="(index <= currentStep && isRunning) ? 'opacity-100 scale-100' : 'opacity-30 scale-90'"
+              class="flex flex-col items-center transition-all duration-500 z-10"
+            >
+              <div 
+                :class="{
+                  'bg-coral-500 text-white shadow-lg animate-pulse': index === currentStep && isRunning,
+                  'bg-green-500 text-white': index < currentStep && isRunning,
+                  'bg-gray-200': !(index <= currentStep && isRunning)
+                }"
+                class="w-16 h-16 rounded-full flex items-center justify-center text-2xl mb-2 transition-all duration-500"
+              >
+                <span x-text="step.icon"></span>
+              </div>
+              <span class="text-xs sm:text-sm font-medium text-center max-w-[100px]" x-text="step.title"></span>
+            </div>
+          </template>
+        </div>
+
+        <!-- Progress Steps (Mobile) -->
+        <div class="sm:hidden mb-8">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-medium text-gray-600">Step <span x-text="currentStep + 1"></span> of <span x-text="steps.length"></span></span>
+            <span class="text-sm text-gray-500" x-text="steps[currentStep]?.title"></span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div 
+              class="bg-coral-500 h-2 rounded-full transition-all duration-500"
+              :style="`width: ${((currentStep + 1) / steps.length) * 100}%`"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Connection Line (Desktop only) -->
+        <div class="hidden sm:block absolute top-[88px] left-20 right-20 h-0.5 bg-gray-200">
+          <div 
+            class="h-full bg-coral-500 transition-all duration-1000 ease-out"
+            :style="`width: ${isRunning ? (currentStep / (steps.length - 1)) * 100 : 0}%`"
+          ></div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
+          <!-- Start Button -->
+          <div x-show="!isRunning && currentStep === 0" class="text-center">
+            <button
+              @click="runSimulation"
+              class="group px-8 sm:px-12 py-4 sm:py-6 bg-coral-500 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+            >
+              <span class="flex items-center text-base sm:text-lg">
+                <span class="text-2xl sm:text-3xl mr-3 sm:mr-4">🚀</span>
+                Watch Automation in Action
+                <svg class="w-5 sm:w-6 h-5 sm:h-6 ml-3 sm:ml-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </span>
+            </button>
+            <p class="mt-4 text-sm text-gray-600">
+              See how <span x-text="selectedBusiness.name"></span> saves <span x-text="selectedBusiness.timeSaved"></span> hours every week
+            </p>
+          </div>
+
+          <!-- Running Simulation -->
+          <div x-show="isRunning && !showFinalStats" class="w-full max-w-2xl mx-auto text-center">
+            <h3 class="font-bold text-xl sm:text-2xl text-navy-900 mb-4" x-text="steps[currentStep]?.title"></h3>
+            
+            <!-- Time Savings Badge -->
+            <div x-show="steps[currentStep]?.manualTime > 0" class="bg-green-50 rounded-xl p-3 sm:p-4 mb-6 max-w-md mx-auto">
+              <div class="flex items-center justify-center text-green-700">
+                <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-sm sm:text-base font-semibold">
+                  Manual: <span x-text="steps[currentStep]?.manualTime"></span> min → Automated: 0 min
+                </span>
+              </div>
+            </div>
+
+            <!-- Dynamic Content Based on Step -->
+            <div x-html="getStepContent()"></div>
+          </div>
+
+          <!-- Final Stats -->
+          <div x-show="showFinalStats" class="w-full animate-fade-in">
+            <div class="text-center">
+              <div class="text-4xl sm:text-5xl mb-6">🎉</div>
+              <h3 class="font-bold text-2xl sm:text-3xl text-navy-900 mb-8">
+                Here's What <span x-text="selectedBusiness.name"></span> Gets Back
+              </h3>
+              
+              <!-- Time Saved Card -->
+              <div class="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl p-6 sm:p-8 mb-8 max-w-2xl mx-auto shadow-xl">
+                <div class="text-4xl sm:text-6xl font-bold mb-2">
+                  <span x-text="selectedBusiness.timeSaved"></span> Hours
+                </div>
+                <div class="text-lg sm:text-xl">Saved Every Week</div>
+              </div>
+              
+              <!-- Detailed Savings -->
+              <div class="bg-gray-50 rounded-xl p-6 max-w-3xl mx-auto">
+                <div class="grid sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
+                  <div class="text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-coral-500">
+                      $<span x-text="selectedBusiness.dollarsRecovered"></span>
+                    </div>
+                    <div class="text-sm text-gray-600">Revenue Recovered/Month</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-navy-900">
+                      <span x-text="selectedBusiness.tasksAutomated"></span>
+                    </div>
+                    <div class="text-sm text-gray-600">Tasks Automated</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-green-600">
+                      <span x-text="Math.round(selectedBusiness.timeSaved * 52)"></span> hrs/year
+                    </div>
+                    <div class="text-sm text-gray-600">That's <span x-text="Math.round(selectedBusiness.timeSaved * 52 / 40)"></span> work weeks!</div>
+                  </div>
+                </div>
+                
+                <!-- What They Can Do Now -->
+                <div class="text-left space-y-2 text-sm sm:text-base">
+                  <p class="font-semibold mb-3">With that time back, they can:</p>
+                  <ul class="space-y-1 text-gray-700">
+                    <li x-text="'• ' + selectedBusiness.benefit1"></li>
+                    <li x-text="'• ' + selectedBusiness.benefit2"></li>
+                    <li x-text="'• ' + selectedBusiness.benefit3"></li>
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Action Buttons -->
+              <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  @click="resetSimulation"
+                  class="inline-flex items-center justify-center px-6 py-3 bg-navy-900 text-white font-semibold rounded-lg hover:bg-navy-800 transition-all"
+                >
+                  <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  Try Another Business
+                </button>
+                <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 bg-coral-500 text-white font-semibold rounded-lg hover:bg-coral-400 transition-all">
+                  Get This for Your Business
+                  <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Note -->
+      <div class="text-center mt-8">
+        <p class="text-gray-600 text-sm max-w-2xl mx-auto">
+          These are real automation workflows I've built for Connecticut businesses. 
+          Every minute saved is a minute you can spend growing your business or enjoying your life.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function automationSimulator() {
+  return {
+    businesses: [
+      {
+        id: 'plumber',
+        name: 'Plumbing Company',
+        icon: '🔧',
+        timeSaved: 15,
+        dollarsRecovered: 4500,
+        tasksAutomated: 8,
+        benefit1: 'Handle 3x more service calls without hiring',
+        benefit2: 'Never miss another emergency call opportunity',
+        benefit3: 'Actually take weekends off'
+      },
+      {
+        id: 'restaurant',
+        name: 'Local Restaurant',
+        icon: '🍕',
+        timeSaved: 20,
+        dollarsRecovered: 3200,
+        tasksAutomated: 10,
+        benefit1: 'Focus on food quality instead of admin work',
+        benefit2: 'Capture every catering opportunity',
+        benefit3: 'Build a loyal customer base with automated marketing'
+      },
+      {
+        id: 'retailer',
+        name: 'Online Retailer',
+        icon: '🛍️',
+        timeSaved: 25,
+        dollarsRecovered: 6000,
+        tasksAutomated: 12,
+        benefit1: 'Scale to multiple platforms without the chaos',
+        benefit2: 'Never oversell or lose track of inventory',
+        benefit3: 'Compete with bigger stores on customer service'
+      }
+    ],
+    
+    steps: [
+      { id: 'trigger', title: 'Customer Action', icon: '📥', manualTime: 0 },
+      { id: 'capture', title: 'Data Captured', icon: '💾', manualTime: 5 },
+      { id: 'route', title: 'Smart Routing', icon: '🔀', manualTime: 3 },
+      { id: 'notify', title: 'Instant Notifications', icon: '📱', manualTime: 2 },
+      { id: 'schedule', title: 'Auto-Scheduling', icon: '📅', manualTime: 8 },
+      { id: 'followup', title: 'Follow-Up Queued', icon: '📧', manualTime: 5 },
+      { id: 'complete', title: 'Complete!', icon: '✅', manualTime: 0 }
+    ],
+    
+    selectedBusiness: null,
+    isRunning: false,
+    currentStep: 0,
+    showFinalStats: false,
+    
+    init() {
+      this.selectedBusiness = this.businesses[0];
+    },
+    
+    selectBusiness(business) {
+      this.selectedBusiness = business;
+      this.resetSimulation();
+    },
+    
+    async runSimulation() {
+      this.isRunning = true;
+      this.currentStep = 0;
+      this.showFinalStats = false;
+      
+      for (let i = 0; i < this.steps.length; i++) {
+        this.currentStep = i;
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      
+      setTimeout(() => {
+        this.showFinalStats = true;
+      }, 1500);
+    },
+    
+    resetSimulation() {
+      this.isRunning = false;
+      this.currentStep = 0;
+      this.showFinalStats = false;
+    },
+    
+    getStepContent() {
+      const step = this.steps[this.currentStep];
+      const business = this.selectedBusiness;
+      
+      switch(step.id) {
+        case 'trigger':
+          if (business.id === 'plumber') {
+            return `
+              <div class="bg-white rounded-lg border-2 border-gray-200 p-4 max-w-md mx-auto shadow-lg">
+                <div class="flex items-center mb-2">
+                  <span class="text-2xl mr-2">🚰</span>
+                  <span class="font-semibold">Emergency Call Form Submitted</span>
+                </div>
+                <div class="text-sm text-gray-600">
+                  <p>"Pipe burst in basement! Need help ASAP!"</p>
+                  <p class="mt-1">- Sarah M., West Haven</p>
+                </div>
+              </div>
+            `;
+          } else if (business.id === 'restaurant') {
+            return `
+              <div class="bg-white rounded-lg border-2 border-gray-200 p-4 max-w-md mx-auto shadow-lg">
+                <div class="flex items-center mb-2">
+                  <span class="text-2xl mr-2">🎉</span>
+                  <span class="font-semibold">Catering Request Received</span>
+                </div>
+                <div class="text-sm text-gray-600">
+                  <p>"Need catering for 50 people this Saturday"</p>
+                  <p class="mt-1">- Office party in Milford</p>
+                </div>
+              </div>
+            `;
+          } else {
+            return `
+              <div class="bg-white rounded-lg border-2 border-gray-200 p-4 max-w-md mx-auto shadow-lg">
+                <div class="flex items-center mb-2">
+                  <span class="text-2xl mr-2">💳</span>
+                  <span class="font-semibold">New Order from Website</span>
+                </div>
+                <div class="text-sm text-gray-600">
+                  <p>Order #1247: 3 items, $127.50</p>
+                  <p class="mt-1">Customer wants expedited shipping</p>
+                </div>
+              </div>
+            `;
+          }
+          
+        case 'capture':
+          return `
+            <div class="bg-blue-50 rounded-lg p-4 max-w-md mx-auto">
+              <div class="flex items-center justify-center">
+                <svg class="w-12 h-12 text-blue-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <p class="text-center mt-2 text-sm font-medium">Customer info saved to CRM</p>
+              <p class="text-center text-xs text-gray-600 mt-1">No manual data entry needed!</p>
+            </div>
+          `;
+          
+        case 'notify':
+          if (business.id === 'plumber') {
+            return `
+              <div class="space-y-3 max-w-md mx-auto">
+                <div class="bg-green-100 rounded-lg p-3 animate-slide-down">
+                  <div class="flex items-center">
+                    <span class="text-xl mr-2">📱</span>
+                    <div class="text-sm">
+                      <p class="font-semibold">Text to On-Call Tech</p>
+                      <p class="text-gray-600">Emergency in West Haven - pipe burst</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-blue-100 rounded-lg p-3 animate-slide-down animation-delay-200">
+                  <div class="flex items-center">
+                    <span class="text-xl mr-2">📧</span>
+                    <div class="text-sm">
+                      <p class="font-semibold">Email to Office</p>
+                      <p class="text-gray-600">New emergency call logged</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else {
+            return `
+              <div class="bg-purple-100 rounded-lg p-4 max-w-md mx-auto">
+                <div class="text-center">
+                  <span class="text-3xl">🔔</span>
+                  <p class="mt-2 font-semibold">Team Notified Instantly</p>
+                  <p class="text-sm text-gray-600 mt-1">Right person • Right time • Right info</p>
+                </div>
+              </div>
+            `;
+          }
+          
+        case 'schedule':
+          return `
+            <div class="bg-white rounded-lg border-2 border-green-500 p-4 max-w-md mx-auto shadow-lg">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-2xl">📅</span>
+                <span class="text-sm text-green-600 font-semibold">Auto-Scheduled</span>
+              </div>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Time Slot:</span>
+                  <span class="font-medium">Next available</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Travel Time:</span>
+                  <span class="font-medium">Calculated ✓</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Conflicts:</span>
+                  <span class="font-medium">Checked ✓</span>
+                </div>
+              </div>
+            </div>
+          `;
+          
+        case 'followup':
+          return `
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 max-w-md mx-auto">
+              <div class="text-center">
+                <span class="text-3xl mb-2">🎯</span>
+                <p class="font-semibold">Follow-Up Sequence Ready</p>
+                <div class="flex justify-center gap-4 mt-3">
+                  <div class="text-center">
+                    <div class="text-2xl">📧</div>
+                    <p class="text-xs">Confirmation</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl">📱</div>
+                    <p class="text-xs">Reminder</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl">⭐</div>
+                    <p class="text-xs">Review Request</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          
+        default:
+          return '';
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-down {
+    animation: slide-down 0.5s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+</style>

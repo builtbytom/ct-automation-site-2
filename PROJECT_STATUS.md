@@ -39,24 +39,34 @@
 
 ### 5. Real World Examples Section ✅
 - Full interactive automation simulator (converted from iBuild)
-- Three Connecticut-focused businesses: Plumber, Restaurant, Online Retailer
+- Three Connecticut-focused businesses: Plumber, Restaurant, Cleaning Service
 - Step-by-step automation visualization with time savings
-- Shows actual time saved, revenue recovered, and tasks automated
-- Smooth animations and mobile-responsive design
+- Realistic value props: missed opportunities + time saved
+- Plain English steps (no tech jargon)
 - Uses Alpine.js for interactivity in Astro
+
+### 6. About Page ✅
+- Created with Tom's authentic story and tone
+- No scare tactics or condescending language
+- Adapted from iBuild copy but focused on automation
+- Connecticut-specific references and testimonials
+- Simple design matching site aesthetic
+- Hero section consistent with other pages
 
 ## What's Next
 
 ### Immediate Next Step:
-**Final CTA Section Review** 
-- Ensure CTA is compelling but not pushy
-- Check mobile responsiveness
-- Verify contact information is correct
+**Contact Page** 
+- Simple contact form (name, email, phone, message)
+- Maybe add business type dropdown
+- Clear expectations about response time
+- Include phone and email as alternatives
 
 ### After That:
-1. About page (Tom's background/credibility)
-2. Contact page
-3. Any other pages needed
+1. Review all CTAs across the site
+2. Test mobile responsiveness when Netlify is back
+3. SEO optimization (meta tags, sitemap)
+4. Launch checklist
 
 ## Key Decisions Made
 - Simple over fancy (no more broken bento grids)

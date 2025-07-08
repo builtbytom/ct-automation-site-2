@@ -18,7 +18,7 @@ const { class: className = '' } = Astro.props;
     </div>
 
     <!-- Alpine.js Interactive Component -->
-    <div x-data="automationSimulator()" class="relative">
+    <div x-data="automationSimulator()" x-init="init()" class="relative">
       <!-- Business Type Selector -->
       <div class="flex flex-wrap justify-center gap-4 mb-8">
         <template x-for="business in businesses" :key="business.id">
@@ -204,8 +204,8 @@ const { class: className = '' } = Astro.props;
   </div>
 </section>
 
-<script>
-function automationSimulator() {
+<script is:inline>
+window.automationSimulator = function() {
   return {
     businesses: [
       {

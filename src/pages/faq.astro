@@ -424,11 +424,11 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
         </p>
 
         <!-- Search Bar -->
-        <div class="max-w-2xl mx-auto" x-data="faqSearch()">
+        <div class="max-w-2xl mx-auto">
           <div class="relative">
             <input 
               type="text" 
-              x-model="searchQuery"
+              id="faq-search-input"
               placeholder="Search questions..." 
               class="w-full px-6 py-4 pr-12 text-lg rounded-lg bg-white/95 backdrop-blur-sm text-navy-900 placeholder-navy-600/60 focus:outline-none focus:ring-4 focus:ring-coral-500/30 transition-all"
             >
@@ -442,20 +442,24 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
   </section>
 
   <!-- FAQ Content -->
-  <section class="py-16 px-4 bg-gray-50" x-data="faqSearch()">
+  <section class="py-16 px-4 bg-gray-50" x-data="faqSearch()" x-init="initSearch()">
     <div class="container mx-auto max-w-6xl">
       <!-- Category Pills -->
-      <div class="mb-12 overflow-x-auto pb-4">
-        <div class="flex gap-3 min-w-max mx-auto justify-center flex-wrap">
-          {categories.map((category) => (
-            <button
-              @click={`activeCategory = '${category}'`}
-              :class={`activeCategory === '${category}' ? 'bg-coral-500 text-white' : 'bg-white text-navy-900 hover:bg-coral-100'`}
-              class="px-6 py-2 rounded-full font-medium transition-all duration-200 whitespace-nowrap"
-            >
-              {category}
-            </button>
-          ))}
+      <div class="mb-12 overflow-x-auto">
+        <div class="flex gap-3 min-w-max mx-auto justify-center flex-wrap pb-2">
+          {categories.map((category) => {
+            // Escape single quotes for Alpine.js
+            const escapedCategory = category.replace(/'/g, "\\'");
+            return (
+              <button
+                @click={`activeCategory = '${escapedCategory}'`}
+                :class={`activeCategory === '${escapedCategory}' ? 'bg-coral-500 text-white' : 'bg-white text-navy-900 hover:bg-coral-100'`}
+                class="px-6 py-2 rounded-full font-medium transition-all duration-200 whitespace-nowrap"
+              >
+                {category}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -465,16 +469,16 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
           Most Popular Questions
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {popularFaqs.map((faq) => (
+          <template x-for="faq in popularFaqs" :key="faq.id">
             <div
               class="bg-gradient-to-br from-coral-500 to-coral-600 p-6 rounded-lg text-white cursor-pointer hover:scale-105 transition-transform duration-200"
-              @click={`expandedId = expandedId === ${faq.id} ? null : ${faq.id}`}
+              @click="expandedId = expandedId === faq.id ? null : faq.id"
             >
               <div class="flex items-start justify-between mb-2">
-                <h3 class="font-semibold text-lg leading-tight flex-1 pr-2">{faq.question}</h3>
+                <h3 class="font-semibold text-lg leading-tight flex-1 pr-2" x-text="faq.question"></h3>
                 <svg 
                   class="w-5 h-5 flex-shrink-0 transition-transform duration-200 mt-1"
-                  :class={`expandedId === ${faq.id} ? 'rotate-180' : ''`}
+                  :class="expandedId === faq.id ? 'rotate-180' : ''"
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -484,21 +488,21 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
               </div>
               <p 
                 class="text-white/90 text-sm line-clamp-2"
-                x-show={`expandedId !== ${faq.id}`}
+                x-show="expandedId !== faq.id"
+                x-text="faq.answer"
               >
-                {faq.answer}
               </p>
               <p 
                 class="text-white/90 text-sm"
-                x-show={`expandedId === ${faq.id}`}
+                x-show="expandedId === faq.id"
                 x-transition:enter="transition ease-out duration-200"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
+                x-text="faq.answer"
               >
-                {faq.answer}
               </p>
             </div>
-          ))}
+          </template>
         </div>
       </div>
 
@@ -670,14 +674,32 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
   });
 </script>
 
-<script>
+<script define:vars={{ faqs, popularFaqs }}>
   // Alpine.js component for FAQ search and filtering
-  function faqSearch() {
+  window.faqSearch = function() {
     return {
       searchQuery: '',
       activeCategory: 'All',
       expandedId: null,
-      faqs: {faqs},
+      faqs: faqs,
+      popularFaqs: popularFaqs,
+      
+      initSearch() {
+        // Connect the hero search input to this component
+        const searchInput = document.getElementById('faq-search-input');
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            this.searchQuery = e.target.value;
+            // Scroll to FAQ section when user starts typing
+            if (e.target.value.length > 0) {
+              const faqSection = document.querySelector('[x-data="faqSearch()"]');
+              if (faqSection) {
+                faqSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          });
+        }
+      },
       
       get filteredFaqs() {
         let filtered = this.faqs;

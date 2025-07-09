@@ -180,9 +180,9 @@ import Layout from '../layouts/Layout.astro';
     <div class="absolute top-0 right-0 w-96 h-96 bg-coral-500/5 rounded-full filter blur-3xl"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-900/5 rounded-full filter blur-3xl"></div>
     
-    <div class="container mx-auto max-w-6xl relative z-10">
+    <div class="container mx-auto max-w-4xl relative z-10">
       <div class="text-center mb-16 animate-fade-up">
-        <h2 class="font-display text-4xl sm:text-5lg:text-6xl text-navy-900 mb-6">
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl text-navy-900 mb-6">
           My Journey to <span class="text-coral-500">Helping You</span>
         </h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -192,31 +192,39 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Timeline -->
       <div class="relative">
-        <!-- Timeline line -->
-        <div class="absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-coral-500 via-navy-800 to-coral-500 transform lg:-translate-x-1/2"></div>
+        <!-- Timeline line - mobile left, desktop center -->
+        <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-coral-500 via-navy-800 to-coral-500 transform md:-translate-x-1/2"></div>
         
         <!-- Timeline items -->
-        <div class="space-y-24">
+        <div class="space-y-12">
           <!-- Restaurant Years -->
-          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up">
-            <div class="w-16 h-16 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10">
-              1
-            </div>
-            <div class="ml-8 lg:ml-0 lg:absolute lg:left-1/2 lg:transform lg:translate-x-8 lg:w-5/12">
-              <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
-                <div class="flex items-center gap-2 mb-4">
-                  <div class="w-10 h-10 bg-coral-100 rounded-lg flex items-center justify-center">
+          <div class="relative animate-fade-up">
+            <!-- Timeline dot -->
+            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-coral-500 rounded-full transform -translate-x-1/2 md:-translate-x-1/2 ring-4 ring-white"></div>
+            
+            <!-- Content -->
+            <div class="ml-12 md:ml-0 md:grid md:grid-cols-2 md:gap-8 items-center">
+              <!-- Year label -->
+              <div class="md:text-right mb-4 md:mb-0">
+                <div class="inline-block bg-coral-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  2000s
+                </div>
+              </div>
+              
+              <!-- Card -->
+              <div class="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 bg-coral-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <span class="text-2xl">🍔</span>
                   </div>
-                  <span class="text-sm text-gray-500 font-medium">2000s - Restaurant Era</span>
+                  <h3 class="font-display text-xl text-navy-900">The Restaurant Years</h3>
                 </div>
-                <h3 class="font-display text-2xl text-navy-900 mb-3">The Restaurant Years</h3>
                 <p class="text-gray-600 mb-4">
                   Started as a restaurant GM. Wasn't just managing staff, I programmed POS systems for all 6 locations. Learned that the right tech makes everything smoother.
                 </p>
-                <div class="bg-gradient-to-r from-coral-50 to-coral-100 rounded-lg p-4">
+                <div class="bg-gradient-to-r from-coral-50 to-coral-100 rounded-lg p-3">
                   <p class="text-coral-700 font-medium text-sm">
-                    💡 First realization: Good systems save more than time, they save sanity.
+                    💡 Good systems save more than time, they save sanity.
                   </p>
                 </div>
               </div>
@@ -224,25 +232,33 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <!-- Amazon FBA -->
-          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up" style="animation-delay: 0.2s;">
-            <div class="w-16 h-16 bg-navy-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10 lg:order-2">
-              2
-            </div>
-            <div class="ml-8 lg:ml-0 lg:absolute lg:right-1/2 lg:transform lg:-translate-x-8 lg:w-5/12 lg:order-1">
-              <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
-                <div class="flex items-center gap-2 mb-4">
-                  <div class="w-10 h-10 bg-navy-100 rounded-lg flex items-center justify-center">
+          <div class="relative animate-fade-up" style="animation-delay: 0.2s;">
+            <!-- Timeline dot -->
+            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-navy-800 rounded-full transform -translate-x-1/2 md:-translate-x-1/2 ring-4 ring-white"></div>
+            
+            <!-- Content -->
+            <div class="ml-12 md:ml-0 md:grid md:grid-cols-2 md:gap-8 items-center">
+              <!-- Year label -->
+              <div class="md:text-right mb-4 md:mb-0">
+                <div class="inline-block bg-navy-800 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  2010s
+                </div>
+              </div>
+              
+              <!-- Card -->
+              <div class="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 bg-navy-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <span class="text-2xl">📦</span>
                   </div>
-                  <span class="text-sm text-gray-500 font-medium">2010s - The Wild Ride</span>
+                  <h3 class="font-display text-xl text-navy-900">Amazon FBA Adventure</h3>
                 </div>
-                <h3 class="font-display text-2xl text-navy-900 mb-3">Amazon FBA Adventure</h3>
                 <p class="text-gray-600 mb-4">
-                  Co-founded an FBA business with my best friends. We bootstrapped from zero to $100M+ in total sales. I handled all technical systems and operations. The growth was insane.
+                  Co-founded an FBA business with my best friends. We bootstrapped from zero to $100M+ in total sales. I handled all technical systems and operations.
                 </p>
-                <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4">
+                <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3">
                   <p class="text-green-700 font-medium text-sm">
-                    📈 Peak achievement: $17M annual revenue, but at what cost?
+                    📈 Peak: $17M annual revenue, but at what cost?
                   </p>
                 </div>
               </div>
@@ -250,25 +266,33 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <!-- The Breaking Point -->
-          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up" style="animation-delay: 0.4s;">
-            <div class="w-16 h-16 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10">
-              3
-            </div>
-            <div class="ml-8 lg:ml-0 lg:absolute lg:left-1/2 lg:transform lg:translate-x-8 lg:w-5/12">
-              <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
-                <div class="flex items-center gap-2 mb-4">
-                  <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+          <div class="relative animate-fade-up" style="animation-delay: 0.4s;">
+            <!-- Timeline dot -->
+            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-coral-500 rounded-full transform -translate-x-1/2 md:-translate-x-1/2 ring-4 ring-white"></div>
+            
+            <!-- Content -->
+            <div class="ml-12 md:ml-0 md:grid md:grid-cols-2 md:gap-8 items-center">
+              <!-- Year label -->
+              <div class="md:text-right mb-4 md:mb-0">
+                <div class="inline-block bg-red-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  The Crisis
+                </div>
+              </div>
+              
+              <!-- Card -->
+              <div class="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <span class="text-2xl">🔥</span>
                   </div>
-                  <span class="text-sm text-gray-500 font-medium">The Breaking Point</span>
+                  <h3 class="font-display text-xl text-navy-900">When Success Became Chaos</h3>
                 </div>
-                <h3 class="font-display text-2xl text-navy-900 mb-3">When Success Became Chaos</h3>
                 <p class="text-gray-600 mb-4">
                   Inventory everywhere, no way to track it. Expensive software didn't fit. I was drowning in my own success. Something had to change.
                 </p>
-                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-4">
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-3">
                   <p class="text-red-700 font-medium text-sm">
-                    🚨 The crisis: Manual tracking was killing the business (and me).
+                    🚨 Manual tracking was killing the business (and me).
                   </p>
                 </div>
               </div>
@@ -276,25 +300,33 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <!-- Building the Solution -->
-          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up" style="animation-delay: 0.6s;">
-            <div class="w-16 h-16 bg-navy-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10 lg:order-2">
-              4
-            </div>
-            <div class="ml-8 lg:ml-0 lg:absolute lg:right-1/2 lg:transform lg:-translate-x-8 lg:w-5/12 lg:order-1">
-              <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
-                <div class="flex items-center gap-2 mb-4">
-                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+          <div class="relative animate-fade-up" style="animation-delay: 0.6s;">
+            <!-- Timeline dot -->
+            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-navy-800 rounded-full transform -translate-x-1/2 md:-translate-x-1/2 ring-4 ring-white"></div>
+            
+            <!-- Content -->
+            <div class="ml-12 md:ml-0 md:grid md:grid-cols-2 md:gap-8 items-center">
+              <!-- Year label -->
+              <div class="md:text-right mb-4 md:mb-0">
+                <div class="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  The Solution
+                </div>
+              </div>
+              
+              <!-- Card -->
+              <div class="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <span class="text-2xl">🛠️</span>
                   </div>
-                  <span class="text-sm text-gray-500 font-medium">The DIY Solution</span>
+                  <h3 class="font-display text-xl text-navy-900">3,000 YouTube Videos Later...</h3>
                 </div>
-                <h3 class="font-display text-2xl text-navy-900 mb-3">3,000 YouTube Videos Later...</h3>
                 <p class="text-gray-600 mb-4">
-                  Built a custom inventory system with Google Sheets and AppSheet. Not pretty, but it worked. Automated tracking, expiration dates, everything. Finally had control again.
+                  Built a custom inventory system with Google Sheets and AppSheet. Not pretty, but it worked. Automated tracking, expiration dates, everything.
                 </p>
-                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3">
                   <p class="text-blue-700 font-medium text-sm">
-                    ⚡ The result: From chaos to calm. That's when I knew my calling.
+                    ⚡ From chaos to calm. That's when I knew my calling.
                   </p>
                 </div>
               </div>
@@ -302,23 +334,31 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <!-- Today -->
-          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up" style="animation-delay: 0.8s;">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-500 to-coral-400 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10">
-              5
-            </div>
-            <div class="ml-8 lg:ml-0 lg:absolute lg:left-1/2 lg:transform lg:translate-x-8 lg:w-5/12">
-              <div class="bg-gradient-to-br from-navy-900 to-navy-800 rounded-2xl shadow-xl p-8 text-white transform hover:scale-105 transition-all duration-300">
-                <div class="flex items-center gap-2 mb-4">
-                  <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+          <div class="relative animate-fade-up" style="animation-delay: 0.8s;">
+            <!-- Timeline dot -->
+            <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-gradient-to-br from-coral-500 to-coral-400 rounded-full transform -translate-x-1/2 md:-translate-x-1/2 ring-4 ring-white animate-pulse"></div>
+            
+            <!-- Content -->
+            <div class="ml-12 md:ml-0 md:grid md:grid-cols-2 md:gap-8 items-center">
+              <!-- Year label -->
+              <div class="md:text-right mb-4 md:mb-0">
+                <div class="inline-block bg-gradient-to-r from-coral-500 to-coral-400 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  Today
+                </div>
+              </div>
+              
+              <!-- Card -->
+              <div class="bg-gradient-to-br from-navy-900 to-navy-800 rounded-2xl shadow-lg p-6 text-white transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                     <span class="text-2xl">🎯</span>
                   </div>
-                  <span class="text-sm text-white/70 font-medium">Today</span>
+                  <h3 class="font-display text-xl text-white">Connecticut Business Automation</h3>
                 </div>
-                <h3 class="font-display text-2xl text-white mb-3">Connecticut Business Automation</h3>
                 <p class="text-white/90 mb-4">
                   Now I help Connecticut businesses skip the pain. No corporate speak, no overselling. Just practical automation from someone who's been there.
                 </p>
-                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
                   <p class="text-white font-medium text-sm">
                     🚀 My mission: Give you the calm I fought so hard to find.
                   </p>

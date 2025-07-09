@@ -51,10 +51,16 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-[80vh] flex items-center pt-16">
-    <!-- Gradient background (matching other pages) -->
-    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500"></div>
+  <!-- Hero Section with Dynamic Elements -->
+  <section class="relative min-h-[90vh] flex items-center pt-16 overflow-hidden">
+    <!-- Animated gradient background -->
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900"></div>
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-20 left-10 w-96 h-96 bg-coral-500 rounded-full filter blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-coral-400 rounded-full filter blur-3xl animate-float" style="animation-delay: 3s;"></div>
+      </div>
+    </div>
     
     <!-- Pattern overlay -->
     <div class="absolute inset-0 opacity-5">
@@ -64,9 +70,15 @@ import Layout from '../layouts/Layout.astro';
     <div class="relative z-10 container mx-auto px-4">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Content -->
-        <div class="text-center lg:text-left">
+        <div class="text-center lg:text-left animate-fade-up">
+          <div class="inline-block mb-6">
+            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-white/90 text-sm">
+              20+ Years of Building What Works
+            </div>
+          </div>
+          
           <h1 class="font-display text-white mb-6 text-4xl sm:text-5xl lg:text-6xl leading-tight font-semibold">
-            I've Been Where You Are Now
+            I've Been Where <span class="text-coral-500">You Are Now</span>
           </h1>
           
           <p class="text-xl sm:text-2xl text-white/90 mb-8 leading-relaxed">
@@ -74,219 +86,513 @@ import Layout from '../layouts/Layout.astro';
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-              <div class="text-3xl font-bold text-white">20+</div>
+            <div class="group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-6 text-center transform hover:scale-105 transition-all duration-300 border border-white/10">
+              <div class="text-4xl font-bold text-coral-500 mb-2">20+</div>
               <div class="text-white/80 text-sm">Years in Operations</div>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-              <div class="text-3xl font-bold text-white">$17M</div>
+            <div class="group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-6 text-center transform hover:scale-105 transition-all duration-300 border border-white/10">
+              <div class="text-4xl font-bold text-coral-500 mb-2">$17M</div>
               <div class="text-white/80 text-sm">Peak Annual Revenue</div>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-              <div class="text-3xl font-bold text-white">1000s</div>
+            <div class="group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-6 text-center transform hover:scale-105 transition-all duration-300 border border-white/10">
+              <div class="text-4xl font-bold text-coral-500 mb-2">1000s</div>
               <div class="text-white/80 text-sm">Of Hours Automated</div>
             </div>
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a href="#my-story" class="bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform">
-              Read My Story
+            <a href="#timeline" class="group bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform inline-flex items-center justify-center gap-2">
+              <span>Read My Story</span>
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
             </a>
-            <a href="#contact" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-navy-900 transition-all">
+            <a href="#contact" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-navy-900 transition-all inline-flex items-center justify-center">
               Let's Talk Solutions
             </a>
           </div>
         </div>
 
-        <!-- Image -->
-        <div class="relative lg:block">
+        <!-- Image with floating elements -->
+        <div class="relative lg:block animate-fade-in">
           <div class="relative max-w-md mx-auto">
-            <div class="absolute inset-0 bg-coral-500/20 rounded-full blur-3xl"></div>
-            <img 
-              src="/tom-headshot.png" 
-              alt="Tom Lucia - Connecticut Business Automation Expert" 
-              class="relative rounded-2xl shadow-2xl w-full"
-            />
+            <!-- Decorative elements -->
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-gradient-to-br from-coral-500 to-coral-400 rounded-2xl opacity-20 transform rotate-12 animate-float"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-br from-navy-800 to-navy-900 rounded-full opacity-20 animate-float" style="animation-delay: 2s;"></div>
+            
+            <!-- Main image -->
+            <div class="relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-coral-500/30 to-transparent rounded-2xl blur-2xl"></div>
+              <img 
+                src="/tom-headshot.png" 
+                alt="Tom Lucia - Connecticut Business Automation Expert" 
+                class="relative rounded-2xl shadow-2xl w-full transform hover:scale-105 transition-transform duration-300"
+              />
+              
+              <!-- Floating badge -->
+              <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-2xl p-4 animate-bounce-in" style="animation-delay: 0.5s;">
+                <div class="text-xs text-gray-500 uppercase tracking-wide mb-1">Built & Scaled</div>
+                <div class="font-display text-2xl text-navy-900 font-bold">$100M+</div>
+                <div class="text-sm text-gray-600">in total sales</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Experience Overview -->
-  <section class="py-16 sm:py-20 px-4 bg-white">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-12">
-        <p class="text-xl text-gray-700 font-medium">
-          "Connecticut Business Automation is what I wish I had back then — simple, honest help that actually works."
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-gray-50 rounded-xl p-6 text-center">
-          <div class="text-4xl mb-3">🏢</div>
-          <h3 class="font-semibold text-lg mb-2">Restaurant GM</h3>
-          <p class="text-gray-600 text-sm">Started in the trenches, programmed POS systems for 6 locations</p>
-        </div>
-        <div class="bg-gray-50 rounded-xl p-6 text-center">
-          <div class="text-4xl mb-3">📦</div>
-          <h3 class="font-semibold text-lg mb-2">Amazon FBA</h3>
-          <p class="text-gray-600 text-sm">Scaled to $17M/year, built custom systems from scratch</p>
-        </div>
-        <div class="bg-gray-50 rounded-xl p-6 text-center">
-          <div class="text-4xl mb-3">🛠️</div>
-          <h3 class="font-semibold text-lg mb-2">Problem Solver</h3>
-          <p class="text-gray-600 text-sm">When software failed, I built what we needed</p>
-        </div>
-        <div class="bg-gray-50 rounded-xl p-6 text-center">
-          <div class="text-4xl mb-3">🎯</div>
-          <h3 class="font-semibold text-lg mb-2">Systems Thinker</h3>
-          <p class="text-gray-600 text-sm">Now helping CT businesses work smarter</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- My Story -->
-  <section id="my-story" class="py-16 sm:py-20 px-4 bg-gray-50">
-    <div class="container mx-auto max-w-4xl">
-      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-navy-900 mb-12 text-center">
-        The Full Story
-      </h2>
-
-      <!-- Chapter 1: Restaurant Days -->
-      <div class="mb-12">
-        <div class="bg-white rounded-xl p-8 shadow-lg">
-          <h3 class="font-display text-2xl text-navy-900 mb-4">The Restaurant Years</h3>
-          <p class="text-lg text-gray-700 leading-relaxed mb-4">
-            I started as a General Manager at Archie Moore's in Derby, Connecticut. But I wasn't just managing staff and inventory — I was the IT guy too. I programmed and maintained the POS systems for all six locations, learning firsthand how the right systems can make or break a business.
-          </p>
-          <div class="bg-coral-50 rounded-lg p-4">
-            <p class="text-coral-700 font-medium">Key Learning: Technology should make your life easier, not harder.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Chapter 2: Amazon FBA -->
-      <div class="mb-12">
-        <div class="bg-white rounded-xl p-8 shadow-lg">
-          <h3 class="font-display text-2xl text-navy-900 mb-4">The Wild Ride Begins</h3>
-          <p class="text-lg text-gray-700 leading-relaxed mb-4">
-            Then, along with my two best friends, I dove headfirst into founding an Amazon FBA business. While I handled all the technical systems and operations, we built something incredible together. For 10 years, I lived the wild ride — the exhilarating growth, the sleepless nights, and the constant battle to keep things running.
-          </p>
-          <div class="bg-green-50 rounded-lg p-4">
-            <p class="text-green-700 font-medium">Growth Phase: We bootstrapped from zero to $100M+ total sales</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Chapter 3: The Breaking Point -->
-      <div class="mb-12">
-        <div class="bg-white rounded-xl p-8 shadow-lg">
-          <h3 class="font-display text-2xl text-navy-900 mb-4">Success Created Its Own Problems</h3>
-          <p class="text-lg text-gray-700 leading-relaxed mb-4">
-            We bootstrapped that FBA company from zero, and as we scaled to multi-million dollar sales, I hit a wall. My biggest 'success' was creating my biggest nightmare: inventory chaos. I was drowning in stock I couldn't track. Off-the-shelf software was too expensive, too complex, or just plain wrong.
-          </p>
-          <div class="bg-red-50 rounded-lg p-4">
-            <p class="text-red-700 font-medium">Reality Check: Sometimes you have to build your own solution.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Chapter 4: The Solution -->
-      <div class="mb-12">
-        <div class="bg-white rounded-xl p-8 shadow-lg">
-          <h3 class="font-display text-2xl text-navy-900 mb-4">So I Did What Small Business Owners Do: I Figured It Out</h3>
-          <p class="text-lg text-gray-700 leading-relaxed mb-4">
-            Fueled by about 3,000 YouTube videos and sheer determination, I built a custom inventory tracking system from scratch using Google Sheets and AppSheet. Think of it like a super-powered spreadsheet that tracked every single item, order, and expiration date automatically. It wasn't fancy, but it worked.
-          </p>
-          <div class="bg-coral-50 rounded-lg p-4">
-            <p class="text-coral-700 font-medium">The Breakthrough: It was the 'calm' I desperately needed in that specific storm.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Chapter 5: The Realization -->
-      <div class="mb-12">
-        <div class="bg-gradient-to-br from-navy-50 to-coral-50 rounded-xl p-8 shadow-lg">
-          <h3 class="font-display text-2xl text-navy-900 mb-4">The Truth About Running a Business</h3>
-          <p class="text-lg text-gray-700 leading-relaxed mb-4">
-            And that was just one hat. Like you, I was also doing the hiring, the firing, the banking, the vendor battles... all of it. That's where I learned, firsthand, how much broken tech and clunky systems can drain not just your bottom line, but your energy and passion for your business.
-          </p>
-          <p class="text-lg text-gray-700 leading-relaxed">
-            Now I help Connecticut businesses automate away the chaos. Because you shouldn't have to choose between growing your business and having a life.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- What I Learned -->
-  <section class="py-16 sm:py-20 px-4 bg-white">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-12">
-        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-navy-900 mb-6">
-          Turns Out, I Like Fixing Things More Than Selling Them
-        </h2>
-        <p class="text-xl text-gray-700 max-w-3xl mx-auto">
-          After years of building and scaling, I realized my favorite part wasn't the revenue — it was solving the operational puzzles. Making systems work better. Giving business owners their time back.
-        </p>
-      </div>
-
-      <div class="bg-gradient-to-br from-navy-50 to-coral-50 rounded-2xl p-8 sm:p-12">
-        <div class="max-w-3xl mx-auto text-center">
-          <p class="text-lg text-gray-700 leading-relaxed mb-6">
-            Connecticut Business Automation is my answer to all that chaos. I help local businesses automate the repetitive stuff so they can focus on what they actually enjoy about their business.
-          </p>
-          <p class="text-lg text-gray-700 leading-relaxed mb-8">
-            No corporate speak. No overselling. Just practical solutions from someone who's been in your shoes.
-          </p>
-          <a href="#contact" class="inline-flex items-center bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform">
-            Let's Talk About Your Business
-            <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  <!-- Quick Stats Bar -->
+  <section class="relative py-8 bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900 border-y border-white/10">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-center items-center gap-8 text-white">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-coral-500/20 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-coral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-          </a>
+          </div>
+          <span class="font-medium">Restaurant GM to Tech Founder</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-coral-500/20 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-coral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <span class="font-medium">Built Systems That Actually Work</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-coral-500/20 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-coral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <span class="font-medium">Now Helping CT Businesses</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Timeline Section -->
+  <section id="timeline" class="py-20 px-4 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-coral-500/5 rounded-full filter blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-navy-900/5 rounded-full filter blur-3xl"></div>
+    
+    <div class="container mx-auto max-w-6xl relative z-10">
+      <div class="text-center mb-16 animate-fade-up">
+        <h2 class="font-display text-4xl sm:text-5lg:text-6xl text-navy-900 mb-6">
+          My Journey to <span class="text-coral-500">Helping You</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Every mistake I made, every system I built, led me here. Now you get the shortcuts.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-coral-500 via-navy-800 to-coral-500 transform lg:-translate-x-1/2"></div>
+        
+        <!-- Timeline items -->
+        <div class="space-y-16">
+          <!-- Restaurant Years -->
+          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up">
+            <div class="w-16 h-16 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10">
+              1
+            </div>
+            <div class="ml-8 lg:ml-0 lg:absolute lg:left-1/2 lg:transform lg:translate-x-8 lg:w-5/12">
+              <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-10 h-10 bg-coral-100 rounded-lg flex items-center justify-center">
+                    <span class="text-2xl">🍔</span>
+                  </div>
+                  <span class="text-sm text-gray-500 font-medium">2000s - Restaurant Era</span>
+                </div>
+                <h3 class="font-display text-2xl text-navy-900 mb-3">The Restaurant Years</h3>
+                <p class="text-gray-600 mb-4">
+                  Started as GM at Archie Moore's in Derby. Wasn't just managing staff—I programmed POS systems for all 6 locations. Learned that the right tech makes everything smoother.
+                </p>
+                <div class="bg-gradient-to-r from-coral-50 to-coral-100 rounded-lg p-4">
+                  <p class="text-coral-700 font-medium text-sm">
+                    💡 First realization: Good systems save more than time—they save sanity.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amazon FBA -->
+          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up" style="animation-delay: 0.2s;">
+            <div class="w-16 h-16 bg-navy-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10 lg:order-2">
+              2
+            </div>
+            <div class="ml-8 lg:ml-0 lg:absolute lg:right-1/2 lg:transform lg:-translate-x-8 lg:w-5/12 lg:order-1">
+              <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-10 h-10 bg-navy-100 rounded-lg flex items-center justify-center">
+                    <span class="text-2xl">📦</span>
+                  </div>
+                  <span class="text-sm text-gray-500 font-medium">2010s - The Wild Ride</span>
+                </div>
+                <h3 class="font-display text-2xl text-navy-900 mb-3">Amazon FBA Adventure</h3>
+                <p class="text-gray-600 mb-4">
+                  Co-founded an FBA business with my best friends. We bootstrapped from zero to $100M+ in total sales. I handled all technical systems and operations. The growth was insane.
+                </p>
+                <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4">
+                  <p class="text-green-700 font-medium text-sm">
+                    📈 Peak achievement: $17M annual revenue, but at what cost?
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Breaking Point -->
+          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up" style="animation-delay: 0.4s;">
+            <div class="w-16 h-16 bg-coral-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10">
+              3
+            </div>
+            <div class="ml-8 lg:ml-0 lg:absolute lg:left-1/2 lg:transform lg:translate-x-8 lg:w-5/12">
+              <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                    <span class="text-2xl">🔥</span>
+                  </div>
+                  <span class="text-sm text-gray-500 font-medium">The Breaking Point</span>
+                </div>
+                <h3 class="font-display text-2xl text-navy-900 mb-3">When Success Became Chaos</h3>
+                <p class="text-gray-600 mb-4">
+                  Inventory everywhere, no way to track it. Expensive software didn't fit. I was drowning in my own success. Something had to change.
+                </p>
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-4">
+                  <p class="text-red-700 font-medium text-sm">
+                    🚨 The crisis: Manual tracking was killing the business (and me).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Building the Solution -->
+          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up" style="animation-delay: 0.6s;">
+            <div class="w-16 h-16 bg-navy-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10 lg:order-2">
+              4
+            </div>
+            <div class="ml-8 lg:ml-0 lg:absolute lg:right-1/2 lg:transform lg:-translate-x-8 lg:w-5/12 lg:order-1">
+              <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <span class="text-2xl">🛠️</span>
+                  </div>
+                  <span class="text-sm text-gray-500 font-medium">The DIY Solution</span>
+                </div>
+                <h3 class="font-display text-2xl text-navy-900 mb-3">3,000 YouTube Videos Later...</h3>
+                <p class="text-gray-600 mb-4">
+                  Built a custom inventory system with Google Sheets and AppSheet. Not pretty, but it worked. Automated tracking, expiration dates, everything. Finally had control again.
+                </p>
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
+                  <p class="text-blue-700 font-medium text-sm">
+                    ⚡ The result: From chaos to calm. That's when I knew my calling.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Today -->
+          <div class="relative flex items-center justify-start lg:justify-between animate-fade-up" style="animation-delay: 0.8s;">
+            <div class="w-16 h-16 bg-gradient-to-br from-coral-500 to-coral-400 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative z-10">
+              5
+            </div>
+            <div class="ml-8 lg:ml-0 lg:absolute lg:left-1/2 lg:transform lg:translate-x-8 lg:w-5/12">
+              <div class="bg-gradient-to-br from-navy-900 to-navy-800 rounded-2xl shadow-xl p-8 text-white transform hover:scale-105 transition-all duration-300">
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                    <span class="text-2xl">🎯</span>
+                  </div>
+                  <span class="text-sm text-white/70 font-medium">Today</span>
+                </div>
+                <h3 class="font-display text-2xl text-white mb-3">Connecticut Business Automation</h3>
+                <p class="text-white/90 mb-4">
+                  Now I help Connecticut businesses skip the pain. No corporate speak, no overselling. Just practical automation from someone who's been there.
+                </p>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <p class="text-white font-medium text-sm">
+                    🚀 My mission: Give you the calm I fought so hard to find.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="py-20 px-4 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900 relative overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-20 right-20 w-64 h-64 bg-coral-500/10 rounded-full filter blur-3xl animate-float"></div>
+      <div class="absolute bottom-20 left-20 w-80 h-80 bg-coral-400/10 rounded-full filter blur-3xl animate-float" style="animation-delay: 3s;"></div>
+    </div>
+    
+    <div class="container mx-auto max-w-6xl relative z-10">
+      <div class="text-center mb-16 animate-fade-up">
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
+          Why I Do <span class="text-coral-500">What I Do</span>
+        </h2>
+        <p class="text-xl text-white/80 max-w-3xl mx-auto">
+          After years of chasing growth, I learned something important: calm is the real success metric.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="group relative animate-fade-up" style="animation-delay: 0.2s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-coral-500 to-coral-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 transform group-hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 bg-gradient-to-br from-coral-500 to-coral-400 rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-white mb-4">Simple Over Complex</h3>
+            <p class="text-white/80">
+              The best system is the one you'll actually use. I build practical solutions, not tech monuments.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group relative animate-fade-up" style="animation-delay: 0.4s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-coral-500 to-coral-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 transform group-hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 bg-gradient-to-br from-coral-500 to-coral-400 rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-white mb-4">Human First</h3>
+            <p class="text-white/80">
+              No buzzwords, no corporate speak. Just honest conversation about what's broken and how to fix it.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group relative animate-fade-up" style="animation-delay: 0.6s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-coral-500 to-coral-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 transform group-hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 bg-gradient-to-br from-coral-500 to-coral-400 rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-white mb-4">Results That Matter</h3>
+            <p class="text-white/80">
+              Success isn't just revenue. It's having dinner with your family and weekends that are actually yours.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote Section -->
+      <div class="mt-20 text-center animate-fade-up">
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10 max-w-4xl mx-auto">
+          <svg class="w-16 h-16 text-coral-500 mx-auto mb-6 opacity-50" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+          <p class="text-2xl text-white font-display leading-relaxed mb-8">
+            I'm not trying to build an empire. Been there, done that. I'm building something better: a business that gives me and my clients the calm we all deserve.
+          </p>
+          <p class="text-white/60 font-medium">— Tom Lucia, Founder</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Working With Me Section -->
+  <section class="py-20 px-4 bg-white relative overflow-hidden">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16 animate-fade-up">
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl text-navy-900 mb-6">
+          What It's Like <span class="text-coral-500">Working With Me</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          No suits, no jargon, no complicated contracts. Just two business owners solving problems together.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Left side - Process -->
+        <div class="space-y-6 animate-fade-up">
+          <!-- Step 1 -->
+          <div class="flex gap-6 group">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-500 to-coral-400 rounded-full flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform">
+                1
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl text-navy-900 mb-2">We Talk Like Humans</h3>
+              <p class="text-gray-600">
+                You tell me what's driving you crazy. I listen, ask questions, and we figure out what needs fixing first.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex gap-6 group">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-500 to-coral-400 rounded-full flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform">
+                2
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl text-navy-900 mb-2">I Build Something That Works</h3>
+              <p class="text-gray-600">
+                Using tools you probably already have (or affordable ones), I create automation that actually fits your business.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex gap-6 group">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-500 to-coral-400 rounded-full flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform">
+                3
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl text-navy-900 mb-2">You Get Your Time Back</h3>
+              <p class="text-gray-600">
+                The repetitive stuff runs itself. You focus on growing your business (or just enjoying your weekend).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right side - Values -->
+        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-10 animate-fade-in">
+          <h3 class="font-display text-2xl text-navy-900 mb-8">My Promise to You</h3>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <svg class="w-6 h-6 text-coral-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <h4 class="font-semibold text-navy-900 mb-1">Plain English Only</h4>
+                <p class="text-gray-600 text-sm">If I can't explain it simply, it's too complicated.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <svg class="w-6 h-6 text-coral-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <h4 class="font-semibold text-navy-900 mb-1">No Lock-In</h4>
+                <p class="text-gray-600 text-sm">Everything I build, you own. No monthly fees to me.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <svg class="w-6 h-6 text-coral-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <h4 class="font-semibold text-navy-900 mb-1">Real Support</h4>
+                <p class="text-gray-600 text-sm">I answer my phone. Try me: (203) 679-1715</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <svg class="w-6 h-6 text-coral-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <h4 class="font-semibold text-navy-900 mb-1">Connecticut Focused</h4>
+                <p class="text-gray-600 text-sm">I understand local business because I am one.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Client Stories -->
-  <section class="py-16 sm:py-20 px-4 bg-gray-50">
+  <section class="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
     <div class="container mx-auto max-w-6xl">
-      <h2 class="font-display text-3xl sm:text-4xl text-center text-navy-900 mb-12">
-        What Connecticut Business Owners Say
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-center text-navy-900 mb-16 animate-fade-up">
+        Connecticut Business Owners <span class="text-coral-500">Love the Calm</span>
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-xl p-8 shadow-lg">
-          <div class="flex items-center mb-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300 animate-fade-up">
+          <div class="flex items-center mb-6">
             <div class="flex text-coral-500">
               ⭐⭐⭐⭐⭐
             </div>
           </div>
-          <p class="text-gray-700 mb-6 italic">
+          <p class="text-gray-700 mb-6 italic leading-relaxed">
             "Tom built us a system that just works. No fancy jargon, no complicated training. Now customer inquiries go straight to our calendar, invoices chase themselves, and I actually get to leave at 5pm. Game changer."
           </p>
-          <div class="text-sm">
-            <p class="font-semibold text-gray-900">Sarah M.</p>
-            <p class="text-gray-600">Cleaning Service Owner, New Haven</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-500 to-coral-400 rounded-full flex items-center justify-center text-white font-bold">
+              SM
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">Sarah M.</p>
+              <p class="text-sm text-gray-600">Cleaning Service, New Haven</p>
+            </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-8 shadow-lg">
-          <div class="flex items-center mb-4">
+        <!-- Testimonial 2 -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300 animate-fade-up" style="animation-delay: 0.2s;">
+          <div class="flex items-center mb-6">
             <div class="flex text-coral-500">
               ⭐⭐⭐⭐⭐
             </div>
           </div>
-          <p class="text-gray-700 mb-6 italic">
+          <p class="text-gray-700 mb-6 italic leading-relaxed">
             "I was losing jobs because I couldn't respond fast enough. Tom set up automation that responds to leads instantly, schedules estimates, and even sends follow-ups. Booked solid for the next 3 months now."
           </p>
-          <div class="text-sm">
-            <p class="font-semibold text-gray-900">Mike D.</p>
-            <p class="text-gray-600">General Contractor, Milford</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-navy-800 to-navy-900 rounded-full flex items-center justify-center text-white font-bold">
+              MD
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">Mike D.</p>
+              <p class="text-sm text-gray-600">General Contractor, Milford</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300 animate-fade-up" style="animation-delay: 0.4s;">
+          <div class="flex items-center mb-6">
+            <div class="flex text-coral-500">
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+          <p class="text-gray-700 mb-6 italic leading-relaxed">
+            "Finally, someone who gets it. Tom didn't try to sell me some expensive platform. He looked at what we already had and made it 10x better. Our Google Workspace now runs like a Fortune 500 operation."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-500 to-coral-400 rounded-full flex items-center justify-center text-white font-bold">
+              JR
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">Jessica R.</p>
+              <p class="text-sm text-gray-600">Marketing Agency, Hartford</p>
+            </div>
           </div>
         </div>
       </div>
@@ -294,36 +600,59 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- CTA Section -->
-  <section id="contact" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500 relative overflow-hidden">
+  <section id="contact" class="py-20 px-4 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500 relative overflow-hidden">
+    <!-- Animated background -->
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full filter blur-3xl animate-float"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full filter blur-3xl animate-float" style="animation-delay: 3s;"></div>
+    </div>
+    
     <!-- Pattern overlay -->
     <div class="absolute inset-0 opacity-5">
       <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23grid)" /%3E%3C/svg%3E')"></div>
     </div>
 
     <div class="container mx-auto max-w-4xl text-center relative z-10">
-      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-6">
-        Ready to Get Your Time Back?
-      </h2>
-      
-      <p class="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-        Let's talk about what's eating up your day and how automation can help. No pressure, no pitch — just two business owners talking shop.
-      </p>
-
-      <div class="text-center mb-12">
-        <a href="mailto:tom@ctautomation.com" class="inline-flex items-center gap-2 bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform text-lg mb-6">
-          <span>Let's Talk</span>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </a>
+      <div class="animate-fade-up">
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
+          Ready to Get Your <span class="text-coral-400">Time Back?</span>
+        </h2>
         
-        <p class="text-white/70 text-sm mb-8">
-          tom@ctautomation.com • (203) 679-1715
+        <p class="text-xl sm:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Let's talk about what's eating up your day and how automation can help. No pressure, no pitch — just two business owners talking shop.
         </p>
 
-        <p class="text-white/80 text-sm max-w-2xl mx-auto">
-          Based in North Haven, serving businesses throughout Connecticut
-        </p>
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 sm:p-12 border border-white/20 max-w-2xl mx-auto">
+          <div class="space-y-6">
+            <a href="mailto:tom@ctautomation.com" class="group block">
+              <div class="bg-coral-500 text-white px-8 py-5 rounded-xl font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform text-lg flex items-center justify-center gap-3">
+                <span>Let's Talk About Your Business</span>
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </div>
+            </a>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center text-white/80">
+              <a href="mailto:tom@ctautomation.com" class="flex items-center gap-2 hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                tom@ctautomation.com
+              </a>
+              <a href="tel:2036791715" class="flex items-center gap-2 hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                (203) 679-1715
+              </a>
+            </div>
+
+            <p class="text-white/60 text-sm">
+              Based in North Haven, serving businesses throughout Connecticut
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -418,4 +747,33 @@ import Layout from '../layouts/Layout.astro';
       }
     });
   });
+
+  // Add scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, observerOptions);
+
+  // Observe all animated elements
+  document.querySelectorAll('.animate-fade-up, .animate-fade-in, .animate-bounce-in').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
 </script>
+
+<style>
+  /* Ensure animations are smooth */
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-bounce-in {
+    animation-fill-mode: both;
+  }
+</style>

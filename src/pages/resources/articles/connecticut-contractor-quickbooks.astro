@@ -1,0 +1,184 @@
+---
+import ShortArticleLayout from '../../../layouts/ShortArticleLayout.astro';
+
+const nextArticle = {
+  title: "Stop Chasing Invoices Like It's 1995",
+  slug: "invoice-automation-guide",
+  readTime: "4 min"
+};
+
+const relatedArticles = [
+  {
+    title: "What is Business Automation?",
+    slug: "what-is-business-automation",
+    category: "Getting Started",
+    readTime: "5 min read"
+  },
+  {
+    title: "5 Signs Your Connecticut Business Needs Automation",
+    slug: "signs-you-need-automation",
+    category: "Getting Started", 
+    readTime: "4 min read"
+  }
+];
+---
+
+<ShortArticleLayout
+  title="Connecticut Contractor Saves $3,200/Month (Here's How)"
+  description="A Stamford contractor was losing his mind over QuickBooks. Then he automated it. Now he's actually home for dinner."
+  category="Real Stories"
+  readTime="5 min"
+  publishDate="2025-07-10"
+  heroIcon="🔨"
+  nextArticle={nextArticle}
+  relatedArticles={relatedArticles}
+>
+  <p class="lead text-xl text-gray-700 mb-8">
+    Mike runs a contracting business in Stamford. Good guy. Builds beautiful kitchens. Was also spending every Sunday night doing QuickBooks instead of watching the game.
+  </p>
+
+  <div class="highlight-box">
+    <h3>The Sunday Night QuickBooks Blues</h3>
+    <p>20+ invoices to create. 15 to follow up on. 3 hours minimum. Every. Single. Sunday.</p>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+    The "I Can't Take This Anymore" Moment
+  </h2>
+
+  <p>Picture this: It's 9 PM on a Sunday. Mike's daughter has a soccer game at 8 AM Monday. He's still at his desk creating invoices for last week's jobs.</p>
+
+  <p>His wife walks in: "You coming to bed?"</p>
+  <p>"Just 10 more invoices."</p>
+  <p>"You said that an hour ago."</p>
+
+  <p>That's when Mike called me. Not because he wanted automation. Because he wanted his life back.</p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="number">3-5</div>
+      <div class="label">Hours Every Sunday</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$18k</div>
+      <div class="label">Stuck in 30+ Day Invoices</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">40%</div>
+      <div class="label">Never Followed Up</div>
+    </div>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+    What We Actually Did (No Magic)
+  </h2>
+
+  <p>Look, I'm not going to pretend this was rocket science. QuickBooks has automation features. Most contractors just don't know they exist or think they're too complicated.</p>
+
+  <p>Here's the dead simple setup:</p>
+
+  <div class="process-flow">
+    <div class="process-step">
+      <div class="icon">📱</div>
+      <h4>Job Completed</h4>
+      <p>Mike marks it done in his app</p>
+    </div>
+    <div class="process-step">
+      <div class="icon">🧾</div>
+      <h4>Invoice Created</h4>
+      <p>Automatically that night</p>
+    </div>
+    <div class="process-step">
+      <div class="icon">📧</div>
+      <h4>Email Sent</h4>
+      <p>8 AM next morning</p>
+    </div>
+    <div class="process-step">
+      <div class="icon">🔄</div>
+      <h4>Follow-ups</h4>
+      <p>Every 7 days until paid</p>
+    </div>
+  </div>
+
+  <p>The beautiful part? Mike didn't have to learn anything new. Still uses QuickBooks the same way. It just does more of the work for him.</p>
+
+  <div class="visual-divider">
+    <span>•••</span>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    The Money Part (This'll Make You Sick)
+  </h2>
+
+  <div class="comparison-cards">
+    <div class="comparison-card before">
+      <h3>Before</h3>
+      <ul class="space-y-2 text-gray-700">
+        <li>💸 $18,000 stuck past 30 days</li>
+        <li>⏰ 15-20 hours/month on invoices</li>
+        <li>😤 Awkward payment calls</li>
+        <li>🏈 Missing Sunday games</li>
+      </ul>
+    </div>
+    <div class="comparison-card after">
+      <h3>After (First Month)</h3>
+      <ul class="space-y-2 text-gray-700">
+        <li>✅ Collected $12,000 in old invoices</li>
+        <li>✅ 2 hours/month on invoices</li>
+        <li>✅ Automatic friendly reminders</li>
+        <li>✅ Home for kickoff</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Here's the kicker: The follow-up emails? They're friendly. Not those corporate "Per my last email" nightmares. Just:</p>
+
+  <blockquote>
+    "Hey John, hope the kitchen's treating you well! Just a heads up - invoice #1234 for $3,200 is still open. Here's the link to pay online, or give me a call if there's any issues. -Mike"
+  </blockquote>
+
+  <p>People actually pay faster when you're not being a jerk about it. Who knew?</p>
+
+  <div class="highlight-box">
+    <h3>The Real Win</h3>
+    <p>Mike texted me last month: "Watched the entire Giants game with my daughter. Didn't check QuickBooks once. Invoice still went out Monday morning. This is what I was missing."</p>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+    </svg>
+    This Works for Any Contractor
+  </h2>
+
+  <p>Doesn't matter if you're:</p>
+  <ul>
+    <li>Electrical, plumbing, HVAC, landscaping</li>
+    <li>1-person shop or 10-person crew</li>
+    <li>Using QuickBooks, FreshBooks, or carrier pigeons</li>
+  </ul>
+
+  <p>If you're manually creating invoices and chasing payments, you're doing it wrong. Not because you're dumb. Because nobody told you there's a better way.</p>
+
+  <div class="icon-card">
+    <div class="icon">💡</div>
+    <div>
+      <h3>The Connecticut Contractor Problem</h3>
+      <p>You're competing with NY contractors who have office managers. Automation is your office manager. Costs less than a tank of gas per month.</p>
+    </div>
+  </div>
+
+  <p class="text-xl font-medium mt-12 text-center text-gray-700">
+    Still doing QuickBooks on Sunday nights?<br>
+    <span class="text-coral-500">Let's fix that.</span>
+  </p>
+</ShortArticleLayout>

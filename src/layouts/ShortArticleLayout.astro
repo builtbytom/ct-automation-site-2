@@ -1,0 +1,389 @@
+---
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import AuthorBox from '../components/AuthorBox.astro';
+import RelatedArticles from '../components/RelatedArticles.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  category: string;
+  readTime: string;
+  publishDate: string;
+  heroIcon?: string;
+  nextArticle?: {
+    title: string;
+    slug: string;
+    readTime: string;
+  };
+  relatedArticles?: Array<{
+    title: string;
+    slug: string;
+    category: string;
+    readTime: string;
+  }>;
+}
+
+const { 
+  title, 
+  description, 
+  category, 
+  readTime, 
+  publishDate, 
+  heroIcon = "📊",
+  nextArticle,
+  relatedArticles = [] 
+} = Astro.props;
+---
+
+<Layout title={`${title} - Connecticut Business Automation`} description={description}>
+  <Navigation />
+  
+  <!-- Simplified Hero -->
+  <section class="relative bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500 pt-24 pb-16">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23grid)" /%3E%3C/svg%3E')"></div>
+    </div>
+
+    <div class="relative z-10 container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Hero Icon -->
+        <div class="text-6xl mb-6 animate-bounce-in">{heroIcon}</div>
+        
+        <!-- Category & Read Time -->
+        <div class="flex items-center justify-center gap-4 text-white/80 mb-4">
+          <span class="bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-medium">
+            {category}
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {readTime} read
+          </span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-display font-bold mb-6 text-white">
+          {title}
+        </h1>
+        
+        <p class="text-xl text-white/90 max-w-2xl mx-auto">
+          {description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <article class="bg-white">
+    <div class="container mx-auto px-6 py-16 max-w-4xl">
+      <!-- Article content with better styling -->
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-display prose-headings:text-charcoal prose-headings:font-semibold
+        prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:flex prose-h2:items-center prose-h2:gap-3
+        prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+        prose-p:text-charcoal prose-p:leading-relaxed prose-p:text-lg prose-p:mb-6
+        prose-a:text-coral-500 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
+        prose-strong:text-charcoal prose-strong:font-semibold
+        prose-ul:my-6 prose-ol:my-6 prose-ul:space-y-2 prose-ol:space-y-2
+        prose-li:text-lg prose-li:text-charcoal
+        prose-blockquote:border-l-4 prose-blockquote:border-coral-400 prose-blockquote:pl-6 prose-blockquote:italic
+        prose-blockquote:text-gray-700 prose-blockquote:my-8"
+      >
+        <slot />
+      </div>
+
+      <!-- Visual Elements Styles -->
+      <style is:global>
+        /* Icon Cards */
+        .icon-card {
+          display: flex;
+          align-items: flex-start;
+          gap: 1.5rem;
+          padding: 1.5rem;
+          background: #f9fafb;
+          border-radius: 0.75rem;
+          margin: 2rem 0;
+          transition: all 0.3s ease;
+        }
+        
+        .icon-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .icon-card .icon {
+          flex-shrink: 0;
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #FF6B6B;
+          color: white;
+          border-radius: 0.5rem;
+          font-size: 1.5rem;
+        }
+        
+        .icon-card h3 {
+          margin: 0 0 0.5rem 0;
+          font-size: 1.25rem;
+          color: #2B2B2B;
+        }
+        
+        .icon-card p {
+          margin: 0;
+          color: #6b7280;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.5rem;
+          margin: 3rem 0;
+        }
+        
+        .stat-card {
+          text-align: center;
+          padding: 2rem;
+          background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+          border-radius: 1rem;
+          border: 1px solid #e5e7eb;
+        }
+        
+        .stat-card .number {
+          font-size: 3rem;
+          font-weight: 700;
+          color: #FF6B6B;
+          line-height: 1;
+          margin-bottom: 0.5rem;
+        }
+        
+        .stat-card .label {
+          font-size: 1rem;
+          color: #6b7280;
+        }
+
+        /* Process Flow */
+        .process-flow {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 3rem 0;
+          padding: 2rem;
+          background: #f9fafb;
+          border-radius: 1rem;
+          overflow-x: auto;
+        }
+        
+        .process-step {
+          flex: 1;
+          text-align: center;
+          position: relative;
+          padding: 0 1rem;
+        }
+        
+        .process-step:not(:last-child)::after {
+          content: '→';
+          position: absolute;
+          right: -1rem;
+          top: 2rem;
+          font-size: 2rem;
+          color: #e5e7eb;
+        }
+        
+        .process-step .icon {
+          width: 4rem;
+          height: 4rem;
+          margin: 0 auto 1rem;
+          background: #FF6B6B;
+          color: white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+        }
+        
+        .process-step h4 {
+          margin: 0 0 0.5rem 0;
+          font-size: 1.125rem;
+          color: #2B2B2B;
+        }
+        
+        .process-step p {
+          margin: 0;
+          font-size: 0.875rem;
+          color: #6b7280;
+        }
+
+        /* Comparison Cards */
+        .comparison-cards {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          margin: 3rem 0;
+        }
+        
+        @media (max-width: 768px) {
+          .comparison-cards {
+            grid-template-columns: 1fr;
+          }
+        }
+        
+        .comparison-card {
+          padding: 2rem;
+          border-radius: 1rem;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .comparison-card.before {
+          background: #fee2e2;
+          border: 2px solid #fecaca;
+        }
+        
+        .comparison-card.after {
+          background: #d1fae5;
+          border: 2px solid #a7f3d0;
+        }
+        
+        .comparison-card h3 {
+          margin: 0 0 1rem 0;
+          font-size: 1.5rem;
+        }
+        
+        .comparison-card.before h3 {
+          color: #dc2626;
+        }
+        
+        .comparison-card.after h3 {
+          color: #059669;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+          background: linear-gradient(135deg, #FFF5F5 0%, #FFE3E3 100%);
+          border: 2px solid #FFA8A8;
+          border-radius: 1rem;
+          padding: 2rem;
+          margin: 3rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .highlight-box::before {
+          content: '💡';
+          position: absolute;
+          top: -20px;
+          right: -20px;
+          font-size: 100px;
+          opacity: 0.1;
+        }
+        
+        .highlight-box h3 {
+          color: #2B2B2B;
+          margin: 0 0 1rem 0;
+        }
+        
+        .highlight-box p {
+          color: #4b5563;
+          font-size: 1.125rem;
+          margin: 0;
+        }
+
+        /* Visual Divider */
+        .visual-divider {
+          margin: 4rem 0;
+          text-align: center;
+          position: relative;
+        }
+        
+        .visual-divider::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+        }
+        
+        .visual-divider span {
+          background: white;
+          padding: 0 2rem;
+          position: relative;
+          color: #9ca3af;
+          font-size: 2rem;
+        }
+      </style>
+
+      <!-- Next Article CTA -->
+      {nextArticle && (
+        <div class="mt-16 p-8 bg-gradient-to-r from-navy-900 to-navy-800 rounded-xl text-white">
+          <div class="text-center">
+            <p class="text-white/80 mb-2">Continue Learning</p>
+            <h3 class="text-2xl font-display font-semibold mb-4">
+              {nextArticle.title}
+            </h3>
+            <p class="text-white/80 mb-6">{nextArticle.readTime} read</p>
+            <a 
+              href={`/resources/articles/${nextArticle.slug}`}
+              class="inline-flex items-center bg-coral-500 hover:bg-coral-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200"
+            >
+              Read Next Article
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Author Box -->
+      <div class="mt-12">
+        <AuthorBox />
+      </div>
+    </div>
+  </article>
+
+  <!-- Related Articles -->
+  {relatedArticles.length > 0 && (
+    <section class="bg-gray-50 py-16">
+      <div class="container mx-auto px-6">
+        <RelatedArticles articles={relatedArticles} />
+      </div>
+    </section>
+  )}
+
+  <!-- Bottom CTA -->
+  <section class="bg-navy-900 text-white py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-display font-bold mb-4">
+        Ready to Automate Your Business?
+      </h2>
+      <p class="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
+        Let's talk about your specific challenges and see if automation makes sense.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="tel:2032000327" 
+          class="inline-flex items-center justify-center bg-coral-500 hover:bg-coral-600 text-white px-8 py-4 rounded-lg font-medium transition-colors duration-200 text-lg"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          Call (203) 200-0327
+        </a>
+        <a 
+          href="/contact" 
+          class="inline-flex items-center justify-center bg-transparent border-2 border-white hover:bg-white hover:text-navy-900 text-white px-8 py-4 rounded-lg font-medium transition-all duration-200 text-lg"
+        >
+          Schedule a Quick Call
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

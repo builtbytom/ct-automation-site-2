@@ -1,0 +1,176 @@
+---
+import ShortArticleLayout from '../../../layouts/ShortArticleLayout.astro';
+
+const nextArticle = {
+  title: "Is Your Connecticut Business Ready for Automation?",
+  slug: "connecticut-automation-ready",
+  readTime: "4 min"
+};
+
+const relatedArticles = [
+  {
+    title: "What is Business Automation?",
+    slug: "what-is-business-automation",
+    category: "Getting Started",
+    readTime: "5 min read"
+  },
+  {
+    title: "Common Automation Mistakes to Avoid",
+    slug: "automation-mistakes",
+    category: "Getting Started", 
+    readTime: "6 min read"
+  }
+];
+---
+
+<ShortArticleLayout
+  title="The $5,200 Hot Sauce Lesson"
+  description="How watching someone sort hot sauce for 4 hours taught me everything about business automation."
+  category="Real Stories"
+  readTime="3 min"
+  publishDate="2025-07-10"
+  heroIcon="🌶️"
+  nextArticle={nextArticle}
+  relatedArticles={relatedArticles}
+>
+  <p class="lead text-xl text-gray-700 mb-8">
+    Sometimes the best business lessons come from the most unexpected places. Mine came from watching a warehouse manager sort hot sauce.
+  </p>
+
+  <div class="highlight-box">
+    <h3>The Scene</h3>
+    <p>30,000 square feet warehouse. Hundreds of daily orders. One frustrated warehouse manager spending 4 hours every week sorting hot sauce by expiration date.</p>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    The Problem
+  </h2>
+
+  <p>Every week, like clockwork, our warehouse manager would:</p>
+
+  <div class="process-flow">
+    <div class="process-step">
+      <div class="icon">📦</div>
+      <h4>Pull Cases</h4>
+      <p>From inventory</p>
+    </div>
+    <div class="process-step">
+      <div class="icon">👀</div>
+      <h4>Check Dates</h4>
+      <p>One by one</p>
+    </div>
+    <div class="process-step">
+      <div class="icon">🔄</div>
+      <h4>Reorganize</h4>
+      <p>By expiration</p>
+    </div>
+    <div class="process-step">
+      <div class="icon">📝</div>
+      <h4>Make Notes</h4>
+      <p>For pickers</p>
+    </div>
+  </div>
+
+  <p><strong>4 hours. Every. Single. Week.</strong></p>
+
+  <p>And this was just ONE product line. We had thousands.</p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="number">4</div>
+      <div class="label">Hours per Week</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$25</div>
+      <div class="label">Hourly Cost</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$5,200</div>
+      <div class="label">Annual Cost</div>
+    </div>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+    </svg>
+    The Solution
+  </h2>
+
+  <p>I built a simple system:</p>
+
+  <div class="comparison-cards">
+    <div class="comparison-card before">
+      <h3>The Old Way</h3>
+      <p class="text-gray-700 mb-3">Manual sorting every week:</p>
+      <ul class="space-y-2 text-gray-600 text-sm">
+        <li>• Physical checking</li>
+        <li>• Paper notes</li>
+        <li>• Human memory</li>
+        <li>• Weekly repetition</li>
+      </ul>
+    </div>
+    <div class="comparison-card after">
+      <h3>The New Way</h3>
+      <p class="text-gray-700 mb-3">Automated tracking:</p>
+      <ul class="space-y-2 text-gray-600 text-sm">
+        <li>• Scan on arrival</li>
+        <li>• Auto-track dates</li>
+        <li>• System picks oldest</li>
+        <li>• Zero manual work</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Implementation took one afternoon. The barcode scanner we already had. Just needed to connect it to our inventory system with a simple rule: <strong>always ship oldest first.</strong></p>
+
+  <div class="visual-divider">
+    <span>•••</span>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+    </svg>
+    The Real Lesson
+  </h2>
+
+  <div class="highlight-box">
+    <h3>It's Not About the Technology</h3>
+    <p>The scanner was already there. The software was already there. We just needed to connect them with a simple rule. That's what real automation looks like.</p>
+  </div>
+
+  <p>Most businesses are sitting on automation opportunities just like this. You don't need AI. You don't need expensive consultants. You need to:</p>
+
+  <div class="icon-card">
+    <div class="icon">👁️</div>
+    <div>
+      <h3>Watch for Repetition</h3>
+      <p>If someone's doing the same thing every week, it can probably be automated.</p>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon">🧮</div>
+    <div>
+      <h3>Do the Math</h3>
+      <p>4 hours × $25/hour × 52 weeks = $5,200. Even a $1,000 solution pays for itself in months.</p>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon">🎯</div>
+    <div>
+      <h3>Start Simple</h3>
+      <p>Don't automate everything. Pick one annoying, repetitive task and fix that first.</p>
+    </div>
+  </div>
+
+  <p class="text-xl font-medium mt-12 text-center text-gray-700">
+    That 4-hour task? It now takes 4 seconds.<br>
+    <span class="text-coral-500">What's your hot sauce?</span>
+  </p>
+</ShortArticleLayout>

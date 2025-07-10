@@ -348,6 +348,66 @@ const faqs = [
 
 // Get the top 6 popular FAQs
 const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
+
+// Group FAQs by category
+const faqsByCategory = categories.slice(1).reduce((acc, category) => {
+  acc[category] = faqs.filter(faq => faq.category === category);
+  return acc;
+}, {});
+
+// Category metadata
+const categoryMeta = {
+  'Cost & ROI': {
+    icon: '💰',
+    color: 'emerald',
+    description: 'Investment, returns, and pricing'
+  },
+  'I\'m Not Tech-Savvy': {
+    icon: '🤷',
+    color: 'blue',
+    description: 'For the technically challenged'
+  },
+  'QuickBooks & Invoice': {
+    icon: '📊',
+    color: 'purple',
+    description: 'Accounting and billing automation'
+  },
+  'AI vs Traditional': {
+    icon: '🤖',
+    color: 'indigo',
+    description: 'Understanding modern automation'
+  },
+  'Getting Started': {
+    icon: '🚀',
+    color: 'orange',
+    description: 'Your first steps'
+  },
+  'Industry-Specific': {
+    icon: '🏭',
+    color: 'teal',
+    description: 'Solutions for your field'
+  },
+  'Implementation & Support': {
+    icon: '🛠️',
+    color: 'yellow',
+    description: 'Setup and ongoing help'
+  },
+  'Security & Compliance': {
+    icon: '🔒',
+    color: 'red',
+    description: 'Keeping your data safe'
+  },
+  'Integration': {
+    icon: '🔗',
+    color: 'cyan',
+    description: 'Connecting your tools'
+  },
+  'Results & Expectations': {
+    icon: '📈',
+    color: 'pink',
+    description: 'What to expect'
+  }
+};
 ---
 
 <Layout 
@@ -444,19 +504,25 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
   <!-- FAQ Content -->
   <section class="py-20 px-4 bg-gray-50" x-data="faqSearch()" x-init="initSearch()">
     <div class="container mx-auto max-w-6xl">
-      <!-- Category Pills -->
-      <div class="mb-16 overflow-x-auto">
+      <!-- Category Pills with Anchors -->
+      <div class="mb-16 overflow-x-auto sticky top-16 bg-gray-50 py-4 z-30">
         <div class="flex gap-3 min-w-max mx-auto justify-center flex-wrap pb-4">
           {categories.map((category) => {
             // Escape single quotes for Alpine.js
             const escapedCategory = category.replace(/'/g, "\\'");
+            const categoryId = category.toLowerCase().replace(/[^a-z0-9]/g, '-');
             return (
               <button
-                @click={`activeCategory = '${escapedCategory}'`}
+                @click={`activeCategory = '${escapedCategory}'; if('${escapedCategory}' !== 'All') { document.getElementById('${categoryId}')?.scrollIntoView({ behavior: 'smooth', block: 'start', blockOffset: 100 }) }`}
                 :class={`activeCategory === '${escapedCategory}' ? 'bg-coral-500 text-white shadow-lg' : 'bg-white text-navy-900 hover:bg-gray-100 shadow-sm'`}
                 class="px-6 py-2.5 rounded-full font-medium transition-all duration-200 whitespace-nowrap border border-transparent"
               >
                 {category}
+                {category !== 'All' && (
+                  <span class="ml-2 text-xs opacity-70">
+                    ({faqsByCategory[category]?.length || 0})
+                  </span>
+                )}
               </button>
             );
           })}
@@ -511,18 +577,17 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
         </div>
       </div>
 
-      <!-- All Questions -->
-      <div class="space-y-8">
-        <h2 class="text-2xl font-display font-semibold text-navy-900 mb-6" x-show="activeCategory !== 'All' || searchQuery">
+      <!-- Search Results / Filtered View -->
+      <div x-show="searchQuery || activeCategory !== 'All'">
+        <h2 class="text-2xl font-display font-semibold text-navy-900 mb-6">
           <span x-show="searchQuery">Search Results</span>
           <span x-show="!searchQuery && activeCategory !== 'All'" x-text="`${activeCategory} Questions`"></span>
         </h2>
         
-        <div class="grid grid-cols-1 gap-8">
+        <div class="grid grid-cols-1 gap-6">
           <template x-for="(faq, index) in filteredFaqs" :key="faq.id">
             <div 
               class="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border border-gray-200"
-              :class="index % 2 === 0 ? 'lg:mr-12' : 'lg:ml-12'"
               @click="expandedId = expandedId === faq.id ? null : faq.id"
             >
               <div class="flex items-start justify-between mb-4">
@@ -563,6 +628,96 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
             </div>
           </template>
         </div>
+      </div>
+
+      <!-- All Categories View -->
+      <div x-show="!searchQuery && activeCategory === 'All'" class="space-y-16">
+        {Object.entries(faqsByCategory).map(([category, categoryFaqs]) => {
+          const categoryId = category.toLowerCase().replace(/[^a-z0-9]/g, '-');
+          const meta = categoryMeta[category];
+          
+          return (
+            <div id={categoryId} class="scroll-mt-24">
+              <!-- Category Header -->
+              <div class={`mb-8 pb-4 border-b-2 border-${meta.color}-200`}>
+                <div class="flex items-center gap-4">
+                  <span class="text-4xl">{meta.icon}</span>
+                  <div>
+                    <h2 class="text-3xl font-display font-semibold text-navy-900">
+                      {category}
+                    </h2>
+                    <p class="text-gray-600 mt-1">{meta.description}</p>
+                  </div>
+                  <span class={`ml-auto px-4 py-2 bg-${meta.color}-100 text-${meta.color}-700 rounded-full text-sm font-medium`}>
+                    {categoryFaqs.length} questions
+                  </span>
+                </div>
+              </div>
+              
+              <!-- Category Questions -->
+              <div class="grid grid-cols-1 gap-6">
+                {categoryFaqs.map((faq, index) => (
+                  <div 
+                    key={faq.id}
+                    class={`bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-l-4 border-${meta.color}-400`}
+                    x-data={`{ localExpanded: false }`}
+                    @click="localExpanded = !localExpanded"
+                  >
+                    <div class="flex items-start justify-between mb-4">
+                      <div class="flex-1">
+                        <h3 class="font-semibold text-xl text-navy-900 leading-relaxed pr-4">
+                          {faq.question}
+                        </h3>
+                      </div>
+                      <svg 
+                        class={`w-6 h-6 text-${meta.color}-500 flex-shrink-0 transition-transform duration-200 mt-1`}
+                        :class="localExpanded ? 'rotate-180' : ''"
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </div>
+                    
+                    <!-- Collapsed state -->
+                    <p 
+                      class="text-gray-600 text-base leading-relaxed line-clamp-3"
+                      x-show="!localExpanded"
+                    >
+                      {faq.answer}
+                    </p>
+                    
+                    <!-- Expanded state -->
+                    <div 
+                      x-show="localExpanded"
+                      x-transition:enter="transition ease-out duration-200"
+                      x-transition:enter-start="opacity-0 transform -translate-y-2"
+                      x-transition:enter-end="opacity-100 transform translate-y-0"
+                    >
+                      <p class="text-gray-600 text-base leading-relaxed whitespace-pre-line">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Back to Top Button -->
+              <div class="text-center mt-8">
+                <button 
+                  @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                  class="inline-flex items-center gap-2 text-coral-500 hover:text-coral-600 font-medium"
+                >
+                  <svg class="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                  Back to top
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       <!-- No Results Message -->
@@ -772,6 +927,11 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
     background: #94a3b8;
   }
   
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
   /* Add subtle animation to FAQ cards */
   @keyframes fadeInUp {
     from {
@@ -796,4 +956,65 @@ const popularFaqs = faqs.filter(faq => faq.popular).slice(0, 6);
   [x-data] > div > div > div:nth-child(4) { animation-delay: 0.25s; }
   [x-data] > div > div > div:nth-child(5) { animation-delay: 0.3s; }
   [x-data] > div > div > div:nth-child(6) { animation-delay: 0.35s; }
+
+  /* Color classes for dynamic category colors */
+  .border-emerald-200 { border-color: rgb(167 243 208); }
+  .border-emerald-400 { border-color: rgb(52 211 153); }
+  .bg-emerald-100 { background-color: rgb(209 250 229); }
+  .text-emerald-700 { color: rgb(4 120 87); }
+  .text-emerald-500 { color: rgb(16 185 129); }
+  
+  .border-blue-200 { border-color: rgb(191 219 254); }
+  .border-blue-400 { border-color: rgb(96 165 250); }
+  .bg-blue-100 { background-color: rgb(219 234 254); }
+  .text-blue-700 { color: rgb(29 78 216); }
+  .text-blue-500 { color: rgb(59 130 246); }
+  
+  .border-purple-200 { border-color: rgb(221 214 254); }
+  .border-purple-400 { border-color: rgb(167 139 250); }
+  .bg-purple-100 { background-color: rgb(237 233 254); }
+  .text-purple-700 { color: rgb(109 40 217); }
+  .text-purple-500 { color: rgb(139 92 246); }
+  
+  .border-indigo-200 { border-color: rgb(199 210 254); }
+  .border-indigo-400 { border-color: rgb(129 140 248); }
+  .bg-indigo-100 { background-color: rgb(224 231 255); }
+  .text-indigo-700 { color: rgb(67 56 202); }
+  .text-indigo-500 { color: rgb(99 102 241); }
+  
+  .border-orange-200 { border-color: rgb(254 215 170); }
+  .border-orange-400 { border-color: rgb(251 146 60); }
+  .bg-orange-100 { background-color: rgb(255 237 213); }
+  .text-orange-700 { color: rgb(194 65 12); }
+  .text-orange-500 { color: rgb(249 115 22); }
+  
+  .border-teal-200 { border-color: rgb(153 246 228); }
+  .border-teal-400 { border-color: rgb(45 212 191); }
+  .bg-teal-100 { background-color: rgb(204 251 241); }
+  .text-teal-700 { color: rgb(15 118 110); }
+  .text-teal-500 { color: rgb(20 184 166); }
+  
+  .border-yellow-200 { border-color: rgb(254 240 138); }
+  .border-yellow-400 { border-color: rgb(250 204 21); }
+  .bg-yellow-100 { background-color: rgb(254 249 195); }
+  .text-yellow-700 { color: rgb(161 98 7); }
+  .text-yellow-500 { color: rgb(234 179 8); }
+  
+  .border-red-200 { border-color: rgb(254 202 202); }
+  .border-red-400 { border-color: rgb(248 113 113); }
+  .bg-red-100 { background-color: rgb(254 226 226); }
+  .text-red-700 { color: rgb(185 28 28); }
+  .text-red-500 { color: rgb(239 68 68); }
+  
+  .border-cyan-200 { border-color: rgb(165 243 252); }
+  .border-cyan-400 { border-color: rgb(34 211 238); }
+  .bg-cyan-100 { background-color: rgb(207 250 254); }
+  .text-cyan-700 { color: rgb(14 116 144); }
+  .text-cyan-500 { color: rgb(6 182 212); }
+  
+  .border-pink-200 { border-color: rgb(251 207 232); }
+  .border-pink-400 { border-color: rgb(244 114 182); }
+  .bg-pink-100 { background-color: rgb(252 231 243); }
+  .text-pink-700 { color: rgb(190 24 93); }
+  .text-pink-500 { color: rgb(236 72 153); }
 </style>

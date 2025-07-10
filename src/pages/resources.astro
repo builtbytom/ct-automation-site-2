@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const categories = [
+  {
+    title: "Business Automation",
+    description: "Guides for automating common business processes",
+    icon: "🤖",
+    articles: 3,
+    slug: "automation"
+  },
+  {
+    title: "Industry Guides",
+    description: "Automation strategies for specific Connecticut industries",
+    icon: "🏭",
+    articles: 5,
+    slug: "industry"
+  },
+  {
+    title: "ROI Calculators",
+    description: "Calculate your automation savings",
+    icon: "💰",
+    articles: 4,
+    slug: "calculators"
+  },
+  {
+    title: "Tool Comparisons",
+    description: "Which automation tools work best for small businesses",
+    icon: "🔧",
+    articles: 3,
+    slug: "tools"
+  }
+];
+
+const featuredArticles = [
+  {
+    title: "Business Automation for Connecticut Small Businesses: What Actually Works",
+    excerpt: "No buzzwords, just real talk about letting computers handle the repetitive stuff so you can focus on what makes money.",
+    category: "Business Automation",
+    readTime: "12 min",
+    slug: "business-automation-connecticut"
+  },
+  {
+    title: "QuickBooks Automation for Connecticut Contractors",
+    excerpt: "Stop chasing invoices and start getting paid. Real automation strategies from the field.",
+    category: "Industry Guides",
+    readTime: "8 min",
+    slug: "quickbooks-automation-contractors"
+  },
+  {
+    title: "Restaurant Invoice Automation ROI Calculator",
+    excerpt: "Calculate exactly how much time and money you'll save by automating supplier invoices.",
+    category: "ROI Calculators",
+    readTime: "5 min",
+    slug: "restaurant-invoice-roi"
+  }
+];
+---
+
+<Layout 
+  title="Resources - Connecticut Business Automation" 
+  description="Practical guides, ROI calculators, and real automation strategies for Connecticut small businesses. No buzzwords, just what works."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-navy-900 to-navy-800 text-white py-20 overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <h1 class="text-4xl md:text-5xl font-display font-bold mb-6">
+        Resources That Actually Help
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl">
+        Real guides, calculators, and strategies from someone who's actually automated Connecticut businesses. No theory, just what works.
+      </p>
+    </div>
+  </section>
+
+  <!-- Categories Grid -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {categories.map((category) => (
+          <a 
+            href={`/resources/${category.slug}`}
+            class="group bg-cream rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-coral-400"
+          >
+            <div class="text-4xl mb-4">{category.icon}</div>
+            <h3 class="text-xl font-semibold mb-2 text-charcoal group-hover:text-coral-500 transition-colors">
+              {category.title}
+            </h3>
+            <p class="text-gray-600 mb-4">{category.description}</p>
+            <div class="text-sm text-coral-500 font-medium">
+              {category.articles} articles →
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Articles -->
+  <section class="py-16 bg-cream">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-display font-bold mb-8 text-charcoal">
+        Start Here
+      </h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredArticles.map((article) => (
+          <article class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-sm font-medium text-coral-500">{article.category}</span>
+                <span class="text-sm text-gray-500">{article.readTime} read</span>
+              </div>
+              
+              <h3 class="text-xl font-semibold mb-3 text-charcoal group-hover:text-coral-500 transition-colors">
+                <a href={`/resources/articles/${article.slug}`}>
+                  {article.title}
+                </a>
+              </h3>
+              
+              <p class="text-gray-600 mb-4">
+                {article.excerpt}
+              </p>
+              
+              <a 
+                href={`/resources/articles/${article.slug}`}
+                class="inline-flex items-center text-coral-500 hover:text-coral-600 font-medium transition-colors"
+              >
+                Read More 
+                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="py-16 bg-navy-900 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-display font-bold mb-4">
+        Get Automation Tips That Actually Work
+      </h2>
+      <p class="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
+        Weekly tips from someone who's automated real Connecticut businesses. No corporate speak, just practical advice.
+      </p>
+      <div class="max-w-md mx-auto">
+        <form class="flex flex-col sm:flex-row gap-4">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            class="flex-1 px-4 py-3 rounded-lg text-charcoal focus:outline-none focus:ring-2 focus:ring-coral-400"
+            required
+          />
+          <button
+            type="submit"
+            class="bg-coral-500 hover:bg-coral-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
+          >
+            Send Me Tips
+          </button>
+        </form>
+        <p class="text-sm text-gray-400 mt-4">
+          No spam. Unsubscribe anytime. Usually send 1-2 emails per month.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-display font-bold mb-4 text-charcoal">
+        Need Help Implementing Any of This?
+      </h2>
+      <p class="text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
+        Reading about automation is one thing. Actually implementing it is another. Let's talk about your specific situation.
+      </p>
+      <a 
+        href="/contact" 
+        class="inline-block bg-coral-500 hover:bg-coral-600 text-white px-8 py-4 rounded-lg font-medium transition-colors duration-200 text-lg"
+      >
+        Get Your Free Automation Audit
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,54 @@
+---
+export interface Props {
+  articles: Array<{
+    title: string;
+    slug: string;
+    category: string;
+    readTime: string;
+    excerpt?: string;
+  }>;
+}
+
+const { articles } = Astro.props;
+---
+
+<div>
+  <h2 class="text-3xl font-display font-bold mb-8 text-charcoal">
+    Keep Reading
+  </h2>
+  
+  <div class="grid md:grid-cols-3 gap-6">
+    {articles.map((article) => (
+      <article class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-medium text-coral-500">{article.category}</span>
+            <span class="text-sm text-gray-500">{article.readTime}</span>
+          </div>
+          
+          <h3 class="text-lg font-semibold mb-2 text-charcoal group-hover:text-coral-500 transition-colors">
+            <a href={`/resources/articles/${article.slug}`}>
+              {article.title}
+            </a>
+          </h3>
+          
+          {article.excerpt && (
+            <p class="text-gray-600 text-sm mb-3">
+              {article.excerpt}
+            </p>
+          )}
+          
+          <a 
+            href={`/resources/articles/${article.slug}`}
+            class="inline-flex items-center text-coral-500 hover:text-coral-600 font-medium transition-colors text-sm"
+          >
+            Read Article
+            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+</div>

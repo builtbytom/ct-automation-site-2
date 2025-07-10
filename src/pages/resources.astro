@@ -2,38 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 
-const categories = [
-  {
-    title: "Business Automation",
-    description: "Guides for automating common business processes",
-    icon: "🤖",
-    articles: 3,
-    slug: "automation"
-  },
-  {
-    title: "Industry Guides",
-    description: "Automation strategies for specific Connecticut industries",
-    icon: "🏭",
-    articles: 5,
-    slug: "industry"
-  },
-  {
-    title: "ROI Calculators",
-    description: "Calculate your automation savings",
-    icon: "💰",
-    articles: 4,
-    slug: "calculators"
-  },
-  {
-    title: "Tool Comparisons",
-    description: "Which automation tools work best for small businesses",
-    icon: "🔧",
-    articles: 3,
-    slug: "tools"
-  }
-];
+// Categories removed - focusing on actual articles we have
 
-const featuredArticles = [
+const articles = [
   {
     title: "The $5,000 Data Entry Problem Every Connecticut Business Has",
     excerpt: "How much is manual data entry actually costing you? We do the math and it's not pretty. Plus my $1,200 shipping mistake story.",
@@ -101,39 +72,16 @@ const featuredArticles = [
     </div>
   </section>
 
-  <!-- Categories Grid -->
+  <!-- Articles -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-6">
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-        {categories.map((category) => (
-          <a 
-            href={`/resources/${category.slug}`}
-            class="group bg-cream rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-coral-400"
-          >
-            <div class="text-4xl mb-4">{category.icon}</div>
-            <h3 class="text-xl font-semibold mb-2 text-charcoal group-hover:text-coral-500 transition-colors">
-              {category.title}
-            </h3>
-            <p class="text-gray-600 mb-4">{category.description}</p>
-            <div class="text-sm text-coral-500 font-medium">
-              {category.articles} articles →
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Articles -->
-  <section class="py-16 bg-cream">
-    <div class="container mx-auto px-6">
       <h2 class="text-3xl font-display font-bold mb-8 text-charcoal">
-        Start Here
+        Articles & Guides
       </h2>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featuredArticles.map((article) => (
-          <article class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+        {articles.map((article) => (
+          <article class="bg-cream rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden group border border-gray-100">
             <div class="p-6">
               <div class="flex items-center justify-between mb-4">
                 <span class="text-sm font-medium text-coral-500">{article.category}</span>

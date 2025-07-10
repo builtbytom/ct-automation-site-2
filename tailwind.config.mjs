@@ -18,8 +18,8 @@ export default {
         'charcoal': '#2B2B2B',
       },
       fontFamily: {
-        'display': ['Crimson Pro', 'serif'],
-        'body': ['Inter', 'sans-serif'],
+        'display': ['Crimson Pro', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+        'body': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.5s ease-out',

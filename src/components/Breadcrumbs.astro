@@ -23,13 +23,13 @@ const { items } = Astro.props;
         )}
         <li>
           {item.current ? (
-            <span class="text-gray-300" aria-current="page">
+            <span class="text-gray-700 font-medium" aria-current="page">
               {item.label}
             </span>
           ) : (
             <a 
               href={item.href} 
-              class="text-gray-300 hover:text-white transition-colors duration-200"
+              class="text-gray-600 hover:text-coral-500 transition-colors duration-200"
             >
               {item.label}
             </a>

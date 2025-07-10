@@ -1,0 +1,462 @@
+---
+import ShortArticleLayout from "../../layouts/ShortArticleLayout.astro";
+import AuthorBox from "../../components/AuthorBox.astro";
+import RelatedArticles from "../../components/RelatedArticles.astro";
+
+const articleData = {
+  title: "The $5,000 Data Entry Problem Every Connecticut Business Has",
+  description: "How much is manual data entry actually costing you? The answer will shock most Connecticut business owners.",
+  author: "Tom Lucia",
+  readTime: "4 min",
+  publishDate: "2025-01-10",
+  category: "Cost Savings",
+  tags: ["data entry", "automation ROI", "cost analysis"]
+};
+
+const relatedArticles = [
+  {
+    title: "What NOT to Automate (My $30,000 Mistake)",
+    href: "/resources/what-not-to-automate",
+    readTime: "3 min"
+  },
+  {
+    title: "The Big Three: Start Your Automation Journey",
+    href: "/resources/big-three-automation",
+    readTime: "4 min"
+  },
+  {
+    title: "What is Business Automation?",
+    href: "/resources/what-is-business-automation",
+    readTime: "5 min"
+  }
+];
+---
+
+<ShortArticleLayout {...articleData}>
+  <div class="prose prose-lg max-w-none">
+    <p class="lead">
+      Let me ask you something. How many times today did you or your team type the same customer information into different systems? Once for the initial inquiry. Again for the CRM. A third time for invoicing. Maybe a fourth for your email list.
+    </p>
+
+    <p>
+      Sound familiar? You're not just wasting time - you're hemorrhaging money in ways you probably haven't calculated.
+    </p>
+
+    <img 
+      src="/images/data-entry-cost-breakdown.webp" 
+      alt="Data entry cost breakdown showing $44,200 annual cost" 
+      class="w-full rounded-lg shadow-lg mb-12"
+    />
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      The Connecticut Math That Hurts
+    </h2>
+
+    <p>
+      Let's do some real Connecticut small business math. Say you're paying someone $20/hour to:
+    </p>
+
+    <div class="icon-card">
+      <div class="icon-card-icon">📝</div>
+      <div class="icon-card-content">
+        <h3>Customer Data Entry</h3>
+        <p>Enter customer info into three different systems (30 minutes per customer)</p>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card-icon">📞</div>
+      <div class="icon-card-content">
+        <h3>Lead Follow-up</h3>
+        <p>Follow up with leads manually (15 minutes per lead)</p>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card-icon">💰</div>
+      <div class="icon-card-content">
+        <h3>Invoice Management</h3>
+        <p>Create invoices and chase payments (45 minutes per invoice)</p>
+      </div>
+    </div>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+      </svg>
+      The Weekly Reality Check
+    </h2>
+
+    <p>
+      If you process 20 customers, 40 leads, and 30 invoices per week:
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">10</div>
+        <div class="stat-label">Hours on customer data</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10</div>
+        <div class="stat-label">Hours on lead follow-up</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">22.5</div>
+        <div class="stat-label">Hours on invoices</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$44,200</div>
+        <div class="stat-label">Annual cost at $20/hr</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        <strong>Here's the kicker:</strong> Automation can handle 80% of this work. You're looking at saving $35,000+ annually. Even if automation costs $10,000 to implement (it usually costs much less), you're ahead by $25,000 in year one.
+      </p>
+    </div>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+      </svg>
+      When Manual Data Entry Breaks Bad
+    </h2>
+
+    <p>
+      Let me tell you about the day manual data entry nearly cost us a major customer. We were running a $17 million annual operation, and our office manager spent 3 hours every morning entering overnight orders into three different systems.
+    </p>
+
+    <p>
+      One morning, she transposed two digits in a shipping address. Simple mistake. Human error. Happens to everyone, right?
+    </p>
+
+    <p>
+      <strong>Wrong.</strong>
+    </p>
+
+    <p>
+      We shipped $500 worth of specialty coffee to the wrong state. The customer was furious - they needed it for a grand opening. We had to:
+    </p>
+
+    <ul>
+      <li>🚚 Overnight replacement product at our cost ($180 shipping)</li>
+      <li>📦 Track down the original shipment</li>
+      <li>💸 Process a return and eat the shipping costs</li>
+      <li>😤 Spend hours on damage control</li>
+    </ul>
+
+    <div class="comparison-cards">
+      <div class="before-card">
+        <h3>📉 Total Cost of One Typo</h3>
+        <ul>
+          <li>Product value: $500</li>
+          <li>Rush shipping: $180</li>
+          <li>Return shipping: $45</li>
+          <li>Staff time: $300</li>
+          <li>Customer goodwill: Priceless</li>
+        </ul>
+        <p class="text-2xl font-bold text-red-600 mt-4">$1,200+ mistake</p>
+      </div>
+      <div class="after-card">
+        <h3>✅ With Automation</h3>
+        <ul>
+          <li>Order flows to all systems</li>
+          <li>Address validation built-in</li>
+          <li>Shipping label auto-generated</li>
+          <li>Customer gets tracking instantly</li>
+          <li>Zero manual entry errors</li>
+        </ul>
+        <p class="text-2xl font-bold text-green-600 mt-4">$0 in errors</p>
+      </div>
+    </div>
+
+    <p>
+      That single mistake cost us more than a month of automation would have. And it nearly cost us a customer worth $25,000 annually.
+    </p>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      The Solution That Pays for Itself
+    </h2>
+
+    <p>
+      After that shipping disaster, I built our first real automation system. The results?
+    </p>
+
+    <div class="process-flow">
+      <div class="process-step">
+        <div class="step-icon">1</div>
+        <h4>Before</h4>
+        <p>40 min per order manual entry</p>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="step-icon">2</div>
+        <h4>Automated</h4>
+        <p>2 min verification only</p>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="step-icon">3</div>
+        <h4>Result</h4>
+        <p>$62,320 annual savings</p>
+      </div>
+    </div>
+
+    <p>
+      <strong>The system paid for itself in 3 weeks.</strong>
+    </p>
+
+    <div class="visual-divider"></div>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+      </svg>
+      Your Next Step
+    </h2>
+
+    <p>
+      Every Connecticut business owner I've worked with has the same reaction when they calculate their data entry costs: "I had no idea it was that much."
+    </p>
+
+    <p>
+      The good news? Unlike rent or insurance, this is a cost you can eliminate. Not reduce. <em>Eliminate.</em>
+    </p>
+
+    <p>
+      Want to know exactly what manual data entry is costing your business? I'll spend 15 minutes with you calculating your specific numbers - no sales pitch, just math.
+    </p>
+
+    <div class="bg-coral/10 border-2 border-coral rounded-lg p-8 text-center mt-12">
+      <h3 class="text-2xl font-bold mb-4">Ready to Stop the $5,000 Bleed?</h3>
+      <p class="mb-6">Let's calculate what data entry is actually costing you.</p>
+      <a href="/contact" class="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-lg hover:bg-coral-dark transition-all">
+        Get Your Free Calculation
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <AuthorBox />
+  
+  <RelatedArticles articles={relatedArticles} />
+</ShortArticleLayout>
+
+<style>
+  .lead {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+  }
+
+  .icon-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s;
+  }
+
+  .icon-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon-card-icon {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--coral);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .icon-card-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .icon-card-content p {
+    margin: 0;
+    color: #6b7280;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .stat-card {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--coral);
+    line-height: 1;
+  }
+
+  .stat-label {
+    margin-top: 0.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 2px solid #ef4444;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-box::before {
+    content: "💡";
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+    font-size: 4rem;
+    opacity: 0.1;
+  }
+
+  .comparison-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .before-card {
+    background-color: #fee2e2;
+    border: 2px solid #ef4444;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  .after-card {
+    background-color: #d1fae5;
+    border: 2px solid #10b981;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  .before-card h3,
+  .after-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .process-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9fafb;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .process-step {
+    text-align: center;
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .step-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--coral);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin: 0 auto 1rem;
+  }
+
+  .process-step h4 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+  }
+
+  .process-step p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .process-arrow {
+    font-size: 2rem;
+    color: var(--coral);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .process-flow {
+      flex-direction: column;
+    }
+    
+    .process-arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .visual-divider {
+    position: relative;
+    height: 2px;
+    background-color: #e5e7eb;
+    margin: 3rem 0;
+  }
+
+  .visual-divider::before {
+    content: "• • •";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: #d1d5db;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+  }
+</style>

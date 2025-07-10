@@ -35,6 +35,13 @@ const categories = [
 
 const featuredArticles = [
   {
+    title: "The $5,000 Data Entry Problem Every Connecticut Business Has",
+    excerpt: "How much is manual data entry actually costing you? We do the math and it's not pretty. Plus my $1,200 shipping mistake story.",
+    category: "Cost Savings",
+    readTime: "4 min",
+    slug: "data-entry-problem"
+  },
+  {
     title: "What is Business Automation?",
     excerpt: "No robots, no buzzwords. Just computers handling the repetitive stuff so you can focus on what makes money.",
     category: "Getting Started",
@@ -117,7 +124,7 @@ const featuredArticles = [
         Start Here
       </h2>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
         {featuredArticles.map((article) => (
           <article class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
             <div class="p-6">

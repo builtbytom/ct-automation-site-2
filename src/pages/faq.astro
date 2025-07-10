@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 
 // FAQ data structure
 const categories = [
@@ -414,54 +415,7 @@ const categoryMeta = {
   title="FAQ - Connecticut Business Automation | Your Questions Answered" 
   description="Get straight answers about business automation. No sales pitch, just honest information about costs, implementation, and results for Connecticut small businesses."
 >
-  <!-- Navigation (same as other pages) -->
-  <nav class="fixed top-0 left-0 right-0 bg-navy-900/95 backdrop-blur-sm z-50 border-b border-white/10">
-    <div class="container mx-auto px-4 h-16 flex items-center justify-between">
-      <div class="text-white font-medium">
-        <a href="/">Connecticut Business Automation</a>
-      </div>
-      
-      <!-- Desktop menu -->
-      <div class="hidden md:flex items-center gap-8">
-        <a href="/services" class="text-white/80 hover:text-white transition-colors">Services</a>
-        <a href="/about" class="text-white/80 hover:text-white transition-colors">About</a>
-        <a href="/faq" class="text-white hover:text-coral-500 transition-colors">FAQ</a>
-        <a href="/contact" class="text-white/80 hover:text-white transition-colors">Contact</a>
-        <a href="/contact" class="bg-coral-500 text-white px-6 py-2 rounded-lg hover:bg-coral-400 transition-all">Let's Talk</a>
-      </div>
-      
-      <!-- Mobile menu button -->
-      <button id="mobile-menu-btn" class="md:hidden text-white p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Mobile menu overlay -->
-  <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
-    <div class="absolute inset-0 bg-navy-900/95 backdrop-blur-sm" id="mobile-menu-overlay"></div>
-    <div class="relative flex flex-col h-full">
-      <div class="flex justify-between items-center h-16 px-4 border-b border-white/10">
-        <div class="text-white font-medium">Connecticut Business Automation</div>
-        <button id="mobile-menu-close" class="text-white p-2">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <nav class="flex-1 px-6 py-8">
-        <div class="flex flex-col gap-6 text-white text-lg">
-          <a href="/services" class="hover:text-coral-500 transition-colors">Services</a>
-          <a href="/about" class="hover:text-coral-500 transition-colors">About</a>
-          <a href="/faq" class="hover:text-coral-500 transition-colors">FAQ</a>
-          <a href="/contact" class="hover:text-coral-500 transition-colors">Contact</a>
-          <a href="/contact" class="bg-coral-500 text-white px-6 py-3 rounded-lg text-center hover:bg-coral-400 transition-all">Let's Talk</a>
-        </div>
-      </nav>
-    </div>
-  </div>
+  <Navigation />
 
   <!-- Hero Section -->
   <section class="relative min-h-[60vh] flex items-center pt-16">
@@ -815,31 +769,7 @@ const categoryMeta = {
 </Layout>
 
 <script>
-  // Mobile menu functionality
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileMenuClose = document.getElementById('mobile-menu-close');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-  const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
-
-  function openMobileMenu() {
-    mobileMenu?.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMobileMenu() {
-    mobileMenu?.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  mobileMenuBtn?.addEventListener('click', openMobileMenu);
-  mobileMenuClose?.addEventListener('click', closeMobileMenu);
-  mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
-
-  // Close menu when clicking on a link
-  mobileMenuLinks?.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-  });
+  // Mobile menu functionality is now handled by the Navigation component
 </script>
 
 <script define:vars={{ faqs, popularFaqs }}>

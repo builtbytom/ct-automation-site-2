@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import AuthorBox from '../components/AuthorBox.astro';
@@ -32,8 +33,10 @@ const breadcrumbs = [
 ---
 
 <Layout title={`${title} - Connecticut Business Automation`} description={description}>
+  <Navigation />
+  
   <!-- Article Header -->
-  <section class="bg-gradient-to-br from-navy-900 to-navy-800 text-white py-12">
+  <section class="bg-gradient-to-br from-navy-900 to-navy-800 text-white py-12 pt-28">
     <div class="container mx-auto px-6">
       <Breadcrumbs items={breadcrumbs} />
       

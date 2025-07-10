@@ -1,0 +1,273 @@
+---
+import ShortArticleLayout from '../../../layouts/ShortArticleLayout.astro';
+
+const nextArticle = {
+  title: "Stop Chasing Invoices Like It's 1995",
+  slug: "invoice-automation-guide",
+  readTime: "4 min"
+};
+
+const relatedArticles = [
+  {
+    title: "What is Business Automation?",
+    slug: "what-is-business-automation",
+    category: "Getting Started",
+    readTime: "5 min read"
+  },
+  {
+    title: "Connecticut Contractor Saves $3,200/Month",
+    slug: "connecticut-contractor-quickbooks",
+    category: "Real Stories",
+    readTime: "5 min read"
+  }
+];
+---
+
+<ShortArticleLayout
+  title="Restaurant Invoice Automation ROI Calculator"
+  description="Calculate exactly how much time and money you'll save by automating supplier invoices. Real numbers from Connecticut restaurants."
+  category="ROI Calculators"
+  readTime="5 min"
+  publishDate="2025-07-10"
+  heroIcon="🧮"
+  nextArticle={nextArticle}
+  relatedArticles={relatedArticles}
+>
+  <p class="lead text-xl text-gray-700 mb-8">
+    Every Connecticut restaurant owner knows the Tuesday morning drill. Stack of supplier invoices. QuickBooks. Coffee getting cold. Let's calculate what this is actually costing you.
+  </p>
+
+  <div class="highlight-box">
+    <h3>The Restaurant Reality</h3>
+    <p>Average Connecticut restaurant: 15-20 suppliers, 60-80 invoices per month, 3-5 hours weekly on invoice processing. Sound familiar?</p>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+    </svg>
+    Your Restaurant's Numbers
+  </h2>
+
+  <!-- ROI Calculator -->
+  <div class="bg-gray-50 rounded-xl p-6 my-8" x-data="roiCalculator()">
+    <div class="space-y-6">
+      <!-- Input: Number of Suppliers -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          How many suppliers do you have?
+        </label>
+        <input 
+          type="number" 
+          x-model="suppliers" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+          min="1"
+          max="50"
+        >
+        <p class="text-xs text-gray-500 mt-1">Most restaurants have 15-25</p>
+      </div>
+
+      <!-- Input: Invoices per Week -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          How many invoices per week?
+        </label>
+        <input 
+          type="number" 
+          x-model="invoicesPerWeek" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+          min="1"
+          max="100"
+        >
+        <p class="text-xs text-gray-500 mt-1">Include all suppliers - food, beverage, supplies</p>
+      </div>
+
+      <!-- Input: Time per Invoice -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Minutes to process each invoice?
+        </label>
+        <input 
+          type="number" 
+          x-model="minutesPerInvoice" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+          min="1"
+          max="30"
+        >
+        <p class="text-xs text-gray-500 mt-1">Entry, coding, filing - be honest!</p>
+      </div>
+
+      <!-- Input: Hourly Rate -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          What's your time worth per hour?
+        </label>
+        <div class="relative">
+          <span class="absolute left-3 top-2.5 text-gray-500">$</span>
+          <input 
+            type="number" 
+            x-model="hourlyRate" 
+            class="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+            min="20"
+            max="200"
+          >
+        </div>
+        <p class="text-xs text-gray-500 mt-1">Owner time or manager salary</p>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="mt-8 pt-8 border-t border-gray-200">
+      <h3 class="text-xl font-semibold mb-6 text-center">Your Invoice Processing Costs</h3>
+      
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="text-center p-4 bg-white rounded-lg">
+          <div class="text-3xl font-bold text-coral-500" x-text="weeklyHours + ' hrs'"></div>
+          <div class="text-sm text-gray-600">Per Week</div>
+        </div>
+        <div class="text-center p-4 bg-white rounded-lg">
+          <div class="text-3xl font-bold text-coral-500">$<span x-text="monthlyCost.toLocaleString()"></span></div>
+          <div class="text-sm text-gray-600">Per Month</div>
+        </div>
+        <div class="text-center p-4 bg-white rounded-lg">
+          <div class="text-3xl font-bold text-coral-500">$<span x-text="yearlyCost.toLocaleString()"></span></div>
+          <div class="text-sm text-gray-600">Per Year</div>
+        </div>
+      </div>
+
+      <div class="bg-coral-50 border-2 border-coral-300 rounded-lg p-6 text-center">
+        <h4 class="text-lg font-semibold mb-2">With Automation, You'd Save:</h4>
+        <div class="text-4xl font-bold text-coral-600">$<span x-text="yearlySavings.toLocaleString()"></span>/year</div>
+        <p class="text-sm text-gray-700 mt-2">
+          That's <span x-text="Math.round(weeklyHours * 0.8 * 52)"></span> hours back in your year
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function roiCalculator() {
+      return {
+        suppliers: 20,
+        invoicesPerWeek: 60,
+        minutesPerInvoice: 5,
+        hourlyRate: 50,
+        
+        get weeklyHours() {
+          return Math.round((this.invoicesPerWeek * this.minutesPerInvoice) / 60 * 10) / 10;
+        },
+        
+        get monthlyCost() {
+          return Math.round(this.weeklyHours * this.hourlyRate * 4.33);
+        },
+        
+        get yearlyCost() {
+          return Math.round(this.weeklyHours * this.hourlyRate * 52);
+        },
+        
+        get yearlySavings() {
+          // Automation typically saves 80% of manual time
+          return Math.round(this.yearlyCost * 0.8);
+        }
+      }
+    }
+  </script>
+
+  <div class="visual-divider">
+    <span>•••</span>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    But Wait, There's More (Always Is)
+  </h2>
+
+  <p>That calculator? It's just the time savings. Here's what else automation fixes:</p>
+
+  <div class="icon-card">
+    <div class="icon">💸</div>
+    <div>
+      <h3>Duplicate Payments</h3>
+      <p>Ever paid the same invoice twice? Happens more than you think. Automation catches duplicates before they hit your account.</p>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon">📊</div>
+    <div>
+      <h3>Price Creep</h3>
+      <p>Sysco charging $2 more per case than last month? Automated systems flag price changes instantly.</p>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon">🎯</div>
+    <div>
+      <h3>Missing Credits</h3>
+      <p>That case of bad tomatoes you sent back? Automation tracks credits and makes sure they're applied.</p>
+    </div>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    Real Hartford Restaurant Example
+  </h2>
+
+  <p>Tony runs a 120-seat Italian place in Hartford. Before automation:</p>
+
+  <div class="comparison-cards">
+    <div class="comparison-card before">
+      <h3>Tuesday Mornings</h3>
+      <ul class="space-y-2 text-gray-700">
+        <li>📚 Stack of 40+ invoices</li>
+        <li>⏰ 3 hours of data entry</li>
+        <li>😤 Missed lunch prep time</li>
+        <li>❌ Errors in food cost reports</li>
+      </ul>
+    </div>
+    <div class="comparison-card after">
+      <h3>Now</h3>
+      <ul class="space-y-2 text-gray-700">
+        <li>📱 Snap photo of invoice</li>
+        <li>✅ Auto-enters in QuickBooks</li>
+        <li>📊 Real-time food costs</li>
+        <li>☕ Actually drinks his coffee hot</li>
+      </ul>
+    </div>
+  </div>
+
+  <blockquote>
+    "I used to dread Tuesday mornings. Now I spend 20 minutes reviewing what the system already entered instead of 3 hours typing. Plus, I caught Sysco overcharging me $400/month on produce." - Tony
+  </blockquote>
+
+  <div class="highlight-box">
+    <h3>The Hidden Win</h3>
+    <p>When your food costs are updated daily instead of weekly, you can adjust menu prices before you lose money, not after.</p>
+  </div>
+
+  <h2>
+    <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>
+    Making It Happen
+  </h2>
+
+  <p>Invoice automation for restaurants isn't complicated. You need:</p>
+
+  <ol>
+    <li><strong>A way to capture invoices</strong> - Usually just your phone camera</li>
+    <li><strong>Processing software</strong> - Connects to your existing accounting</li>
+    <li><strong>Simple rules</strong> - "Sysco invoices go to food costs, Cintas to operating expenses"</li>
+  </ol>
+
+  <p>That's it. No IT department needed. Most restaurants are up and running in a week.</p>
+
+  <p class="text-xl font-medium mt-12 text-center text-gray-700">
+    Still processing invoices by hand?<br>
+    <span class="text-coral-500">Your coffee's getting cold.</span>
+  </p>
+</ShortArticleLayout>

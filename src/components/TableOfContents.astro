@@ -6,15 +6,15 @@ export interface Props {
 const { mobile = false } = Astro.props;
 ---
 
-<div class={mobile ? "" : "bg-cream rounded-lg p-6"}>
-  <h3 class="text-lg font-semibold mb-4 text-charcoal flex items-center">
-    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<div class={mobile ? "bg-gray-50 rounded-lg p-6 border border-gray-200" : "bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-100"}>
+  <h3 class="text-lg font-semibold mb-6 text-charcoal flex items-center">
+    <svg class="w-5 h-5 mr-2 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
     {mobile ? "Jump to Section" : "Table of Contents"}
   </h3>
   <nav class="toc-nav">
-    <ul class={mobile ? "space-y-2" : "space-y-3"}>
+    <ul class={mobile ? "space-y-2" : "space-y-1"}>
       <!-- Will be populated by client-side JavaScript -->
     </ul>
   </nav>
@@ -46,7 +46,9 @@ const { mobile = false } = Astro.props;
       const a = document.createElement('a');
       a.href = `#${heading.id}`;
       a.textContent = heading.textContent;
-      a.className = 'text-gray-600 hover:text-coral-500 transition-colors duration-200 block py-1';
+      a.className = level === 'h3' 
+        ? 'text-gray-500 hover:text-coral-500 transition-all duration-200 block py-2 pl-4 text-sm border-l-2 border-transparent hover:border-coral-500 hover:bg-coral-50/50'
+        : 'text-gray-700 hover:text-coral-500 transition-all duration-200 block py-2 font-medium border-l-2 border-transparent hover:border-coral-500 hover:bg-coral-50/50';
       
       li.appendChild(a);
       tocItems.push(li);
@@ -87,11 +89,13 @@ const { mobile = false } = Astro.props;
         if (entry.isIntersecting) {
           // Remove active class from all links
           document.querySelectorAll('.toc-nav a').forEach(link => {
-            link.classList.remove('text-coral-500', 'font-medium');
+            link.classList.remove('text-coral-500', 'bg-coral-50', 'border-coral-500');
+            link.classList.add('border-transparent');
           });
           // Add active class to current link
           if (tocLink) {
-            tocLink.classList.add('text-coral-500', 'font-medium');
+            tocLink.classList.remove('border-transparent');
+            tocLink.classList.add('text-coral-500', 'bg-coral-50', 'border-coral-500');
           }
         }
       });

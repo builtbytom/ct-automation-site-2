@@ -1,0 +1,484 @@
+---
+import ShortArticleLayout from "../../../layouts/ShortArticleLayout.astro";
+import AuthorBox from "../../../components/AuthorBox.astro";
+import RelatedArticles from "../../../components/RelatedArticles.astro";
+
+const articleData = {
+  title: "What NOT to Automate (My $30,000 Mistake)",
+  description: "I learned the hard way that not everything should be automated. Here's what cost me $30,000 in dead inventory.",
+  author: "Tom Lucia",
+  readTime: "4 min",
+  publishDate: "2025-01-10",
+  category: "Lessons Learned",
+  tags: ["automation mistakes", "business lessons", "when not to automate"]
+};
+
+const relatedArticles = [
+  {
+    title: "The $5,000 Data Entry Problem Every Connecticut Business Has",
+    href: "/resources/articles/data-entry-problem",
+    readTime: "4 min"
+  },
+  {
+    title: "The Big Three: Start Your Automation Journey",
+    href: "/resources/articles/big-three-automation",
+    readTime: "4 min"
+  },
+  {
+    title: "What is Business Automation?",
+    href: "/resources/articles/what-is-business-automation",
+    readTime: "5 min"
+  }
+];
+---
+
+<ShortArticleLayout {...articleData}>
+  <div class="prose prose-lg max-w-none">
+    <p class="lead">
+      Everyone talks about what you should automate. Nobody talks about what you shouldn't. Let me tell you about the time automation cost me $30,000 in dead inventory.
+    </p>
+
+    <p>
+      This isn't a story I enjoy telling, but it's one every business owner needs to hear before they go automation-crazy.
+    </p>
+
+    <img 
+      src="/images/automation-decision-tree.webp" 
+      alt="Automation decision tree showing good vs bad candidates" 
+      class="w-full rounded-lg shadow-lg mb-12"
+    />
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      The $30,000 Lesson
+    </h2>
+
+    <p>
+      Picture this: We're running a $17 million annual operation, selling everything from coffee to restaurant supplies. I'm looking at our product sourcing process thinking, "This is taking too much time. Let's automate it."
+    </p>
+
+    <p>
+      The manual process was simple enough:
+    </p>
+
+    <div class="process-flow">
+      <div class="process-step">
+        <div class="step-icon">1</div>
+        <h4>Check Sales</h4>
+        <p>Review what's selling</p>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="step-icon">2</div>
+        <h4>Analyze Margins</h4>
+        <p>Calculate profitability</p>
+      </div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">
+        <div class="step-icon">3</div>
+        <h4>Decide Orders</h4>
+        <p>Place purchase orders</p>
+      </div>
+    </div>
+
+    <p>
+      So I built an "intelligent" system that would:
+    </p>
+
+    <ul>
+      <li>📊 Track sales velocity across all SKUs</li>
+      <li>💰 Calculate profit margins in real-time</li>
+      <li>🎯 Automatically generate purchase orders based on data</li>
+      <li>🚀 Send orders to suppliers without human intervention</li>
+    </ul>
+
+    <p>
+      <strong>Sounds brilliant, right? Wrong.</strong>
+    </p>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+      Where It All Went Wrong
+    </h2>
+
+    <p>
+      The system worked perfectly. Too perfectly. It saw that specialty BBQ sauces were selling well in July with 60% margins. The data said "order more." So it did. Lots more.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        <strong>What the system didn't know:</strong> BBQ sauce sales spike in summer for obvious reasons. By the time our automated orders arrived in September, grilling season was over.
+      </p>
+    </div>
+
+    <p>
+      We ended up with:
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">127</div>
+        <div class="stat-label">Pallets of BBQ sauce</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$30K</div>
+        <div class="stat-label">In dead inventory</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Months to clear it</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">40%</div>
+        <div class="stat-label">Loss on clearance</div>
+      </div>
+    </div>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      The Three Rules I Learned
+    </h2>
+
+    <p>
+      That expensive mistake taught me three critical rules about automation:
+    </p>
+
+    <div class="icon-card">
+      <div class="icon-card-icon">🧠</div>
+      <div class="icon-card-content">
+        <h3>Rule 1: Don't Automate Complex Decisions</h3>
+        <p>If it requires intuition, market knowledge, or "reading the room," keep humans in the loop. Automation is great for repetitive tasks, terrible for nuanced judgment calls.</p>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card-icon">👋</div>
+      <div class="icon-card-content">
+        <h3>Rule 2: Don't Automate First Impressions</h3>
+        <p>Your first touchpoint with customers should be human. Automate the follow-up, the reminders, the thank-yous - but not that initial "How can I help you?" moment.</p>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card-icon">❓</div>
+      <div class="icon-card-content">
+        <h3>Rule 3: Don't Automate What You Don't Understand</h3>
+        <p>If you can't clearly explain the manual process, you're not ready to automate it. Automation amplifies existing processes - including their flaws.</p>
+      </div>
+    </div>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+      What You SHOULD Automate
+    </h2>
+
+    <p>
+      Don't let my mistake scare you off automation entirely. Here's what actually works:
+    </p>
+
+    <div class="comparison-cards">
+      <div class="good-card">
+        <h3>✅ Perfect for Automation</h3>
+        <ul>
+          <li>Data entry between systems</li>
+          <li>Email sequences and follow-ups</li>
+          <li>Invoice generation and reminders</li>
+          <li>Appointment scheduling</li>
+          <li>Report generation</li>
+          <li>File organization</li>
+          <li>Customer onboarding steps</li>
+        </ul>
+      </div>
+      <div class="bad-card">
+        <h3>❌ Keep It Human</h3>
+        <ul>
+          <li>Strategic decisions</li>
+          <li>Creative work</li>
+          <li>Complex problem-solving</li>
+          <li>Relationship building</li>
+          <li>Market timing decisions</li>
+          <li>Quality assessments</li>
+          <li>Anything requiring empathy</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+      </svg>
+      The Hybrid Approach That Works
+    </h2>
+
+    <p>
+      After the BBQ sauce disaster, I rebuilt our ordering system with a hybrid approach:
+    </p>
+
+    <ul>
+      <li>✅ <strong>Automation handles:</strong> Data gathering, sales reports, margin calculations, suggested orders</li>
+      <li>👤 <strong>Humans handle:</strong> Final decisions, seasonal adjustments, market intuition, approval before orders go out</li>
+    </ul>
+
+    <p>
+      Result? We saved 15 hours per week on data gathering while keeping the human judgment that prevents $30,000 mistakes.
+    </p>
+
+    <div class="visual-divider"></div>
+
+    <h2>
+      <svg class="inline-block w-6 h-6 mr-2 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      Your Action Plan
+    </h2>
+
+    <p>
+      Before you automate anything, ask yourself:
+    </p>
+
+    <ol>
+      <li>📋 Can I write down the exact steps of this process?</li>
+      <li>🔄 Does this process repeat the same way every time?</li>
+      <li>🎯 Are the success criteria clear and measurable?</li>
+      <li>💡 Does this require creativity or intuition?</li>
+      <li>🤝 Is human connection important here?</li>
+    </ol>
+
+    <p>
+      If you answered "No" to any of the first three or "Yes" to either of the last two, <strong>don't fully automate it</strong>. Consider a hybrid approach instead.
+    </p>
+
+    <div class="bg-coral/10 border-2 border-coral rounded-lg p-8 text-center mt-12">
+      <h3 class="text-2xl font-bold mb-4">Want to Avoid My $30,000 Mistake?</h3>
+      <p class="mb-6">Let's talk about what you should (and shouldn't) automate in your business.</p>
+      <a href="/contact" class="inline-flex items-center px-6 py-3 bg-coral text-white font-bold rounded-lg hover:bg-coral-dark transition-all">
+        Get Your Free Automation Assessment
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <AuthorBox />
+  
+  <RelatedArticles articles={relatedArticles} />
+</ShortArticleLayout>
+
+<style>
+  .lead {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+  }
+
+  .icon-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s;
+  }
+
+  .icon-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon-card-icon {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--coral);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .icon-card-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .icon-card-content p {
+    margin: 0;
+    color: #6b7280;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .stat-card {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--coral);
+    line-height: 1;
+  }
+
+  .stat-label {
+    margin-top: 0.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 2px solid #ef4444;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-box::before {
+    content: "⚠️";
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+    font-size: 4rem;
+    opacity: 0.1;
+  }
+
+  .comparison-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .good-card {
+    background-color: #d1fae5;
+    border: 2px solid #10b981;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  .bad-card {
+    background-color: #fee2e2;
+    border: 2px solid #ef4444;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  .good-card h3,
+  .bad-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .process-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9fafb;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .process-step {
+    text-align: center;
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .step-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--coral);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin: 0 auto 1rem;
+  }
+
+  .process-step h4 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+  }
+
+  .process-step p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .process-arrow {
+    font-size: 2rem;
+    color: var(--coral);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .process-flow {
+      flex-direction: column;
+    }
+    
+    .process-arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .visual-divider {
+    position: relative;
+    height: 2px;
+    background-color: #e5e7eb;
+    margin: 3rem 0;
+  }
+
+  .visual-divider::before {
+    content: "• • •";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: #d1d5db;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+  }
+</style>

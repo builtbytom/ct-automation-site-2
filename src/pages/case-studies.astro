@@ -6,115 +6,101 @@ import Footer from '../components/Footer.astro';
 const caseStudies = [
   {
     id: 'mikes-landscaping',
-    title: "Mike's Landscaping",
-    subtitle: "What We Would Have Built",
+    title: "Mike's Landscaping Nightmare",
+    subtitle: "(And He's My Brother-in-Law)",
     industry: "Landscaping",
-    location: "New Haven County",
-    challenge: "4 employees sitting in the truck waiting while Mike dealt with phone, scheduling, and paperwork - at $150/hour crew cost",
-    solution: "Automated scheduling, dispatch notifications, and invoice tracking system",
+    challenge: "I was talking to my brother-in-law Mike about when he ran his landscaping company. The admin work nearly killed his love for the business. Chasing payments, scheduling estimates, following up on quotes, reminding customers about seasonal services. He was spending 15+ hours a week on stuff that wasn't landscaping.",
+    quote: "I was working 60-hour weeks, but only 40 of those were actually making money. The rest was just... business stuff that made me want to quit.",
+    extraContext: "And don't get him started on the price shopping. \"Everyone wanted to compare me to 'the guy with a truck' who'd do it for half the price. Then they'd call me three weeks later asking if I could fix what he messed up.\"",
+    solution: "Complete customer management system. When someone requests a quote, they automatically get Mike's portfolio and scheduling link. After the estimate, automatic follow-ups until they decide. Once they're a customer, the system handles invoicing, payment reminders, seasonal service suggestions, and renewal scheduling.\n\nEverything talks to everything else. No more double data entry, no more forgotten follow-ups.",
     results: [
-      { metric: "$3,200/month", desc: "Saved in idle crew time" },
-      { metric: "2 hours/day", desc: "Mike's time reclaimed" },
-      { metric: "Never Built", desc: "Because Mike wouldn't listen to his brother-in-law" }
+      "Mike could have saved 15 hours per week on admin work",
+      "That's 780 hours per year - basically a part-time employee he wouldn't have had to hire",
+      "Payment time could have dropped from 45 days to 12 days (that's tens of thousands in improved cash flow)",
+      "He could have booked 60% more seasonal work because the system would automatically suggest it at the right times"
     ],
-    quote: "He's my sister's husband and he's killing himself with 80-hour weeks. But he 'doesn't trust computers' so here we are.",
-    timeline: [
-      { phase: "Discovery", desc: "Would map his paper chaos", time: "Week 1" },
-      { phase: "Build", desc: "Simple scheduling + dispatch system", time: "Weeks 2-3" },
-      { phase: "Launch", desc: "Could have been saving time already", time: "Week 4" }
-    ],
-    color: "green"
+    finalQuote: "If I'd had something like this back then, I probably would have stayed in business. The work was great - it was all the other stuff that burned me out.",
+    color: "green",
+    wouldHave: true
   },
   {
     id: 'new-haven-salon',
-    title: "New Haven Salon",
-    subtitle: "Every Ring Costs Money",
+    title: "The New Haven Salon That Stopped Being Interrupted",
+    subtitle: "Every Five Minutes",
     industry: "Beauty Salon",
-    location: "New Haven",
-    challenge: "Owner literally running with foils in her hands to answer the phone while doing color",
-    solution: "AI phone system + automated booking confirmations + waitlist management",
+    challenge: "I talked to a salon owner with three chairs, busy as can be, phone ringing constantly. Clients calling to book, reschedule, cancel, ask about prices. Her stylists couldn't focus because they were constantly playing receptionist.",
+    quote: "We'd be halfway through a highlight and the phone would ring. Then ring again. My stylists were getting frustrated because they couldn't give their full attention to the person in the chair.",
+    solution: "Complete booking and customer management system. Clients see real availability, book their own appointments, get confirmations and reminders automatically. The system handles \"running late\" texts, sends aftercare tips, and even follows up for rebooking. Plus automatic inventory alerts when products run low.",
     results: [
-      { metric: "73%", desc: "Fewer phone interruptions" },
-      { metric: "18%", desc: "More appointments booked" },
-      { metric: "$1,400/month", desc: "Additional revenue from filled cancellations" }
+      "Phone calls dropped by 80%",
+      "No-shows went from 15% to 3% because of automatic reminders",
+      "Rebooking rate increased 45% because the system reaches out at the perfect time",
+      "People book appointments at weird hours - 9 PM on Sunday, 6 AM before work"
     ],
-    quote: "I can actually focus on my clients now. My stress level has dropped dramatically.",
-    timeline: [
-      { phase: "Setup", desc: "AI phone system configured", time: "Week 1" },
-      { phase: "Integration", desc: "Connected to booking system", time: "Week 2" },
-      { phase: "Optimization", desc: "Fine-tuned responses", time: "Week 3" }
-    ],
-    color: "coral"
+    finalQuote: "My team can actually focus on their clients instead of answering the same questions all day. Plus, when would I have taken that Sunday night call anyway?",
+    color: "coral",
+    wouldHave: false
   },
   {
     id: 'waterbury-contractor',
-    title: "Waterbury Contractor", 
-    subtitle: "Speed Wins Deals",
-    industry: "Home Improvement",
-    location: "Waterbury",
-    challenge: "Getting back to leads 2-3 days later when they'd already hired someone else",
-    solution: "Instant lead response + automated follow-up sequences + CRM integration",
+    title: "The Waterbury Contractor Who Built",
+    subtitle: "a Lead-Converting Machine",
+    industry: "Kitchen Remodeling",
+    challenge: "Dave does kitchen remodeling. He was great at the work but terrible at the sales process. Slow to respond to leads, inconsistent follow-up, no system for staying in touch with people who weren't ready to buy yet. He figured he was losing 70% of potential jobs somewhere in the process.",
+    quote: "I'd get a lead, give them a quote, then... nothing. Maybe I'd follow up once. Meanwhile, my competition was probably calling them every week.",
+    solution: "Complete sales automation system. Instant response to new leads with portfolio and scheduling. Automated quote delivery with payment options built in. Follow-up sequences for people who aren't ready yet. Customer onboarding for people who hire him. Even automated requests for reviews after job completion.\n\nThe whole thing runs automatically but feels personal because every message is customized based on their project type and where they are in the process.",
     results: [
-      { metric: "5 minutes", desc: "Average response time (was 2 days)" },
-      { metric: "3x", desc: "Lead conversion rate" },
-      { metric: "$180K", desc: "Additional revenue in 6 months" }
+      "Dave's closing 40% more jobs from the same number of leads",
+      "His average project value went up 25% because the system includes upgrade suggestions at the right moments",
+      "He gets 3x more referrals because the system actually asks for them (something he always forgot to do)"
     ],
-    quote: "I didn't realize how much business I was losing by being 'too busy' to respond quickly.",
-    timeline: [
-      { phase: "Lead Capture", desc: "Automated intake system", time: "Week 1" },
-      { phase: "Follow-up", desc: "Email/text sequences built", time: "Week 2" },
-      { phase: "Scale", desc: "Handling 10x more leads", time: "Month 2" }
-    ],
-    color: "navy"
+    finalQuote: "I used to lose jobs because I forgot to follow up. Now I book jobs while I'm sleeping because the system never forgets.",
+    color: "navy",
+    wouldHave: false
   },
   {
     id: 'hartford-hvac',
-    title: "Hartford HVAC Company",
-    subtitle: "Humans Make Mistakes, Systems Don't",
-    industry: "HVAC Services", 
-    location: "Hartford",
-    challenge: "Double-bookings, forgotten maintenance reminders, lost service history",
-    solution: "Automated scheduling + service reminders + integrated dispatching",
+    title: "The Hartford HVAC Company",
+    subtitle: "That Eliminated Human Error",
+    industry: "HVAC Services",
+    challenge: "A local HVAC company was making expensive mistakes. Scheduling conflicts, technicians showing up without the right parts, billing errors, missed maintenance appointments. Each mistake cost time, money, and customer trust.",
+    quote: "We were spending more time fixing our own screw-ups than fixing air conditioners. And every mistake made us look unprofessional.",
+    solution: "Integrated scheduling, inventory, and billing system. When a customer calls for service, the system checks their equipment history, schedules the right technician with the right parts, sends automatic confirmations, and creates the invoice based on actual work performed. Maintenance customers get automatic reminders before their systems need service.",
     results: [
-      { metric: "Zero", desc: "Double bookings (was 3-4/month)" },
-      { metric: "94%", desc: "Maintenance renewal rate" },
-      { metric: "$4,100/month", desc: "Recovered revenue from proper follow-up" }
+      "Scheduling conflicts dropped to basically zero",
+      "Parts availability went from 60% to 95% because the system tracks everything automatically",
+      "Billing errors disappeared because invoices generate from actual work orders",
+      "Maintenance contract renewals went up 40% because customers actually get reminded"
     ],
-    quote: "The double-booking alone was worth it. No more angry customers, no more wasted trips.",
-    timeline: [
-      { phase: "Audit", desc: "Mapped current chaos", time: "Week 1" },
-      { phase: "Systemize", desc: "Built scheduling rules", time: "Weeks 2-3" },
-      { phase: "Automate", desc: "Launched full system", time: "Week 4" }
-    ],
-    color: "blue"
+    finalQuote: "We went from looking like amateurs to looking like the most organized company in town. Our customers notice the difference.",
+    color: "blue",
+    wouldHave: false
   },
   {
     id: 'branford-pizza',
-    title: "Branford Pizza Place",
-    subtitle: "Started Small, Grew Smart",
-    industry: "Restaurant",
-    location: "Branford",
-    challenge: "Tablet madness - DoorDash, Uber Eats, and phone orders creating kitchen chaos",
-    solution: "Unified order management + kitchen display system + automated inventory alerts",
+    title: "The Branford Restaurant That Started Small",
+    subtitle: "(And Kept Going)",
+    industry: "Pizza Restaurant",
+    challenge: "Tony runs a pizza place. He wasn't looking for some massive system overhaul - he just wanted to stop manually entering DoorDash orders into his POS system. Every order meant stopping what he was doing, typing everything in, hoping he didn't make a mistake.",
+    quote: "I just wanted that one stupid thing to stop driving me crazy. Twenty orders a night, typing each one in by hand.",
+    solution: "Simple automation - DoorDash orders automatically flow into his POS system. No typing, no mistakes, no interruptions.",
     results: [
-      { metric: "One Screen", desc: "Instead of juggling 3 tablets" },
-      { metric: "12 min faster", desc: "Average order time" },
-      { metric: "Happy", desc: "Kitchen staff (priceless)" }
+      "Tony saved 2 hours a night on data entry",
+      "But then he realized his inventory was still manual. So I automated that",
+      "Then customer follow-ups. Then staff scheduling reminders",
+      "Six months later, he's running three times more efficiently with the same staff"
     ],
-    quote: "We started with just organizing the delivery tablets. Now we're automated across the board.",
-    timeline: [
-      { phase: "Phase 1", desc: "Unified delivery orders", time: "Week 1" },
-      { phase: "Phase 2", desc: "Added phone integration", time: "Month 2" },
-      { phase: "Phase 3", desc: "Full inventory automation", time: "Month 3" }
-    ],
-    color: "red"
+    finalQuote: "I thought I just wanted help with one thing. Turns out I needed help with everything - I just didn't know it yet.",
+    startedWith: true,
+    color: "red",
+    wouldHave: false
   }
 ];
 ---
 
 <Layout 
   title="Case Studies - Connecticut Business Automation Success Stories" 
-  description="Real Connecticut businesses share their automation transformation stories. From contractors to restaurants, see how we've helped businesses save time and grow revenue."
+  description="Real Connecticut businesses share their automation transformation stories. From contractors to restaurants, see how I've helped businesses save time and grow revenue."
 >
   <Navigation />
 
@@ -137,190 +123,139 @@ const caseStudies = [
     </div>
 
     <div class="relative z-10 container mx-auto max-w-4xl text-center">
-      <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 text-white/90 text-sm mb-6">
-        Real Stories • Real Results • Real Connecticut Businesses
-      </div>
-      
       <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6 font-bold">
-        From Chaos to Calm:<br />
-        <span class="text-coral-300">5 Connecticut Success Stories</span>
+        Real Stories from Real Businesses
       </h1>
       
       <p class="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">
-        Every business started drowning in manual work. See how automation gave them their time back.
+        Sometimes it helps to know other people deal with the same stuff you do
       </p>
     </div>
   </section>
 
-  <!-- Case Studies Grid -->
+  <!-- Case Studies -->
   <section class="py-16 sm:py-20 px-4 bg-gray-50">
-    <div class="container mx-auto max-w-7xl">
-      <!-- Quick Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-          <div class="text-3xl font-bold text-coral-500">$15,300</div>
-          <div class="text-sm text-gray-600">Average Monthly Savings</div>
-        </div>
-        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-          <div class="text-3xl font-bold text-navy-800">2-4 weeks</div>
-          <div class="text-sm text-gray-600">Implementation Time</div>
-        </div>
-        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-          <div class="text-3xl font-bold text-green-600">5 Industries</div>
-          <div class="text-sm text-gray-600">Proven Success</div>
-        </div>
-        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
-          <div class="text-3xl font-bold text-blue-600">247% ROI</div>
-          <div class="text-sm text-gray-600">Average First Year</div>
-        </div>
-      </div>
-
-      <!-- Case Studies -->
-      <div class="space-y-20">
-        {caseStudies.map((study, index) => (
-          <div id={study.id} class="scroll-mt-24">
-            <div class={`bg-white rounded-2xl shadow-xl overflow-hidden ${index % 2 === 0 ? 'lg:flex' : 'lg:flex lg:flex-row-reverse'}`}>
-              <!-- Visual Side -->
-              <div class={`lg:w-1/2 p-8 sm:p-12 bg-gradient-to-br ${
-                study.color === 'green' ? 'from-green-50 to-emerald-50' :
-                study.color === 'coral' ? 'from-coral-50 to-red-50' :
-                study.color === 'navy' ? 'from-navy-50 to-blue-50' :
-                study.color === 'blue' ? 'from-blue-50 to-sky-50' :
-                'from-red-50 to-orange-50'
+    <div class="container mx-auto max-w-4xl">
+      <div class="space-y-16">
+        {caseStudies.map((study) => (
+          <div id={study.id} class="scroll-mt-24 bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class={`p-8 sm:p-12 ${
+              study.color === 'green' ? 'bg-gradient-to-br from-green-50 to-emerald-50' :
+              study.color === 'coral' ? 'bg-gradient-to-br from-coral-50 to-red-50' :
+              study.color === 'navy' ? 'bg-gradient-to-br from-navy-50 to-blue-50' :
+              study.color === 'blue' ? 'bg-gradient-to-br from-blue-50 to-sky-50' :
+              'bg-gradient-to-br from-red-50 to-orange-50'
+            }`}>
+              <!-- Header -->
+              <h2 class="font-display text-2xl sm:text-3xl text-gray-900 font-bold mb-1">
+                {study.title}
+              </h2>
+              <p class={`text-lg font-medium mb-6 ${
+                study.color === 'green' ? 'text-green-600' :
+                study.color === 'coral' ? 'text-coral-600' :
+                study.color === 'navy' ? 'text-navy-600' :
+                study.color === 'blue' ? 'text-blue-600' :
+                'text-red-600'
               }`}>
-                <!-- Header -->
-                <div class="mb-8">
-                  <div class="flex items-center gap-3 text-gray-600 text-sm mb-2">
-                    <span class={`px-3 py-1 rounded-full text-xs font-medium ${
-                      study.color === 'green' ? 'bg-green-100 text-green-700' :
-                      study.color === 'coral' ? 'bg-coral-100 text-coral-700' :
-                      study.color === 'navy' ? 'bg-navy-100 text-navy-700' :
-                      study.color === 'blue' ? 'bg-blue-100 text-blue-700' :
-                      'bg-red-100 text-red-700'
-                    }`}>
-                      {study.industry}
-                    </span>
-                    <span>•</span>
-                    <span>{study.location}</span>
-                  </div>
-                  <h2 class="font-display text-3xl sm:text-4xl text-gray-900 font-bold mb-2">
-                    {study.title}
-                  </h2>
-                  <p class={`text-lg font-medium ${
-                    study.color === 'green' ? 'text-green-600' :
-                    study.color === 'coral' ? 'text-coral-600' :
-                    study.color === 'navy' ? 'text-navy-600' :
-                    study.color === 'blue' ? 'text-blue-600' :
-                    'text-red-600'
-                  }`}>
-                    {study.subtitle}
-                  </p>
-                </div>
+                {study.subtitle}
+              </p>
 
-                <!-- Results Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                  {study.results.map(result => (
-                    <div class="bg-white/70 backdrop-blur-sm rounded-lg p-4 text-center">
-                      <div class={`text-2xl font-bold mb-1 ${
-                        study.color === 'green' ? 'text-green-600' :
-                        study.color === 'coral' ? 'text-coral-600' :
-                        study.color === 'navy' ? 'text-navy-600' :
-                        study.color === 'blue' ? 'text-blue-600' :
-                        'text-red-600'
-                      }`}>
-                        {result.metric}
-                      </div>
-                      <div class="text-sm text-gray-600">{result.desc}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <!-- Timeline -->
-                <div class="space-y-4">
-                  <h3 class="font-semibold text-gray-900 mb-3">Implementation Timeline</h3>
-                  {study.timeline.map((phase, i) => (
-                    <div class="flex items-start gap-3">
-                      <div class={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0 ${
-                        study.color === 'green' ? 'bg-green-500' :
-                        study.color === 'coral' ? 'bg-coral-500' :
-                        study.color === 'navy' ? 'bg-navy-800' :
-                        study.color === 'blue' ? 'bg-blue-500' :
-                        'bg-red-500'
-                      }`}>
-                        {i + 1}
-                      </div>
-                      <div class="flex-1">
-                        <div class="font-medium text-gray-900">{phase.phase}</div>
-                        <div class="text-sm text-gray-600">{phase.desc}</div>
-                        <div class="text-xs text-gray-500 mt-1">{phase.time}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <!-- Content Side -->
-              <div class="lg:w-1/2 p-8 sm:p-12">
-                <!-- Challenge -->
-                <div class="mb-8">
-                  <h3 class="font-display text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                    <span class="text-2xl mr-2">😤</span>
-                    The Challenge
-                  </h3>
-                  <p class="text-gray-700 leading-relaxed">
-                    {study.challenge}
-                  </p>
-                </div>
-
-                <!-- Solution -->
-                <div class="mb-8">
-                  <h3 class="font-display text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                    <span class="text-2xl mr-2">💡</span>
-                    What We Built
-                  </h3>
-                  <p class="text-gray-700 leading-relaxed">
-                    {study.solution}
-                  </p>
-                </div>
-
-                <!-- Quote -->
-                <div class={`p-6 rounded-xl mb-8 relative ${
-                  study.color === 'green' ? 'bg-green-50 border-l-4 border-green-500' :
-                  study.color === 'coral' ? 'bg-coral-50 border-l-4 border-coral-500' :
-                  study.color === 'navy' ? 'bg-navy-50 border-l-4 border-navy-800' :
-                  study.color === 'blue' ? 'bg-blue-50 border-l-4 border-blue-500' :
-                  'bg-red-50 border-l-4 border-red-500'
+              <!-- The Problem -->
+              <div class="mb-8">
+                <h3 class="font-display text-xl font-semibold text-gray-900 mb-4">The Problem</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  {study.challenge}
+                </p>
+                <div class={`p-6 rounded-xl border-l-4 ${
+                  study.color === 'green' ? 'bg-green-100/50 border-green-500' :
+                  study.color === 'coral' ? 'bg-coral-100/50 border-coral-500' :
+                  study.color === 'navy' ? 'bg-navy-100/50 border-navy-800' :
+                  study.color === 'blue' ? 'bg-blue-100/50 border-blue-500' :
+                  'bg-red-100/50 border-red-500'
                 }`}>
-                  <svg class="w-8 h-8 text-gray-300 absolute -top-2 -left-2" fill="currentColor" viewBox="0 0 32 32">
-                    <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                  </svg>
-                  <p class="text-gray-700 italic relative z-10">
+                  <p class="text-gray-700 italic">
                     "{study.quote}"
                   </p>
                 </div>
+                {study.extraContext && (
+                  <p class="text-gray-700 leading-relaxed mt-4">
+                    {study.extraContext}
+                  </p>
+                )}
+              </div>
 
-                <!-- CTA -->
-                <div class="flex flex-col sm:flex-row gap-4">
-                  <a href="/contact" class={`inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 transform ${
-                    study.color === 'green' ? 'bg-green-500 text-white hover:bg-green-600' :
-                    study.color === 'coral' ? 'bg-coral-500 text-white hover:bg-coral-600' :
-                    study.color === 'navy' ? 'bg-navy-800 text-white hover:bg-navy-700' :
-                    study.color === 'blue' ? 'bg-blue-500 text-white hover:bg-blue-600' :
-                    'bg-red-500 text-white hover:bg-red-600'
-                  }`}>
-                    Get Similar Results
-                    <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                  <a href="/services" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 border-gray-300 text-gray-700 hover:border-gray-400 transition-all">
-                    See Our Process
-                  </a>
+              <!-- What We Built -->
+              <div class="mb-8">
+                <h3 class="font-display text-xl font-semibold text-gray-900 mb-4">
+                  {study.wouldHave ? "What I Would Have Built" : study.startedWith ? "What I Started With" : "What I Built"}
+                </h3>
+                <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                  {study.solution}
+                </p>
+              </div>
+
+              <!-- What Happened -->
+              <div class="mb-8">
+                <h3 class="font-display text-xl font-semibold text-gray-900 mb-4">
+                  {study.wouldHave ? "What Would Have Happened" : study.startedWith ? "What Happened Next" : "What Happened"}
+                </h3>
+                <div class="space-y-3">
+                  {study.results.map(result => (
+                    <div class="flex items-start">
+                      <svg class={`w-5 h-5 mt-0.5 mr-3 flex-shrink-0 ${
+                        study.color === 'green' ? 'text-green-500' :
+                        study.color === 'coral' ? 'text-coral-500' :
+                        study.color === 'navy' ? 'text-navy-600' :
+                        study.color === 'blue' ? 'text-blue-500' :
+                        'text-red-500'
+                      }`} fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <p class="text-gray-700">{result}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
+
+              {/* Final Quote */}
+              {study.finalQuote && (
+                <div class={`p-6 rounded-xl ${
+                  study.color === 'green' ? 'bg-white/70' :
+                  study.color === 'coral' ? 'bg-white/70' :
+                  study.color === 'navy' ? 'bg-white/70' :
+                  study.color === 'blue' ? 'bg-white/70' :
+                  'bg-white/70'
+                }`}>
+                  <p class="text-gray-700 italic">
+                    "{study.finalQuote}"
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         ))}
+      </div>
+
+      <!-- Bottom Message -->
+      <div class="mt-16 bg-white rounded-2xl shadow-lg p-8 sm:p-12">
+        <h2 class="font-display text-2xl sm:text-3xl text-gray-900 font-bold mb-4">
+          Here's the thing...
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          These aren't simple "send an email" automations. These are complete business systems that eliminate the chaos that's probably eating 20+ hours of your week right now.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-8">
+          If you're tired of feeling like you're always behind, always forgetting something, always playing catch-up - let's talk.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 items-center">
+          <a href="mailto:tom@ctbusinessautomation.com" class="text-coral-500 hover:text-coral-600 font-medium transition-colors">
+            tom@ctbusinessautomation.com
+          </a>
+          <span class="text-gray-400 hidden sm:inline">or just call me at</span>
+          <a href="tel:203-200-0327" class="text-navy-800 hover:text-navy-900 font-medium transition-colors">
+            (203) 200-0327
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -329,14 +264,14 @@ const caseStudies = [
   <section class="py-16 sm:py-20 px-4 bg-navy-900">
     <div class="container mx-auto max-w-4xl text-center">
       <h2 class="font-display text-3xl sm:text-4xl text-white mb-6">
-        Ready to Write Your Success Story?
+        Ready to Stop Drowning in Manual Work?
       </h2>
       <p class="text-xl text-white/80 mb-8">
-        Join these Connecticut businesses that got their time back through automation.
+        I've helped Connecticut businesses get their time back. You could be next.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="/contact" class="bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform inline-flex items-center justify-center">
-          Start Your Transformation
+          Start Your Story
           <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
@@ -378,23 +313,5 @@ const caseStudies = [
   
   .animation-delay-3000 {
     animation-delay: 3s;
-  }
-
-  @keyframes bounce-in {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  .animate-bounce-in {
-    animation: bounce-in 0.6s ease-out forwards;
   }
 </style>

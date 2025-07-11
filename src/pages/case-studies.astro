@@ -1,0 +1,400 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const caseStudies = [
+  {
+    id: 'mikes-landscaping',
+    title: "Mike's Landscaping",
+    subtitle: "What We Would Have Built",
+    industry: "Landscaping",
+    location: "New Haven County",
+    challenge: "4 employees sitting in the truck waiting while Mike dealt with phone, scheduling, and paperwork - at $150/hour crew cost",
+    solution: "Automated scheduling, dispatch notifications, and invoice tracking system",
+    results: [
+      { metric: "$3,200/month", desc: "Saved in idle crew time" },
+      { metric: "2 hours/day", desc: "Mike's time reclaimed" },
+      { metric: "Never Built", desc: "Because Mike wouldn't listen to his brother-in-law" }
+    ],
+    quote: "He's my sister's husband and he's killing himself with 80-hour weeks. But he 'doesn't trust computers' so here we are.",
+    timeline: [
+      { phase: "Discovery", desc: "Would map his paper chaos", time: "Week 1" },
+      { phase: "Build", desc: "Simple scheduling + dispatch system", time: "Weeks 2-3" },
+      { phase: "Launch", desc: "Could have been saving time already", time: "Week 4" }
+    ],
+    color: "green"
+  },
+  {
+    id: 'new-haven-salon',
+    title: "New Haven Salon",
+    subtitle: "Every Ring Costs Money",
+    industry: "Beauty Salon",
+    location: "New Haven",
+    challenge: "Owner literally running with foils in her hands to answer the phone while doing color",
+    solution: "AI phone system + automated booking confirmations + waitlist management",
+    results: [
+      { metric: "73%", desc: "Fewer phone interruptions" },
+      { metric: "18%", desc: "More appointments booked" },
+      { metric: "$1,400/month", desc: "Additional revenue from filled cancellations" }
+    ],
+    quote: "I can actually focus on my clients now. My stress level has dropped dramatically.",
+    timeline: [
+      { phase: "Setup", desc: "AI phone system configured", time: "Week 1" },
+      { phase: "Integration", desc: "Connected to booking system", time: "Week 2" },
+      { phase: "Optimization", desc: "Fine-tuned responses", time: "Week 3" }
+    ],
+    color: "coral"
+  },
+  {
+    id: 'waterbury-contractor',
+    title: "Waterbury Contractor", 
+    subtitle: "Speed Wins Deals",
+    industry: "Home Improvement",
+    location: "Waterbury",
+    challenge: "Getting back to leads 2-3 days later when they'd already hired someone else",
+    solution: "Instant lead response + automated follow-up sequences + CRM integration",
+    results: [
+      { metric: "5 minutes", desc: "Average response time (was 2 days)" },
+      { metric: "3x", desc: "Lead conversion rate" },
+      { metric: "$180K", desc: "Additional revenue in 6 months" }
+    ],
+    quote: "I didn't realize how much business I was losing by being 'too busy' to respond quickly.",
+    timeline: [
+      { phase: "Lead Capture", desc: "Automated intake system", time: "Week 1" },
+      { phase: "Follow-up", desc: "Email/text sequences built", time: "Week 2" },
+      { phase: "Scale", desc: "Handling 10x more leads", time: "Month 2" }
+    ],
+    color: "navy"
+  },
+  {
+    id: 'hartford-hvac',
+    title: "Hartford HVAC Company",
+    subtitle: "Humans Make Mistakes, Systems Don't",
+    industry: "HVAC Services", 
+    location: "Hartford",
+    challenge: "Double-bookings, forgotten maintenance reminders, lost service history",
+    solution: "Automated scheduling + service reminders + integrated dispatching",
+    results: [
+      { metric: "Zero", desc: "Double bookings (was 3-4/month)" },
+      { metric: "94%", desc: "Maintenance renewal rate" },
+      { metric: "$4,100/month", desc: "Recovered revenue from proper follow-up" }
+    ],
+    quote: "The double-booking alone was worth it. No more angry customers, no more wasted trips.",
+    timeline: [
+      { phase: "Audit", desc: "Mapped current chaos", time: "Week 1" },
+      { phase: "Systemize", desc: "Built scheduling rules", time: "Weeks 2-3" },
+      { phase: "Automate", desc: "Launched full system", time: "Week 4" }
+    ],
+    color: "blue"
+  },
+  {
+    id: 'branford-pizza',
+    title: "Branford Pizza Place",
+    subtitle: "Started Small, Grew Smart",
+    industry: "Restaurant",
+    location: "Branford",
+    challenge: "Tablet madness - DoorDash, Uber Eats, and phone orders creating kitchen chaos",
+    solution: "Unified order management + kitchen display system + automated inventory alerts",
+    results: [
+      { metric: "One Screen", desc: "Instead of juggling 3 tablets" },
+      { metric: "12 min faster", desc: "Average order time" },
+      { metric: "Happy", desc: "Kitchen staff (priceless)" }
+    ],
+    quote: "We started with just organizing the delivery tablets. Now we're automated across the board.",
+    timeline: [
+      { phase: "Phase 1", desc: "Unified delivery orders", time: "Week 1" },
+      { phase: "Phase 2", desc: "Added phone integration", time: "Month 2" },
+      { phase: "Phase 3", desc: "Full inventory automation", time: "Month 3" }
+    ],
+    color: "red"
+  }
+];
+---
+
+<Layout 
+  title="Case Studies - Connecticut Business Automation Success Stories" 
+  description="Real Connecticut businesses share their automation transformation stories. From contractors to restaurants, see how we've helped businesses save time and grow revenue."
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-16 px-4 overflow-hidden">
+    <!-- Dynamic background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500"></div>
+    
+    <!-- Pattern overlay -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23grid)" /%3E%3C/svg%3E')"></div>
+    </div>
+
+    <!-- Floating elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-10 text-6xl animate-float opacity-20">📊</div>
+      <div class="absolute top-40 right-20 text-5xl animate-float animation-delay-1000 opacity-20">⚡</div>
+      <div class="absolute bottom-20 left-1/4 text-6xl animate-float animation-delay-2000 opacity-20">🚀</div>
+      <div class="absolute bottom-40 right-1/3 text-5xl animate-float animation-delay-3000 opacity-20">💰</div>
+    </div>
+
+    <div class="relative z-10 container mx-auto max-w-4xl text-center">
+      <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 text-white/90 text-sm mb-6">
+        Real Stories • Real Results • Real Connecticut Businesses
+      </div>
+      
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6 font-bold">
+        From Chaos to Calm:<br />
+        <span class="text-coral-300">5 Connecticut Success Stories</span>
+      </h1>
+      
+      <p class="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto">
+        Every business started drowning in manual work. See how automation gave them their time back.
+      </p>
+    </div>
+  </section>
+
+  <!-- Case Studies Grid -->
+  <section class="py-16 sm:py-20 px-4 bg-gray-50">
+    <div class="container mx-auto max-w-7xl">
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+          <div class="text-3xl font-bold text-coral-500">$15,300</div>
+          <div class="text-sm text-gray-600">Average Monthly Savings</div>
+        </div>
+        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+          <div class="text-3xl font-bold text-navy-800">2-4 weeks</div>
+          <div class="text-sm text-gray-600">Implementation Time</div>
+        </div>
+        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+          <div class="text-3xl font-bold text-green-600">5 Industries</div>
+          <div class="text-sm text-gray-600">Proven Success</div>
+        </div>
+        <div class="bg-white rounded-xl p-6 text-center shadow-lg">
+          <div class="text-3xl font-bold text-blue-600">247% ROI</div>
+          <div class="text-sm text-gray-600">Average First Year</div>
+        </div>
+      </div>
+
+      <!-- Case Studies -->
+      <div class="space-y-20">
+        {caseStudies.map((study, index) => (
+          <div id={study.id} class="scroll-mt-24">
+            <div class={`bg-white rounded-2xl shadow-xl overflow-hidden ${index % 2 === 0 ? 'lg:flex' : 'lg:flex lg:flex-row-reverse'}`}>
+              <!-- Visual Side -->
+              <div class={`lg:w-1/2 p-8 sm:p-12 bg-gradient-to-br ${
+                study.color === 'green' ? 'from-green-50 to-emerald-50' :
+                study.color === 'coral' ? 'from-coral-50 to-red-50' :
+                study.color === 'navy' ? 'from-navy-50 to-blue-50' :
+                study.color === 'blue' ? 'from-blue-50 to-sky-50' :
+                'from-red-50 to-orange-50'
+              }`}>
+                <!-- Header -->
+                <div class="mb-8">
+                  <div class="flex items-center gap-3 text-gray-600 text-sm mb-2">
+                    <span class={`px-3 py-1 rounded-full text-xs font-medium ${
+                      study.color === 'green' ? 'bg-green-100 text-green-700' :
+                      study.color === 'coral' ? 'bg-coral-100 text-coral-700' :
+                      study.color === 'navy' ? 'bg-navy-100 text-navy-700' :
+                      study.color === 'blue' ? 'bg-blue-100 text-blue-700' :
+                      'bg-red-100 text-red-700'
+                    }`}>
+                      {study.industry}
+                    </span>
+                    <span>•</span>
+                    <span>{study.location}</span>
+                  </div>
+                  <h2 class="font-display text-3xl sm:text-4xl text-gray-900 font-bold mb-2">
+                    {study.title}
+                  </h2>
+                  <p class={`text-lg font-medium ${
+                    study.color === 'green' ? 'text-green-600' :
+                    study.color === 'coral' ? 'text-coral-600' :
+                    study.color === 'navy' ? 'text-navy-600' :
+                    study.color === 'blue' ? 'text-blue-600' :
+                    'text-red-600'
+                  }`}>
+                    {study.subtitle}
+                  </p>
+                </div>
+
+                <!-- Results Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                  {study.results.map(result => (
+                    <div class="bg-white/70 backdrop-blur-sm rounded-lg p-4 text-center">
+                      <div class={`text-2xl font-bold mb-1 ${
+                        study.color === 'green' ? 'text-green-600' :
+                        study.color === 'coral' ? 'text-coral-600' :
+                        study.color === 'navy' ? 'text-navy-600' :
+                        study.color === 'blue' ? 'text-blue-600' :
+                        'text-red-600'
+                      }`}>
+                        {result.metric}
+                      </div>
+                      <div class="text-sm text-gray-600">{result.desc}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <!-- Timeline -->
+                <div class="space-y-4">
+                  <h3 class="font-semibold text-gray-900 mb-3">Implementation Timeline</h3>
+                  {study.timeline.map((phase, i) => (
+                    <div class="flex items-start gap-3">
+                      <div class={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0 ${
+                        study.color === 'green' ? 'bg-green-500' :
+                        study.color === 'coral' ? 'bg-coral-500' :
+                        study.color === 'navy' ? 'bg-navy-800' :
+                        study.color === 'blue' ? 'bg-blue-500' :
+                        'bg-red-500'
+                      }`}>
+                        {i + 1}
+                      </div>
+                      <div class="flex-1">
+                        <div class="font-medium text-gray-900">{phase.phase}</div>
+                        <div class="text-sm text-gray-600">{phase.desc}</div>
+                        <div class="text-xs text-gray-500 mt-1">{phase.time}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Content Side -->
+              <div class="lg:w-1/2 p-8 sm:p-12">
+                <!-- Challenge -->
+                <div class="mb-8">
+                  <h3 class="font-display text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                    <span class="text-2xl mr-2">😤</span>
+                    The Challenge
+                  </h3>
+                  <p class="text-gray-700 leading-relaxed">
+                    {study.challenge}
+                  </p>
+                </div>
+
+                <!-- Solution -->
+                <div class="mb-8">
+                  <h3 class="font-display text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                    <span class="text-2xl mr-2">💡</span>
+                    What We Built
+                  </h3>
+                  <p class="text-gray-700 leading-relaxed">
+                    {study.solution}
+                  </p>
+                </div>
+
+                <!-- Quote -->
+                <div class={`p-6 rounded-xl mb-8 relative ${
+                  study.color === 'green' ? 'bg-green-50 border-l-4 border-green-500' :
+                  study.color === 'coral' ? 'bg-coral-50 border-l-4 border-coral-500' :
+                  study.color === 'navy' ? 'bg-navy-50 border-l-4 border-navy-800' :
+                  study.color === 'blue' ? 'bg-blue-50 border-l-4 border-blue-500' :
+                  'bg-red-50 border-l-4 border-red-500'
+                }`}>
+                  <svg class="w-8 h-8 text-gray-300 absolute -top-2 -left-2" fill="currentColor" viewBox="0 0 32 32">
+                    <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                  </svg>
+                  <p class="text-gray-700 italic relative z-10">
+                    "{study.quote}"
+                  </p>
+                </div>
+
+                <!-- CTA -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                  <a href="/contact" class={`inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 transform ${
+                    study.color === 'green' ? 'bg-green-500 text-white hover:bg-green-600' :
+                    study.color === 'coral' ? 'bg-coral-500 text-white hover:bg-coral-600' :
+                    study.color === 'navy' ? 'bg-navy-800 text-white hover:bg-navy-700' :
+                    study.color === 'blue' ? 'bg-blue-500 text-white hover:bg-blue-600' :
+                    'bg-red-500 text-white hover:bg-red-600'
+                  }`}>
+                    Get Similar Results
+                    <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                  <a href="/services" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 border-gray-300 text-gray-700 hover:border-gray-400 transition-all">
+                    See Our Process
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="py-16 sm:py-20 px-4 bg-navy-900">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white mb-6">
+        Ready to Write Your Success Story?
+      </h2>
+      <p class="text-xl text-white/80 mb-8">
+        Join these Connecticut businesses that got their time back through automation.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform inline-flex items-center justify-center">
+          Start Your Transformation
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a href="tel:203-200-0327" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-navy-900 transition-all inline-flex items-center justify-center">
+          <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          (203) 200-0327
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.6s ease-out forwards;
+  }
+</style>

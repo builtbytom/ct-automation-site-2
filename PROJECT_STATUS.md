@@ -34,19 +34,28 @@ Last Updated: January 10, 2025
    - ROI promise included
 
 ### Currently Working On:
-- **Case Studies Page** - Tom provided 5 excellent case studies:
-  1. Mike's Landscaping (brother-in-law)
-  2. New Haven Salon
-  3. Waterbury Contractor
-  4. Hartford HVAC Company
-  5. Branford Pizza Place
-- Need to create engaging visual presentation
+- **Lead Magnet Quiz** - "What's Eating Your Time?" interactive assessment
+- Just completed case studies page with Tom's exact copy
+
+### Completed Today (Part 2):
+6. **Case Studies Page**
+   - Used Tom's exact copy for all 5 stories
+   - Fixed all pronouns from we/our to I/my
+   - Mike's story shows as "What I Would Have Built"
+   - Clean, readable format without overflow issues
+
+7. **Interactive Quiz Lead Magnet**
+   - Created "What's Eating Your Time?" assessment
+   - Industry-specific questions that adapt
+   - No email required for basic results
+   - Optional email for personalized roadmap
+   - Added to homepage after FAQ section
+   - Ready for N8N webhook integration
 
 ### Next Priority Items:
-1. Complete case studies page with visual timeline format
-2. Create AI integration page (Tom's idea - explaining AI for small businesses)
-3. Lead magnet/email capture mechanism
-4. Calendar booking integration (replace contact form friction)
+1. Create AI integration page (Tom's idea - explaining AI for small businesses)
+2. Calendar booking integration (replace contact form friction)
+3. Set up N8N webhook for quiz submissions (when Tom provides URL)
 
 ### Key Information:
 - **Correct Email:** tom@ctbusinessautomation.com

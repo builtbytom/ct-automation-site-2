@@ -174,7 +174,8 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
-function quizApp() {
+// Define quizApp before Alpine initializes
+window.quizApp = function() {
   return {
     currentQuestion: 1,
     showResults: false,

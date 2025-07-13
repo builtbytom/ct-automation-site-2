@@ -1,0 +1,353 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="What's Eating Your Time? - Free Business Automation Assessment" 
+  description="Find out how many hours you're wasting on manual tasks. No email required. Get personalized recommendations in 2 minutes."
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-12 px-4">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500 opacity-90"></div>
+    
+    <div class="relative z-10 container mx-auto max-w-4xl text-center">
+      <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-6 font-bold">
+        What's Eating Your Time?
+      </h1>
+      <p class="text-xl text-white/90 mb-4">
+        Find out what manual tasks are stealing your life
+      </p>
+      <p class="text-white/80">
+        2 minutes • No email required • Get real answers
+      </p>
+    </div>
+  </section>
+
+  <!-- Quiz Section -->
+  <section class="py-12 px-4 bg-gray-50" x-data="quizApp()">
+    <div class="container mx-auto max-w-2xl">
+      <!-- Progress Bar -->
+      <div class="mb-8">
+        <div class="bg-gray-200 rounded-full h-2">
+          <div 
+            class="bg-coral-500 h-2 rounded-full transition-all duration-300" 
+            :style="`width: ${(currentQuestion / questions.length) * 100}%`"
+          ></div>
+        </div>
+        <p class="text-sm text-gray-600 mt-2 text-center">
+          Question <span x-text="currentQuestion"></span> of <span x-text="questions.length"></span>
+        </p>
+      </div>
+
+      <!-- Quiz Container -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 sm:p-12">
+        <!-- Questions -->
+        <div x-show="!showResults">
+          <template x-for="(question, index) in questions" :key="index">
+            <div x-show="currentQuestion === index + 1">
+              <h2 class="font-display text-2xl sm:text-3xl text-gray-900 mb-6" x-text="question.text"></h2>
+              
+              <!-- Multiple Choice -->
+              <div class="space-y-4">
+                <template x-for="option in question.options" :key="option.value">
+                  <button
+                    @click="selectAnswer(option.value, option.points)"
+                    class="w-full text-left p-4 rounded-lg border-2 border-gray-200 hover:border-coral-500 hover:bg-coral-50 transition-all"
+                    :class="{'border-coral-500 bg-coral-50': answers[index] === option.value}"
+                  >
+                    <span class="text-lg" x-text="option.text"></span>
+                  </button>
+                </template>
+              </div>
+
+              <!-- Navigation -->
+              <div class="flex justify-between mt-8">
+                <button
+                  @click="previousQuestion"
+                  x-show="currentQuestion > 1"
+                  class="text-gray-600 hover:text-gray-800 font-medium"
+                >
+                  ← Back
+                </button>
+                <button
+                  @click="nextQuestion"
+                  x-show="currentQuestion < questions.length && answers[index]"
+                  class="bg-coral-500 text-white px-6 py-2 rounded-lg hover:bg-coral-600 transition-colors ml-auto"
+                >
+                  Next →
+                </button>
+                <button
+                  @click="calculateResults"
+                  x-show="currentQuestion === questions.length && answers[index]"
+                  class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors ml-auto"
+                >
+                  See My Results
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Results -->
+        <div x-show="showResults" x-cloak>
+          <div class="text-center mb-8">
+            <h2 class="font-display text-3xl text-gray-900 mb-4">Your Results</h2>
+            <div class="inline-flex items-center bg-red-100 text-red-800 rounded-full px-6 py-3 text-lg font-semibold">
+              You're losing approximately <span class="text-2xl mx-2" x-text="hoursWasted"></span> hours per week
+            </div>
+          </div>
+
+          <!-- Quick Wins -->
+          <div class="mb-8">
+            <h3 class="font-display text-xl text-gray-900 mb-4">Quick Wins You Can Implement Today:</h3>
+            <div class="space-y-3">
+              <template x-for="tip in quickWins" :key="tip">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <p class="text-gray-700" x-text="tip"></p>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <!-- Industry Insight -->
+          <div class="bg-navy-50 rounded-xl p-6 mb-8">
+            <h4 class="font-semibold text-navy-900 mb-2">What others in your industry automated first:</h4>
+            <p class="text-navy-700" x-text="industryInsight"></p>
+          </div>
+
+          <!-- Email Capture -->
+          <div class="bg-gray-50 rounded-xl p-6">
+            <h3 class="font-display text-xl text-gray-900 mb-3">Want Your Personalized Automation Roadmap?</h3>
+            <p class="text-gray-700 mb-4">
+              I'll analyze your specific situation and send you a custom report showing exactly what to automate first.
+            </p>
+            
+            <form @submit.prevent="submitEmail" class="space-y-4">
+              <div>
+                <input
+                  type="email"
+                  x-model="email"
+                  placeholder="your@email.com"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  x-model="businessName"
+                  placeholder="Business Name (optional)"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-transparent"
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-coral-500 text-white py-3 rounded-lg font-semibold hover:bg-coral-600 transition-colors"
+              >
+                Get My Custom Roadmap
+              </button>
+              <p class="text-xs text-gray-500 text-center">
+                No spam. Just one valuable email with your personalized plan.
+              </p>
+            </form>
+          </div>
+
+          <!-- Skip Email Option -->
+          <div class="text-center mt-6">
+            <a href="/" class="text-gray-600 hover:text-gray-800 text-sm">
+              No thanks, I'll figure it out myself →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+function quizApp() {
+  return {
+    currentQuestion: 1,
+    showResults: false,
+    answers: {},
+    score: 0,
+    email: '',
+    businessName: '',
+    hoursWasted: 0,
+    quickWins: [],
+    industryInsight: '',
+    
+    questions: [
+      {
+        text: "What type of business do you run?",
+        options: [
+          { value: 'restaurant', text: '🍕 Restaurant/Food Service', points: 0 },
+          { value: 'contractor', text: '🔨 Contractor/Trades', points: 0 },
+          { value: 'service', text: '💼 Professional Services', points: 0 },
+          { value: 'retail', text: '🛍️ Retail/E-commerce', points: 0 },
+          { value: 'other', text: '📊 Other Service Business', points: 0 }
+        ]
+      },
+      {
+        text: "What are you usually doing after 6 PM?",
+        options: [
+          { value: 'invoicing', text: '📧 Sending invoices or chasing payments', points: 3 },
+          { value: 'data-entry', text: '⌨️ Entering data into different systems', points: 3 },
+          { value: 'scheduling', text: '📅 Scheduling or rescheduling appointments', points: 2 },
+          { value: 'emails', text: '💬 Answering the same customer questions', points: 2 },
+          { value: 'home', text: '🏠 Actually home with my family (lucky you!)', points: 0 }
+        ]
+      },
+      {
+        text: "How many times this week did you think 'there has to be a better way'?",
+        options: [
+          { value: 'daily', text: 'Every. Single. Day.', points: 5 },
+          { value: 'often', text: '3-4 times', points: 3 },
+          { value: 'sometimes', text: 'Once or twice', points: 2 },
+          { value: 'rarely', text: 'Not really', points: 0 }
+        ]
+      },
+      {
+        text: "What would you do with an extra 10 hours per week?",
+        options: [
+          { value: 'grow', text: '📈 Actually grow my business', points: 1 },
+          { value: 'family', text: '👨‍👩‍👧‍👦 Spend time with family', points: 1 },
+          { value: 'strategic', text: '🎯 Work ON my business, not IN it', points: 1 },
+          { value: 'breathe', text: '😴 Just... breathe for once', points: 1 }
+        ]
+      },
+      {
+        text: "Which best describes your current situation?",
+        options: [
+          { value: 'too-busy', text: "Too busy to grow", points: 3 },
+          { value: 'drowning', text: "Growing but drowning", points: 4 },
+          { value: 'afloat', text: "Just staying afloat", points: 2 },
+          { value: 'fine', text: "Actually doing fine", points: 0 }
+        ]
+      }
+    ],
+    
+    selectAnswer(value, points) {
+      this.answers[this.currentQuestion - 1] = value;
+      this.score += points;
+    },
+    
+    nextQuestion() {
+      if (this.currentQuestion < this.questions.length) {
+        this.currentQuestion++;
+      }
+    },
+    
+    previousQuestion() {
+      if (this.currentQuestion > 1) {
+        this.currentQuestion--;
+      }
+    },
+    
+    calculateResults() {
+      // Calculate hours wasted based on score
+      if (this.score >= 12) {
+        this.hoursWasted = '15-20';
+      } else if (this.score >= 8) {
+        this.hoursWasted = '10-15';
+      } else if (this.score >= 4) {
+        this.hoursWasted = '5-10';
+      } else {
+        this.hoursWasted = '2-5';
+      }
+      
+      // Get industry-specific insights
+      const industry = this.answers[0];
+      
+      // Quick wins based on their main pain point
+      const afterSix = this.answers[1];
+      switch(afterSix) {
+        case 'invoicing':
+          this.quickWins = [
+            'Set up automatic invoice reminders in your existing software',
+            'Create email templates for common payment follow-ups',
+            'Batch all invoicing to one day per week'
+          ];
+          break;
+        case 'data-entry':
+          this.quickWins = [
+            'Look for import/export features you\'re not using',
+            'Create templates for repetitive data entry',
+            'Explore Zapier for simple connections between tools'
+          ];
+          break;
+        case 'scheduling':
+          this.quickWins = [
+            'Use a scheduling link instead of back-and-forth emails',
+            'Set specific hours for appointments',
+            'Create a "scheduling rules" document to share'
+          ];
+          break;
+        case 'emails':
+          this.quickWins = [
+            'Create a FAQ page and share the link',
+            'Set up email templates for common questions',
+            'Use an auto-responder with helpful links'
+          ];
+          break;
+        default:
+          this.quickWins = [
+            'Document your most repetitive tasks this week',
+            'Ask yourself "why" for each manual process',
+            'Time how long routine tasks actually take'
+          ];
+      }
+      
+      // Industry insights
+      switch(industry) {
+        case 'restaurant':
+          this.industryInsight = 'Most restaurants start with order management integration, then add inventory alerts and staff scheduling. The biggest win is usually connecting delivery platforms to their POS.';
+          break;
+        case 'contractor':
+          this.industryInsight = 'Contractors typically see huge wins from automated quote follow-ups and invoice reminders. Lead response time is critical - faster responses mean more jobs won.';
+          break;
+        case 'service':
+          this.industryInsight = 'Service businesses often start with client onboarding automation and appointment reminders. The key is reducing no-shows and streamlining communication.';
+          break;
+        case 'retail':
+          this.industryInsight = 'Retail businesses usually automate inventory management first, then customer follow-ups. Connecting online and in-store systems saves hours of reconciliation.';
+          break;
+        default:
+          this.industryInsight = 'Most service businesses start with their biggest time-waster - whether that\'s invoicing, scheduling, or customer communication. The key is picking one pain point and fixing it completely.';
+      }
+      
+      this.showResults = true;
+    },
+    
+    submitEmail() {
+      // For now, just log the data
+      console.log('Quiz submission:', {
+        email: this.email,
+        businessName: this.businessName,
+        answers: this.answers,
+        score: this.score,
+        hoursWasted: this.hoursWasted
+      });
+      
+      // In production, this would send to your webhook
+      alert('Thanks! Check your email in the next 24 hours for your personalized automation roadmap.');
+      
+      // Redirect to home
+      window.location.href = '/';
+    }
+  }
+}
+</script>
+
+<style>
+  [x-cloak] { display: none !important; }
+</style>

@@ -28,7 +28,7 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- Quiz Section -->
-  <section class="py-12 px-4 bg-gray-50" x-data="quizApp()">
+  <section class="py-12 px-4 bg-gray-50" x-data="quizApp">
     <div class="container mx-auto max-w-2xl">
       <!-- Progress Bar -->
       <div class="mb-8">
@@ -174,9 +174,9 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
-// Define quizApp before Alpine initializes
-window.quizApp = function() {
-  return {
+// Wait for Alpine to be ready
+document.addEventListener('alpine:init', () => {
+  Alpine.data('quizApp', () => ({
     currentQuestion: 1,
     showResults: false,
     answers: {},
@@ -345,8 +345,8 @@ window.quizApp = function() {
       // Redirect to home
       window.location.href = '/';
     }
-  }
-}
+  }))
+})
 </script>
 
 <style>

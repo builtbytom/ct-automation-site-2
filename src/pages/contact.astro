@@ -371,6 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    console.log('Form submitted!');
     
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
@@ -390,6 +391,8 @@ document.addEventListener('DOMContentLoaded', () => {
       mainPainPoint: formData.get('biggest-pain'),
       message: formData.get('message') || ''
     };
+    
+    console.log('Sending data to Netlify function:', data);
     
     try {
       const response = await fetch('/.netlify/functions/contact-form', {
@@ -419,7 +422,12 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error('Form submission failed');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Form submission error:', error);
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        response: error.response
+      });
       submitButton.textContent = 'Send Message';
       submitButton.disabled = false;
       alert('Sorry, there was an error sending your message. Please try again or email me directly at tom@ctbusinessautomation.com');

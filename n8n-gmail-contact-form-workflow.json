@@ -1,0 +1,180 @@
+{
+  "name": "CT Business Automation - Contact Form (Gmail)",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "ct-automation-contact",
+        "responseMode": "responseNode",
+        "responseData": "allEntries",
+        "responsePropertyName": "data",
+        "responseHeaders": {
+          "entries": [
+            {
+              "name": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Contact Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "ct-automation-contact"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "tom@ctbusinessautomation.com",
+        "subject": "🚨 New CT Automation Lead: {{$json[\"body\"][\"name\"]}}",
+        "messageType": "html",
+        "message": "<h2>New Contact Form Submission</h2>\n\n<p><strong>From:</strong> {{$json[\"body\"][\"name\"]}}<br>\n<strong>Email:</strong> {{$json[\"body\"][\"email\"]}}<br>\n<strong>Phone:</strong> {{$json[\"body\"][\"phone\"]}}<br>\n<strong>Business:</strong> {{$json[\"body\"][\"businessName\"]}}</p>\n\n<p><strong>Business Type:</strong> {{$json[\"body\"][\"businessType\"]}}<br>\n<strong>Urgency:</strong> {{$json[\"body\"][\"timeline\"]}}<br>\n<strong>Main Pain Point:</strong> {{$json[\"body\"][\"mainPainPoint\"]}}</p>\n\n<p><strong>Message:</strong><br>\n{{$json[\"body\"][\"message\"]}}</p>\n\n<hr>\n<p><em>Submitted: {{$now.format('MMM DD, YYYY h:mm A')}}</em></p>",
+        "options": {
+          "replyTo": "={{$json[\"body\"][\"email\"]}}"
+        }
+      },
+      "id": "gmail-notify-tom",
+      "name": "Gmail - Notify Tom",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{$json[\"body\"][\"email\"]}}",
+        "subject": "Got your message - let's talk automation",
+        "messageType": "html",
+        "message": "<p>Hey {{$json[\"body\"][\"name\"].split(' ')[0]}},</p>\n\n<p>Thanks for reaching out! I just got your message about {{$json[\"body\"][\"mainPainPoint\"]}}.</p>\n\n<p>I'll review your info and get back to you within 24 hours (usually much sooner) with some initial thoughts.</p>\n\n<p>In the meantime, here's a quick tip based on what you told me:</p>\n\n<p><strong>{{$node[\"Quick Tip Logic\"].json[\"tip\"]}}</strong></p>\n\n<p>Talk soon,<br>\nTom</p>\n\n<p>P.S. If this is urgent, feel free to call me directly at (203) 200-0327.</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">Tom Lucia<br>\nCT Business Automation<br>\ntom@ctbusinessautomation.com<br>\n(203) 200-0327</p>",
+        "options": {
+          "replyTo": "tom@ctbusinessautomation.com"
+        }
+      },
+      "id": "gmail-auto-reply",
+      "name": "Gmail - Auto Reply",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [650, 350]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Generate contextual tip based on pain point\nconst painPoint = $input.item.json.body.mainPainPoint;\nlet tip = \"\";\n\nswitch(painPoint) {\n  case \"Too much time on invoicing/billing\":\n    tip = \"Most businesses can cut invoicing time by 75% just by setting up automatic payment reminders. Even if you do nothing else, this one change is huge.\";\n    break;\n  case \"Data entry between systems\":\n    tip = \"Quick win: Check if your current software has CSV import/export features you're not using. You'd be surprised how many people manually enter data that could be uploaded in seconds.\";\n    break;\n  case \"Customer communication/follow-ups\":\n    tip = \"Start simple: Create 3-5 email templates for your most common customer questions. This alone can save hours per week.\";\n    break;\n  case \"Scheduling and appointment management\":\n    tip = \"Free tool alert: Even a basic scheduling link (like Calendly) can eliminate 90% of back-and-forth scheduling emails.\";\n    break;\n  case \"Other workflow challenges\":\n    tip = \"The best automation is often the simplest. Start by timing how long your most repetitive task takes - that's usually where the biggest wins are hiding.\";\n    break;\n  default:\n    tip = \"Every hour you spend on repetitive tasks is an hour you're not growing your business. Let's fix that.\";\n}\n\nreturn {\n  tip: tip\n};"
+      },
+      "id": "quick-tip-logic",
+      "name": "Quick Tip Logic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1E_kOXx8_kMgZzRiz5TU4u5i2Ph42sYUYUC4sqPv2e60",
+          "mode": "string"
+        },
+        "sheetName": "Contact Form Submissions",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{$now.format('MM/DD/YYYY HH:mm:ss')}}",
+            "Name": "={{$json[\"body\"][\"name\"]}}",
+            "Email": "={{$json[\"body\"][\"email\"]}}",
+            "Phone": "={{$json[\"body\"][\"phone\"]}}",
+            "Business Name": "={{$json[\"body\"][\"businessName\"]}}",
+            "Business Type": "={{$json[\"body\"][\"businessType\"]}}",
+            "Timeline": "={{$json[\"body\"][\"timeline\"]}}",
+            "Main Pain Point": "={{$json[\"body\"][\"mainPainPoint\"]}}",
+            "Message": "={{$json[\"body\"][\"message\"]}}"
+          }
+        },
+        "options": {}
+      },
+      "id": "google-sheets-backup",
+      "name": "Google Sheets - Backup",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [650, 500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "json": {
+            "success": true,
+            "message": "Thanks! I'll be in touch within 24 hours."
+          }
+        },
+        "responseHeaders": {
+          "entries": [
+            {
+              "name": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        }
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response - Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Contact Form": {
+      "main": [
+        [
+          {
+            "node": "Quick Tip Logic",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets - Backup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quick Tip Logic": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Notify Tom",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Gmail - Auto Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Notify Tom": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response - Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null,
+  "pinData": {},
+  "versionId": "ct-automation-gmail-v1",
+  "triggerCount": 0
+}

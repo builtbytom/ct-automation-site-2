@@ -159,7 +159,7 @@ import Footer from '../components/Footer.astro';
               <h2 class="font-display font-bold text-2xl text-gray-900">Send a message</h2>
             </div>
             
-            <form action="mailto:tom@ctbusinessautomation.com?subject=Automation Inquiry from CT Business Automation" method="post" enctype="text/plain" class="space-y-6">
+            <form id="contact-form" class="space-y-6">
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                   Your Name <span class="text-red-500">*</span>
@@ -364,3 +364,66 @@ import Footer from '../components/Footer.astro';
     animation-delay: 3s;
   }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+    
+    const formData = new FormData(form);
+    
+    // Map form fields to expected N8N structure
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone') || '',
+      businessName: '', // Not in current form
+      businessType: formData.get('business-type'),
+      timeline: formData.get('timeline'),
+      mainPainPoint: formData.get('biggest-pain'),
+      message: formData.get('message') || ''
+    };
+    
+    try {
+      const response = await fetch('http://srv820887.hstgr.cloud:5678/webhook/ct-automation-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        // Show success message
+        form.innerHTML = `
+          <div class="text-center py-8">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl text-gray-900 mb-2">Message Sent!</h3>
+            <p class="text-gray-600">I'll get back to you within 24 hours with some ideas for your business.</p>
+          </div>
+        `;
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      submitButton.textContent = 'Send Message';
+      submitButton.disabled = false;
+      alert('Sorry, there was an error sending your message. Please try again or email me directly at tom@ctbusinessautomation.com');
+    }
+  });
+});
+</script>

@@ -1,0 +1,217 @@
+{
+  "name": "CT Business Automation - Contact Form Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "ct-automation-contact",
+        "responseMode": "responseNode",
+        "responseData": "allEntries",
+        "responsePropertyName": "data",
+        "responseHeaders": {
+          "entries": [
+            {
+              "name": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Contact Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "ct-automation-contact"
+    },
+    {
+      "parameters": {
+        "fromEmail": "tom@ctbusinessautomation.com",
+        "toEmail": "tom@ctbusinessautomation.com",
+        "subject": "🚨 New CT Automation Lead: {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"name\"]}}",
+        "text": "=New Contact Form Submission\n\n**From:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"name\"]}}\n**Email:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"email\"]}}\n**Phone:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"phone\"]}}\n**Business:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"businessName\"]}}\n\n**Business Type:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"businessType\"]}}\n**Urgency:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"timeline\"]}}\n**Main Pain Point:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"mainPainPoint\"]}}\n\n**Message:**\n{{$node[\"Webhook - Contact Form\"].json[\"body\"][\"message\"]}}\n\n---\nSubmitted: {{$now.format('MMM DD, YYYY h:mm A')}}",
+        "options": {}
+      },
+      "id": "email-notification",
+      "name": "Email - Notify Tom",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "fromEmail": "tom@ctbusinessautomation.com",
+        "toEmail": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"email\"]}}",
+        "subject": "Got your message - let's talk automation",
+        "text": "=Hey {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"name\"].split(' ')[0]}},\n\nThanks for reaching out! I just got your message about {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"mainPainPoint\"]}}.\n\nI'll review your info and get back to you within 24 hours (usually much sooner) with some initial thoughts.\n\nIn the meantime, here's a quick tip based on what you told me:\n\n{{$node[\"Quick Tip Logic\"].json[\"tip\"]}}\n\nTalk soon,\nTom\n\nP.S. If this is urgent, feel free to call me directly at (203) 200-0327.",
+        "options": {}
+      },
+      "id": "email-autoresponder",
+      "name": "Email - Auto Reply",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [650, 350]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Generate contextual tip based on pain point\nconst painPoint = $input.item.json.body.mainPainPoint;\nlet tip = \"\";\n\nswitch(painPoint) {\n  case \"Too much time on invoicing/billing\":\n    tip = \"Most businesses can cut invoicing time by 75% just by setting up automatic payment reminders. Even if you do nothing else, this one change is huge.\";\n    break;\n  case \"Data entry between systems\":\n    tip = \"Quick win: Check if your current software has CSV import/export features you're not using. You'd be surprised how many people manually enter data that could be uploaded in seconds.\";\n    break;\n  case \"Customer communication/follow-ups\":\n    tip = \"Start simple: Create 3-5 email templates for your most common customer questions. This alone can save hours per week.\";\n    break;\n  case \"Scheduling and appointment management\":\n    tip = \"Free tool alert: Even a basic scheduling link (like Calendly) can eliminate 90% of back-and-forth scheduling emails.\";\n    break;\n  case \"Other workflow challenges\":\n    tip = \"The best automation is often the simplest. Start by timing how long your most repetitive task takes - that's usually where the biggest wins are hiding.\";\n    break;\n  default:\n    tip = \"Every hour you spend on repetitive tasks is an hour you're not growing your business. Let's fix that.\";\n}\n\nreturn {\n  tip: tip\n};"
+      },
+      "id": "quick-tip-logic",
+      "name": "Quick Tip Logic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1E_kOXx8_kMgZzRiz5TU4u5i2Ph42sYUYUC4sqPv2e60",
+          "mode": "string"
+        },
+        "sheetName": "Contact Form Submissions",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{$now.format('MM/DD/YYYY HH:mm:ss')}}",
+            "Name": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"name\"]}}",
+            "Email": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"email\"]}}",
+            "Phone": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"phone\"]}}",
+            "Business Name": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"businessName\"]}}",
+            "Business Type": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"businessType\"]}}",
+            "Timeline": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"timeline\"]}}",
+            "Main Pain Point": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"mainPainPoint\"]}}",
+            "Message": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"message\"]}}"
+          }
+        },
+        "options": {}
+      },
+      "id": "google-sheets-backup",
+      "name": "Google Sheets - Backup",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [650, 500]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"timeline\"]}}",
+              "value2": "ASAP - I'm losing money daily"
+            }
+          ]
+        }
+      },
+      "id": "check-urgency",
+      "name": "IF Urgent",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 450]
+    },
+    {
+      "parameters": {
+        "channel": "#leads",
+        "text": ":rotating_light: URGENT LEAD ALERT :rotating_light:\n\n{{$node[\"Webhook - Contact Form\"].json[\"body\"][\"name\"]}} from {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"businessName\"]}} needs help ASAP!\n\nThey're struggling with: {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"mainPainPoint\"]}}\n\nPhone: {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"phone\"]}}",
+        "otherOptions": {}
+      },
+      "id": "slack-urgent-alert",
+      "name": "Slack - Urgent Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [650, 650]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "json": {
+            "success": true,
+            "message": "Thanks! I'll be in touch within 24 hours."
+          }
+        },
+        "responseHeaders": {
+          "entries": [
+            {
+              "name": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        }
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response - Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Contact Form": {
+      "main": [
+        [
+          {
+            "node": "Quick Tip Logic",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets - Backup",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Check Urgency",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quick Tip Logic": {
+      "main": [
+        [
+          {
+            "node": "Email - Notify Tom",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email - Auto Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email - Notify Tom": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response - Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Urgent": {
+      "main": [
+        [
+          {
+            "node": "Slack - Urgent Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null,
+  "pinData": {},
+  "versionId": "ct-automation-v1",
+  "triggerCount": 0
+}

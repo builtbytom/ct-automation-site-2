@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Privacy Policy - Connecticut Business Automation" 
+  description="Privacy policy for Connecticut Business Automation. How we handle your data."
+  noindex={true}
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-12 px-4">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700"></div>
+    
+    <div class="relative z-10 container mx-auto max-w-4xl">
+      <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-6 font-bold">
+        Privacy Policy
+      </h1>
+      <p class="text-xl text-white/80">
+        Last updated: January 2025
+      </p>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="py-16 px-4 bg-white">
+    <div class="container mx-auto max-w-4xl prose prose-lg">
+      <h2>The Short Version</h2>
+      <p>
+        I'm Tom, and I run Connecticut Business Automation. I don't sell your data, I don't spam you, 
+        and I only use your information to help automate your business. That's it.
+      </p>
+
+      <h2>What Information I Collect</h2>
+      <h3>Information You Give Me</h3>
+      <ul>
+        <li>Your name and email when you fill out forms</li>
+        <li>Your business name and industry</li>
+        <li>Phone number if you provide it</li>
+        <li>Any details about your business processes you share during consultations</li>
+      </ul>
+
+      <h3>Information Collected Automatically</h3>
+      <ul>
+        <li>Basic analytics about which pages you visit (via Google Analytics)</li>
+        <li>Your general location (city/state level)</li>
+        <li>What device and browser you're using</li>
+      </ul>
+
+      <h2>How I Use Your Information</h2>
+      <ul>
+        <li>To respond to your inquiries</li>
+        <li>To send you automation tips and updates (only if you opted in)</li>
+        <li>To improve my services and website</li>
+        <li>To create custom automation solutions for your business</li>
+      </ul>
+
+      <h2>Who I Share Your Information With</h2>
+      <p>
+        Nobody. Seriously. I don't sell, rent, or trade your information. The only exceptions are:
+      </p>
+      <ul>
+        <li>Service providers I use to run my business (like email services)</li>
+        <li>If required by law (hasn't happened yet)</li>
+      </ul>
+
+      <h2>Your Data in Automation Systems</h2>
+      <p>
+        When I build automations for you, your data stays in your own accounts (QuickBooks, Gmail, etc.). 
+        I don't store copies of your business data. Any test data used during development is deleted after 
+        your system goes live.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        This site uses basic cookies for analytics and to remember your preferences. No creepy tracking 
+        across the internet.
+      </p>
+
+      <h2>Your Rights</h2>
+      <p>You can:</p>
+      <ul>
+        <li>Ask me what information I have about you</li>
+        <li>Request that I delete your information</li>
+        <li>Opt out of any emails</li>
+        <li>Ask me to correct any wrong information</li>
+      </ul>
+
+      <h2>Data Security</h2>
+      <p>
+        I use industry-standard security measures to protect your information. This includes secure 
+        hosting, encrypted connections, and limited access to your data.
+      </p>
+
+      <h2>Changes to This Policy</h2>
+      <p>
+        If I make any significant changes, I'll update the date at the top and notify active clients.
+      </p>
+
+      <h2>Contact Me</h2>
+      <p>
+        Questions about privacy? Just reach out:
+      </p>
+      <ul>
+        <li>Email: <a href="mailto:tom@ctbusinessautomation.com" class="text-coral-500 hover:text-coral-600">tom@ctbusinessautomation.com</a></li>
+        <li>Phone: <a href="tel:203-200-0327" class="text-coral-500 hover:text-coral-600">(203) 200-0327</a></li>
+      </ul>
+
+      <div class="mt-12 p-6 bg-gray-50 rounded-lg">
+        <p class="text-sm text-gray-600 mb-0">
+          <strong>Plain English Promise:</strong> I wrote this policy myself, not some lawyer. If anything 
+          seems unclear or sketchy, please ask. Running an honest business means being transparent about 
+          this stuff.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

@@ -19,11 +19,11 @@ You'll need to create SMTP credentials in N8N with these settings:
 - Secure Connection: ON (STARTTLS)
 
 **Authentication:**
-- User: `tom@ctbusinessautomation.com`
+- User: `tom@ctbusinessautomations.com`
 - Password: `iebz-xrvk-mrfo-ealu` (the app password from Namecheap)
 
 **Sender:**
-- Email: `tom@ctbusinessautomation.com`
+- Email: `tom@ctbusinessautomations.com`
 - Name: `Tom - CT Business Automation`
 
 Save and test the connection.

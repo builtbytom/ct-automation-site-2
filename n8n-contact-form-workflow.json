@@ -26,8 +26,8 @@
     },
     {
       "parameters": {
-        "fromEmail": "tom@ctbusinessautomation.com",
-        "toEmail": "tom@ctbusinessautomation.com",
+        "fromEmail": "tom@ctbusinessautomations.com",
+        "toEmail": "tom@ctbusinessautomations.com",
         "subject": "🚨 New CT Automation Lead: {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"name\"]}}",
         "text": "=New Contact Form Submission\n\n**From:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"name\"]}}\n**Email:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"email\"]}}\n**Phone:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"phone\"]}}\n**Business:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"businessName\"]}}\n\n**Business Type:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"businessType\"]}}\n**Urgency:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"timeline\"]}}\n**Main Pain Point:** {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"mainPainPoint\"]}}\n\n**Message:**\n{{$node[\"Webhook - Contact Form\"].json[\"body\"][\"message\"]}}\n\n---\nSubmitted: {{$now.format('MMM DD, YYYY h:mm A')}}",
         "options": {}
@@ -40,7 +40,7 @@
     },
     {
       "parameters": {
-        "fromEmail": "tom@ctbusinessautomation.com",
+        "fromEmail": "tom@ctbusinessautomations.com",
         "toEmail": "={{$node[\"Webhook - Contact Form\"].json[\"body\"][\"email\"]}}",
         "subject": "Got your message - let's talk automation",
         "text": "=Hey {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"name\"].split(' ')[0]}},\n\nThanks for reaching out! I just got your message about {{$node[\"Webhook - Contact Form\"].json[\"body\"][\"mainPainPoint\"]}}.\n\nI'll review your info and get back to you within 24 hours (usually much sooner) with some initial thoughts.\n\nIn the meantime, here's a quick tip based on what you told me:\n\n{{$node[\"Quick Tip Logic\"].json[\"tip\"]}}\n\nTalk soon,\nTom\n\nP.S. If this is urgent, feel free to call me directly at (203) 200-0327.",

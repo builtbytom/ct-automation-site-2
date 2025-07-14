@@ -28,7 +28,7 @@
       "parameters": {
         "resource": "message",
         "operation": "send",
-        "sendTo": "tom@ctbusinessautomation.com",
+        "sendTo": "tom@ctbusinessautomations.com",
         "subject": "🚨 New CT Automation Lead: {{$json[\"body\"][\"name\"]}}",
         "messageType": "html",
         "message": "<h2>New Contact Form Submission</h2>\n\n<p><strong>From:</strong> {{$json[\"body\"][\"name\"]}}<br>\n<strong>Email:</strong> {{$json[\"body\"][\"email\"]}}<br>\n<strong>Phone:</strong> {{$json[\"body\"][\"phone\"]}}<br>\n<strong>Business:</strong> {{$json[\"body\"][\"businessName\"]}}</p>\n\n<p><strong>Business Type:</strong> {{$json[\"body\"][\"businessType\"]}}<br>\n<strong>Urgency:</strong> {{$json[\"body\"][\"timeline\"]}}<br>\n<strong>Main Pain Point:</strong> {{$json[\"body\"][\"mainPainPoint\"]}}</p>\n\n<p><strong>Message:</strong><br>\n{{$json[\"body\"][\"message\"]}}</p>\n\n<hr>\n<p><em>Submitted: {{$now.format('MMM DD, YYYY h:mm A')}}</em></p>",
@@ -49,9 +49,9 @@
         "sendTo": "={{$json[\"body\"][\"email\"]}}",
         "subject": "Got your message - let's talk automation",
         "messageType": "html",
-        "message": "<p>Hey {{$json[\"body\"][\"name\"].split(' ')[0]}},</p>\n\n<p>Thanks for reaching out! I just got your message about {{$json[\"body\"][\"mainPainPoint\"]}}.</p>\n\n<p>I'll review your info and get back to you within 24 hours (usually much sooner) with some initial thoughts.</p>\n\n<p>In the meantime, here's a quick tip based on what you told me:</p>\n\n<p><strong>{{$node[\"Quick Tip Logic\"].json[\"tip\"]}}</strong></p>\n\n<p>Talk soon,<br>\nTom</p>\n\n<p>P.S. If this is urgent, feel free to call me directly at (203) 200-0327.</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">Tom Lucia<br>\nCT Business Automation<br>\ntom@ctbusinessautomation.com<br>\n(203) 200-0327</p>",
+        "message": "<p>Hey {{$json[\"body\"][\"name\"].split(' ')[0]}},</p>\n\n<p>Thanks for reaching out! I just got your message about {{$json[\"body\"][\"mainPainPoint\"]}}.</p>\n\n<p>I'll review your info and get back to you within 24 hours (usually much sooner) with some initial thoughts.</p>\n\n<p>In the meantime, here's a quick tip based on what you told me:</p>\n\n<p><strong>{{$node[\"Quick Tip Logic\"].json[\"tip\"]}}</strong></p>\n\n<p>Talk soon,<br>\nTom</p>\n\n<p>P.S. If this is urgent, feel free to call me directly at (203) 200-0327.</p>\n\n<hr>\n<p style=\"font-size: 12px; color: #666;\">Tom Lucia<br>\nCT Business Automation<br>\ntom@ctbusinessautomations.com<br>\n(203) 200-0327</p>",
         "options": {
-          "replyTo": "tom@ctbusinessautomation.com"
+          "replyTo": "tom@ctbusinessautomations.com"
         }
       },
       "id": "gmail-auto-reply",

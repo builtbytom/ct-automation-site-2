@@ -24,7 +24,7 @@ Last Updated: January 10, 2025
 4. **Infrastructure Updates**
    - Created shared Footer component
    - Standardized navigation across all pages
-   - Updated all emails to tom@ctbusinessautomation.com
+   - Updated all emails to tom@ctbusinessautomations.com
    - Updated all phone numbers to (203) 200-0327
    - Created favicon options (gear icon selected)
 
@@ -58,9 +58,9 @@ Last Updated: January 10, 2025
 3. Set up N8N webhook for quiz submissions (when Tom provides URL)
 
 ### Key Information:
-- **Correct Email:** tom@ctbusinessautomation.com
+- **Correct Email:** tom@ctbusinessautomations.com
 - **Correct Phone:** (203) 200-0327
-- **Site URL:** ctbusinessautomation.com
+- **Site URL:** ctbusinessautomations.com
 - **GitHub Repo:** builtbytom/ct-automation-site-2
 - **Framework:** Astro v5.11.0 with Tailwind CSS
 - **Deployment:** Netlify (auto-deploys on push)
@@ -78,7 +78,7 @@ Last Updated: January 10, 2025
 - Connecticut small business focus
 
 ### Contact Form Status:
-- Currently using simple mailto: tom@ctbusinessautomation.com
+- Currently using simple mailto: tom@ctbusinessautomations.com
 - Tom will provide webhook URL later for automation
 
 ### Resources Created:

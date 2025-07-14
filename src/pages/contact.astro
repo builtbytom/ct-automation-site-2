@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     try {
-      const response = await fetch('http://srv820887.hstgr.cloud:5678/webhook/ct-automation-contact', {
+      const response = await fetch('/.netlify/functions/contact-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

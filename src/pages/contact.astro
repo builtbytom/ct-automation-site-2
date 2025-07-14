@@ -403,9 +403,19 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(data)
       });
       
-      const result = await response.json();
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
       
-      if (result.success) {
+      let result;
+      try {
+        result = await response.json();
+        console.log('Response data:', result);
+      } catch (parseError) {
+        console.error('Failed to parse response:', parseError);
+        result = {};
+      }
+      
+      if (response.ok) {
         // Show success message
         form.innerHTML = `
           <div class="text-center py-8">

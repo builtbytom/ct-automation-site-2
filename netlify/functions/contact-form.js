@@ -28,7 +28,7 @@ exports.handler = async (event) => {
     const body = JSON.parse(event.body || '{}');
     
     // Forward to N8N webhook
-    const response = await fetch('http://srv820887.hstgr.cloud:5678/webhook/ct-automation-contact', {
+    const response = await fetch('http://srv820887.hstgr.cloud:5678/webhook/built-by-tom-contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

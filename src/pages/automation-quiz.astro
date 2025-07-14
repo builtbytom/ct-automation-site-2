@@ -28,7 +28,7 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- Quiz Section -->
-  <section class="py-12 px-4 bg-gray-50" x-data="quizApp">
+  <section class="py-12 px-4 bg-gray-50" x-data="quizApp()" x-init="console.log('Alpine initialized', questions)">
     <div class="container mx-auto max-w-2xl">
       <!-- Progress Bar -->
       <div class="mb-8">
@@ -173,10 +173,10 @@ import Footer from '../components/Footer.astro';
   <Footer />
 </Layout>
 
-<script>
-// Wait for Alpine to be ready
-document.addEventListener('alpine:init', () => {
-  Alpine.data('quizApp', () => ({
+<script is:inline>
+// Define quizApp as a global function for Alpine
+window.quizApp = function() {
+  return {
     currentQuestion: 1,
     showResults: false,
     answers: {},
@@ -345,8 +345,16 @@ document.addEventListener('alpine:init', () => {
       // Redirect to home
       window.location.href = '/';
     }
-  }))
-})
+  }
+}
+
+// Initialize Alpine when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Force Alpine to start if it hasn't already
+  if (window.Alpine) {
+    console.log('Alpine already loaded');
+  }
+});
 </script>
 
 <style>

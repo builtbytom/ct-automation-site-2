@@ -382,14 +382,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Map form fields to expected N8N structure
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone') || '',
-      businessName: '', // Not in current form
-      businessType: formData.get('business-type'),
-      timeline: formData.get('timeline'),
-      mainPainPoint: formData.get('biggest-pain'),
-      message: formData.get('message') || ''
+      body: {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone') || '',
+        businessName: '', // Not in current form
+        businessType: formData.get('business-type'),
+        timeline: formData.get('timeline'),
+        mainPainPoint: formData.get('biggest-pain'),
+        message: formData.get('message') || ''
+      }
     };
     
     console.log('Sending data to Netlify function:', data);

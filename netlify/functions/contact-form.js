@@ -27,8 +27,8 @@ exports.handler = async (event) => {
   try {
     const body = JSON.parse(event.body || '{}');
     
-    // Forward to N8N webhook
-    const response = await fetch('http://srv820887.hstgr.cloud:5678/webhook/ct-automation-contact', {
+    // Forward to Make.com webhook
+    const response = await fetch('https://hook.us2.make.com/z980s08vjxmaisaoex7e4ui6b1z8jfi3', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

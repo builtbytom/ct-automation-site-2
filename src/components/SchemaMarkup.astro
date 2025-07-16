@@ -1,0 +1,101 @@
+---
+export interface Props {
+  type: 'LocalBusiness' | 'Article' | 'FAQ' | 'HowTo';
+  data?: any;
+}
+
+const { type, data } = Astro.props;
+
+let schemaData = {};
+
+if (type === 'LocalBusiness') {
+  schemaData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "CT Business Automations",
+    "description": "Connecticut Business Automation Services - Save 10+ hours per week with custom automation solutions for small businesses",
+    "url": "https://ctbusinessautomations.com",
+    "telephone": "+1-203-200-0327",
+    "email": "tom@ctbusinessautomations.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "North Haven",
+      "addressRegion": "CT",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.3909,
+      "longitude": -72.8597
+    },
+    "areaServed": [
+      {
+        "@type": "State",
+        "name": "Connecticut"
+      },
+      {
+        "@type": "City",
+        "name": "North Haven"
+      },
+      {
+        "@type": "City",
+        "name": "New Haven"
+      }
+    ],
+    "priceRange": "$$",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Tom Lucia",
+      "jobTitle": "Founder & Automation Specialist"
+    }
+  };
+} else if (type === 'Article' && data) {
+  schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": data.title,
+    "description": data.description,
+    "author": {
+      "@type": "Person",
+      "name": "Tom Lucia"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CT Business Automations",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ctbusinessautomations.com/favicon.svg"
+      }
+    },
+    "datePublished": data.datePublished || new Date().toISOString(),
+    "dateModified": data.dateModified || new Date().toISOString(),
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": data.url || Astro.url.href
+    }
+  };
+} else if (type === 'FAQ' && data) {
+  schemaData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": data.questions.map(q => ({
+      "@type": "Question",
+      "name": q.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": q.answer
+      }
+    }))
+  };
+}
+---
+
+{Object.keys(schemaData).length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+)}

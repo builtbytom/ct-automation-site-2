@@ -57,7 +57,7 @@ import Footer from '../components/Footer.astro';
               Pick a time that works for you and I'll do my homework on your business before we talk.
             </p>
             <a 
-              href="https://calendar.app.google/YOUR_CALENDAR_LINK" 
+              href="https://calendar.app.google/kfUiY9xYvB8Vpv1E6?source=ct-automations" 
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all hover:scale-105 transform"
@@ -418,18 +418,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (response.ok) {
-        // Show success message
-        form.innerHTML = `
-          <div class="text-center py-8">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl text-gray-900 mb-2">Message Sent!</h3>
-            <p class="text-gray-600">I'll get back to you within 24 hours with some ideas for your business.</p>
-          </div>
-        `;
+        // Redirect to thank-you page
+        window.location.href = '/thank-you';
       } else {
         throw new Error('Form submission failed');
       }

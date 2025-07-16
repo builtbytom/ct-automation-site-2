@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
 
 // FAQ data structure
 const categories = [
@@ -422,7 +423,9 @@ const categoryMeta = {
 <Layout 
   title="FAQ - Connecticut Business Automation | Your Questions Answered" 
   description="Get straight answers about business automation. No sales pitch, just honest information about costs, implementation, and results for Connecticut small businesses."
+  keywords="business automation FAQ, Connecticut automation questions, automation cost, QuickBooks automation, small business automation help"
 >
+  <SchemaMarkup type="FAQ" data={{ questions: faqs }} />
   <Navigation />
 
   <!-- Hero Section -->

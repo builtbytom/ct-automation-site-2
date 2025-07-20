@@ -5,6 +5,26 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Serve static files directly
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon.ico"
+  status = 200
+  force = true
+
+# SPA fallback - everything else goes to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"

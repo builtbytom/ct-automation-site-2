@@ -3,7 +3,7 @@
 ## Image Specifications
 - **Size**: 1200 x 630 pixels (Facebook/Twitter optimal)
 - **Format**: PNG or JPG
-- **File name**: `ct-business-automation-social.png`
+- **File name**: `ct-automation-social-share.webp`
 - **Save to**: `/public/images/`
 
 ## Design Suggestions

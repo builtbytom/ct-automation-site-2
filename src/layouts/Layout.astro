@@ -11,7 +11,7 @@ const {
   title, 
   description = "Connecticut Business Automations - Save 10+ hours per week with custom automation solutions for small businesses in Connecticut", 
   noindex = false,
-  ogImage = "/images/social-card-july-2025.webp",
+  ogImage = "/images/og-share-card-main.webp",
   keywords = "business automation Connecticut, CT automation services, small business automation, invoice automation, lead automation, Connecticut business solutions"
 } = Astro.props;
 
@@ -39,6 +39,10 @@ const socialImageURL = new URL(ogImage, Astro.site);
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:image" content={socialImageURL}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:alt" content="CT Business Automations - Save 20+ Hours Every Week">
   <meta property="og:site_name" content="CT Business Automations">
   <meta property="og:locale" content="en_US">
   

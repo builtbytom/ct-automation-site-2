@@ -24,11 +24,25 @@
   status = 200
   force = true
 
-# SPA fallback - everything else goes to index.html
+# Serve images with proper cache headers
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
+
+# Force fresh social share image
+[[headers]]
+  for = "/images/social-card-july-2025.webp"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+# Handle 404s properly for Astro static site
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404"
+  status = 404
 
 [[headers]]
   for = "/*"

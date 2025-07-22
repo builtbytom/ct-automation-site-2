@@ -32,7 +32,7 @@
 
 # Force fresh social share image
 [[headers]]
-  for = "/images/social-card-july-2025.webp"
+  for = "/images/ct-business-automation-results.webp"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
     Pragma = "no-cache"

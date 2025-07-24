@@ -1,0 +1,179 @@
+{
+  "name": "Lead Capture - No SMS Required",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "new-lead",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Lead Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [250, 300],
+      "webhookId": "lead-capture-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "YOUR_SHEET_ID",
+        "range": "A:E",
+        "options": {}
+      },
+      "id": "google-sheets",
+      "name": "Add to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [450, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "1",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "{{ $json.business_email }}",
+        "toEmail": "{{ $json.email }}",
+        "subject": "Thanks for contacting {{ $json.business_name }}!",
+        "emailFormat": "html",
+        "html": "<h2>Hi {{ $json.name }},</h2><p>Thank you for reaching out! We've received your inquiry and will get back to you within 24 hours.</p><p>In the meantime, feel free to check out our website for more information.</p><p>Best regards,<br>{{ $json.business_name }} Team</p>",
+        "options": {}
+      },
+      "id": "send-customer-email",
+      "name": "Send Thank You Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [650, 200],
+      "credentials": {
+        "smtp": {
+          "id": "2",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "alerts@{{ $json.business_domain }}",
+        "toEmail": "{{ $json.owner_email }}",
+        "subject": "🔥 NEW LEAD: {{ $json.name }} - RESPOND NOW!",
+        "emailFormat": "html",
+        "html": "<div style='background: #ff4444; color: white; padding: 20px; font-size: 18px; font-weight: bold;'>NEW LEAD ALERT - RESPOND IMMEDIATELY!</div><div style='padding: 20px; background: #f0f0f0;'><h3>Lead Details:</h3><p><strong>Name:</strong> {{ $json.name }}<br><strong>Email:</strong> <a href='mailto:{{ $json.email }}'>{{ $json.email }}</a><br><strong>Phone:</strong> <a href='tel:{{ $json.phone }}'>{{ $json.phone }}</a><br><strong>Message:</strong> {{ $json.message }}</p><p><strong>Submitted:</strong> {{ $now.format('MMM DD, YYYY h:mm A') }}</p></div>",
+        "options": {
+          "priority": "high"
+        }
+      },
+      "id": "alert-owner-email",
+      "name": "URGENT Email to Owner",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [650, 400],
+      "credentials": {
+        "smtp": {
+          "id": "2",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://maker.ifttt.com/trigger/new_lead/with/key/YOUR_IFTTT_KEY",
+        "options": {
+          "bodyParameters": {
+            "parameter": [
+              {
+                "name": "value1",
+                "value": "={{ $json.name }}"
+              },
+              {
+                "name": "value2", 
+                "value": "={{ $json.phone }}"
+              },
+              {
+                "name": "value3",
+                "value": "={{ $json.email }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "ifttt-notification",
+      "name": "Phone Push Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [850, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "botToken": "YOUR_TELEGRAM_BOT_TOKEN",
+        "chatId": "YOUR_CHAT_ID",
+        "text": "🚨 NEW LEAD ALERT!\n\n👤 {{ $json.name }}\n📧 {{ $json.email }}\n📱 {{ $json.phone }}\n💬 {{ $json.message }}\n\nRespond within 5 minutes for best results!",
+        "additionalFields": {}
+      },
+      "id": "telegram-alert",
+      "name": "Telegram Instant Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [850, 500],
+      "credentials": {
+        "telegramApi": {
+          "id": "5",
+          "name": "Telegram Bot"
+        }
+      },
+      "continueOnFail": true
+    }
+  ],
+  "connections": {
+    "webhook-trigger": {
+      "main": [
+        [
+          {
+            "node": "google-sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "send-customer-email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "alert-owner-email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ifttt-notification",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "telegram-alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "instanceId": "ct-business-automations"
+  },
+  "tags": [
+    {
+      "name": "Client Template",
+      "createdAt": "2024-01-22T12:00:00.000Z"
+    },
+    {
+      "name": "No Twilio Required",
+      "createdAt": "2024-01-22T12:00:00.000Z"
+    }
+  ]
+}

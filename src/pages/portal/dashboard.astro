@@ -1,0 +1,494 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// This would normally come from your database/API
+const clientData = {
+  businessName: "Connecticut Pizza Co.",
+  hourlyRate: 25,
+  currentMonth: {
+    hoursaved: 47,
+    tasksCompleted: 342,
+    afterHoursLeads: 14,
+    responseTime: 3,
+    revenue: 8400
+  },
+  automations: [
+    {
+      id: 1,
+      name: "Invoice Follow-ups",
+      status: "active",
+      lastRun: "2 hours ago",
+      nextRun: "Tomorrow 9:00 AM",
+      successRate: 98
+    },
+    {
+      id: 2,
+      name: "Customer Onboarding",
+      status: "active", 
+      lastRun: "Yesterday",
+      nextRun: "When new customer signs up",
+      processedThisWeek: 3
+    },
+    {
+      id: 3,
+      name: "Weekend Lead Response",
+      status: "active",
+      lastRun: "Saturday 6:47 PM",
+      nextRun: "On weekend inquiries",
+      successRate: 100
+    }
+  ],
+  recentActivity: [
+    { type: 'success', message: 'Invoice #1234 sent to john@example.com', time: '10 minutes ago' },
+    { type: 'success', message: 'Follow-up scheduled for Dec 3rd', time: '2 hours ago' },
+    { type: 'warning', message: 'Email to sarah@test.com bounced - needs attention', time: '3 hours ago' },
+    { type: 'success', message: 'New customer Mike Thompson onboarded', time: '1 day ago' },
+    { type: 'capture', message: 'After-hours lead from Susan White captured and responded', time: '2 days ago', revenue: 2400 }
+  ]
+};
+
+const dollarsSaved = clientData.currentMonth.hoursaved * clientData.hourlyRate;
+---
+
+<Layout title="Dashboard - CT Business Automations">
+  <div class="min-h-screen bg-cream">
+    <!-- Portal Navigation -->
+    <nav class="bg-navy-900 border-b border-white/10">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center gap-8">
+            <a href="/" class="text-white font-medium hover:text-coral-400 transition-colors">
+              ← Back to Main Site
+            </a>
+            <div class="text-white/60">|</div>
+            <h1 class="text-white font-medium">Client Portal</h1>
+          </div>
+          <div class="flex items-center gap-6">
+            <span class="text-white/80 text-sm">Welcome, {clientData.businessName}</span>
+            <button class="text-white/80 hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+      <!-- ROI Dashboard -->
+      <div class="bg-white rounded-xl shadow-sm p-8 mb-8">
+        <h2 class="text-2xl font-display text-navy-900 mb-6">Your Automation Impact This Month</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <!-- Hours Saved -->
+          <div class="bg-coral-50 rounded-lg p-6">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm text-coral-700">Time Saved</span>
+              <svg class="w-5 h-5 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="text-3xl font-bold text-navy-900">{clientData.currentMonth.hoursaved} hours</div>
+            <div class="text-sm text-coral-600 mt-1">${dollarsSaved.toLocaleString()} saved</div>
+            <div class="text-xs text-coral-600/80 mt-2">(at ${clientData.hourlyRate}/hr - <a href="#" class="underline">edit</a>)</div>
+          </div>
+
+          <!-- Tasks Completed -->
+          <div class="bg-navy-900 rounded-lg p-6 text-white">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm text-white/80">Tasks Automated</span>
+              <svg class="w-5 h-5 text-coral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <div class="text-3xl font-bold">{clientData.currentMonth.tasksCompleted}</div>
+            <div class="text-sm text-white/60 mt-1">Completed this month</div>
+          </div>
+
+          <!-- Opportunities Captured -->
+          <div class="bg-green-50 rounded-lg p-6">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm text-green-700">After-Hours Leads</span>
+              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="text-3xl font-bold text-navy-900">{clientData.currentMonth.afterHoursLeads}</div>
+            <div class="text-sm text-green-600 mt-1">${clientData.currentMonth.revenue.toLocaleString()} captured</div>
+            <div class="text-xs text-green-600/80 mt-2">Avg response: {clientData.currentMonth.responseTime} min</div>
+          </div>
+        </div>
+
+        <!-- Trend Chart Placeholder -->
+        <div class="border-t pt-6">
+          <div class="h-32 bg-gradient-to-r from-coral-50 to-coral-100 rounded-lg flex items-center justify-center text-coral-600 relative group cursor-pointer">
+            <span class="text-sm">📈 Monthly savings trend chart will go here</span>
+            <div class="absolute inset-0 bg-navy-900/90 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <div class="text-center">
+                <div class="text-2xl font-bold">587 hours saved YTD</div>
+                <div class="text-lg">$14,675 in labor costs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Automations -->
+      <div class="bg-white rounded-xl shadow-sm p-8 mb-8">
+        <h2 class="text-2xl font-display text-navy-900 mb-6">Active Automations</h2>
+        
+        <div class="space-y-4">
+          {clientData.automations.map((automation) => (
+            <div class="border rounded-lg p-6 hover:border-coral-200 transition-colors">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-4 mb-2">
+                    <h3 class="font-semibold text-lg text-navy-900">{automation.name}</h3>
+                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Active</span>
+                    <span class="text-sm" title="System Health">🟢</span>
+                    {automation.successRate && (
+                      <span class="text-xs text-gray-500">{automation.successRate}% success rate</span>
+                    )}
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    <span>Last ran: {automation.lastRun}</span>
+                    <span class="mx-2">•</span>
+                    <span>Next run: {automation.nextRun}</span>
+                    {automation.processedThisWeek && (
+                      <>
+                        <span class="mx-2">•</span>
+                        <span>Processed {automation.processedThisWeek} this week</span>
+                      </>
+                    )}
+                    <span class="mx-2">•</span>
+                    <span class="text-green-600 text-xs">Last error: Never</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <button 
+                    class="text-sm text-coral-600 hover:text-coral-700 font-medium"
+                    onclick={`document.getElementById('config-modal-${automation.id}').classList.remove('hidden')`}
+                  >
+                    Configure
+                  </button>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-coral-500"></div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Parameters -->
+        <div class="bg-white rounded-xl shadow-sm p-8">
+          <h2 class="text-2xl font-display text-navy-900 mb-6">Quick Settings</h2>
+          
+          <div class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Email Follow-up Delay
+                <span class="relative inline-block ml-1 group">
+                  <button class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                  <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    How long to wait before sending a reminder
+                  </span>
+                </span>
+              </label>
+              <select class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-coral-500">
+                <option>1 day</option>
+                <option selected>3 days</option>
+                <option>7 days</option>
+                <option>14 days</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Business Hours
+                <span class="relative inline-block ml-1 group">
+                  <button class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                  <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    Automations will only run during these hours
+                  </span>
+                </span>
+              </label>
+              <div class="flex gap-2">
+                <input type="time" value="09:00" class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-coral-500">
+                <span class="self-center">to</span>
+                <input type="time" value="17:00" class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-coral-500">
+              </div>
+              <p class="text-xs text-gray-500 mt-1">Automations will only run during these hours</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Default Reply Speed
+                <span class="relative inline-block ml-1 group">
+                  <button class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                  <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    How quickly to respond to new inquiries
+                  </span>
+                </span>
+              </label>
+              <select class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-coral-500">
+                <option>Immediate</option>
+                <option selected>Within 5 minutes</option>
+                <option>Within 15 minutes</option>
+                <option>Within 1 hour</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <div class="bg-white rounded-xl shadow-sm p-8">
+          <h2 class="text-2xl font-display text-navy-900 mb-6">Recent Activity</h2>
+          
+          <div class="space-y-3 max-h-96 overflow-y-auto">
+            {clientData.recentActivity.map((activity) => (
+              <div class="flex items-start gap-3 pb-3 border-b last:border-0">
+                {activity.type === 'success' && (
+                  <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )}
+                {activity.type === 'warning' && (
+                  <span class="text-xl">⚠️</span>
+                )}
+                {activity.type === 'capture' && (
+                  <svg class="w-5 h-5 text-coral-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                )}
+                <div class="flex-1">
+                  <p class="text-sm text-gray-700">{activity.message}</p>
+                  {activity.revenue && (
+                    <p class="text-sm font-semibold text-green-600 mt-1 bg-green-50 inline-block px-2 py-1 rounded">💰 ${activity.revenue} job booked!</p>
+                  )}
+                  <p class="text-xs text-gray-500 mt-1">{activity.time}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="bg-white rounded-xl shadow-sm p-8 mt-8">
+        <h2 class="text-2xl font-display text-navy-900 mb-6">Quick Actions</h2>
+        
+        <div class="flex flex-wrap gap-4">
+          <button class="bg-yellow-50 text-yellow-700 px-6 py-3 rounded-lg hover:bg-yellow-100 transition-colors">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">⏸️</span>
+              <div class="text-left">
+                <div>Pause All Automations</div>
+                <div class="text-xs text-yellow-600">Going away? Stop all with one click</div>
+              </div>
+            </div>
+          </button>
+          
+          <button class="bg-navy-900 text-white px-6 py-3 rounded-lg hover:bg-navy-800 transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Download Monthly Report
+          </button>
+          
+          <button class="bg-coral-500 text-white px-6 py-3 rounded-lg hover:bg-coral-600 transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            Priority Support (4hr response)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuration Modals -->
+  {clientData.automations.map((automation) => (
+    <div id={`config-modal-${automation.id}`} class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="p-6 border-b">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-display text-navy-900">Configure {automation.name}</h3>
+            <button 
+              onclick={`document.getElementById('config-modal-${automation.id}').classList.add('hidden')`}
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <div class="p-6 space-y-6">
+          {automation.id === 1 && (
+            <>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Follow-up Delay
+                  <span class="relative inline-block ml-1 group">
+                    <button class="text-gray-400 hover:text-gray-600">
+                      <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </button>
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                      Days to wait before sending invoice reminder
+                    </span>
+                  </span>
+                </label>
+                <select class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-coral-500">
+                  <option>Same day</option>
+                  <option>1 day</option>
+                  <option selected>3 days</option>
+                  <option>7 days</option>
+                  <option>14 days</option>
+                  <option>30 days</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Reminder Email Template</label>
+                <textarea 
+                  class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-coral-500" 
+                  rows="4"
+                  placeholder="Hi {{customer_name}}, This is a friendly reminder about invoice #{{invoice_number}}..."
+                ></textarea>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Exclude Customers</label>
+                <input 
+                  type="text" 
+                  class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-coral-500"
+                  placeholder="Enter customer emails to exclude (comma separated)"
+                />
+              </div>
+            </>
+          )}
+          
+          {automation.id === 2 && (
+            <>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Welcome Email Delay</label>
+                <select class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-coral-500">
+                  <option selected>Immediate</option>
+                  <option>5 minutes</option>
+                  <option>15 minutes</option>
+                  <option>1 hour</option>
+                  <option>Next business day</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Onboarding Steps</label>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <input type="checkbox" checked class="mr-2 text-coral-500">
+                    <span class="text-sm">Send welcome email</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" checked class="mr-2 text-coral-500">
+                    <span class="text-sm">Create customer profile</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" checked class="mr-2 text-coral-500">
+                    <span class="text-sm">Schedule follow-up call</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="mr-2 text-coral-500">
+                    <span class="text-sm">Add to newsletter</span>
+                  </label>
+                </div>
+              </div>
+            </>
+          )}
+          
+          {automation.id === 3 && (
+            <>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Weekend Response Time</label>
+                <select class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-coral-500">
+                  <option>Immediate</option>
+                  <option selected>Within 5 minutes</option>
+                  <option>Within 15 minutes</option>
+                  <option>Within 30 minutes</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Auto-Response Message</label>
+                <textarea 
+                  class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-coral-500" 
+                  rows="3"
+                  placeholder="Thanks for reaching out! We received your message and will get back to you within one business day..."
+                ></textarea>
+              </div>
+              
+              <div>
+                <label class="flex items-center">
+                  <input type="checkbox" checked class="mr-2 text-coral-500">
+                  <span class="text-sm">Send SMS notification to owner</span>
+                </label>
+              </div>
+            </>
+          )}
+        </div>
+        
+        <div class="p-6 border-t bg-gray-50 flex justify-end gap-3">
+          <button 
+            onclick={`document.getElementById('config-modal-${automation.id}').classList.add('hidden')`}
+            class="px-4 py-2 text-gray-600 hover:text-gray-800"
+          >
+            Cancel
+          </button>
+          <button class="px-6 py-2 bg-coral-500 text-white rounded-lg hover:bg-coral-600 transition-colors">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</Layout>
+
+<style>
+  /* Custom scrollbar for activity feed */
+  .overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+</style>

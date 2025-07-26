@@ -103,6 +103,7 @@ const socialImageURL = new URL(ogImage, Astro.site);
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
             event: 'pageview',
+            site: 'CT Automations',
             path: window.location.pathname,
             referrer: document.referrer || 'direct',
             mobile: /iPhone|Android/i.test(navigator.userAgent),

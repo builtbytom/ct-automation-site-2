@@ -93,6 +93,25 @@ const socialImageURL = new URL(ogImage, Astro.site);
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "skymuautys");
   </script>
+  
+  <!-- Visitor Notification Webhook -->
+  <script type="text/javascript">
+    if (typeof window !== 'undefined') {
+      setTimeout(function() {
+        fetch('https://hook.us2.make.com/wnazun7k3pcad00nnnv9ixmqm2xbka99', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            event: 'pageview',
+            path: window.location.pathname,
+            referrer: document.referrer || 'direct',
+            mobile: /iPhone|Android/i.test(navigator.userAgent),
+            timestamp: Date.now()
+          })
+        }).catch(function() {});
+      }, 1000);
+    }
+  </script>
 </head>
 <body>
   <slot />

@@ -1,0 +1,29 @@
+---
+// Analytics component to handle tracking scripts properly
+---
+
+<script>
+  // Polyfill for deprecated APIs that Clarity might be using
+  if (typeof window !== 'undefined') {
+    // Silence deprecation warnings from third-party scripts
+    const originalWarn = console.warn;
+    console.warn = function(...args) {
+      // Filter out h1 tag deprecation warnings from Clarity
+      if (args[0] && typeof args[0] === 'string' && 
+          args[0].includes('h1') && args[0].includes('deprecated')) {
+        return;
+      }
+      originalWarn.apply(console, args);
+    };
+
+    // Add any future analytics scripts here, loaded after page ready
+    window.addEventListener('load', function() {
+      // Use requestIdleCallback for non-critical scripts
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          // Analytics initialization would go here
+        }, { timeout: 5000 });
+      }
+    });
+  }
+</script>

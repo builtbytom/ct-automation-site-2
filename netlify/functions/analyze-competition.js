@@ -132,7 +132,6 @@ exports.handler = async (event, context) => {
           name: place.name,
           rating: place.rating || 0,
           reviewCount: place.user_ratings_total || 0,
-          responseRate: Math.floor(Math.random() * 100), // Google doesn't provide this
           monthlyReviews: Math.floor((place.user_ratings_total || 0) / 24), // Estimate
           address: place.formatted_address,
           placeId: place.place_id,
@@ -154,13 +153,11 @@ exports.handler = async (event, context) => {
           you: {
             rating: userBusiness ? (userBusiness.rating || 0) : 0,
             reviewCount: userBusiness ? (userBusiness.user_ratings_total || 0) : 0,
-            responseRate: Math.floor(Math.random() * 40), // Estimate low for opportunity
             monthlyReviews: userBusiness ? Math.floor((userBusiness.user_ratings_total || 0) / 24) : 0,
           },
           average: {
             rating: avgRating,
             reviewCount: avgReviews,
-            responseRate: 65, // Industry average estimate
             monthlyReviews: Math.floor(avgReviews / 24),
           },
           leader: competitors[0] || { name: 'No competitors found', rating: 0, reviewCount: 0 },
@@ -184,15 +181,6 @@ exports.handler = async (event, context) => {
         });
       }
 
-      if (analysisData.analysis.you.responseRate < 50) {
-        analysisData.analysis.opportunities.push({
-          type: 'response_rate',
-          title: 'Low Review Response Rate',
-          description: 'Responding to reviews shows you care about customer feedback',
-          impact: 'high',
-          automation: 'Automated review response system',
-        });
-      }
 
       // Cache the result
       cache.set(cacheKey, {
@@ -244,35 +232,30 @@ function generateMockData(businessName, location, industry) {
       name: `${industry ? industry.charAt(0).toUpperCase() + industry.slice(1) : 'Local'} Pro Services`,
       rating: (4.2 + Math.random() * 0.7).toFixed(1),
       reviewCount: Math.floor(150 + Math.random() * 200),
-      responseRate: Math.floor(70 + Math.random() * 30),
       monthlyReviews: Math.floor(5 + Math.random() * 10),
     },
     {
       name: `${location} ${industry || 'Business'} Experts`,
       rating: (4.0 + Math.random() * 0.8).toFixed(1),
       reviewCount: Math.floor(80 + Math.random() * 120),
-      responseRate: Math.floor(40 + Math.random() * 40),
       monthlyReviews: Math.floor(3 + Math.random() * 7),
     },
     {
       name: `Premier ${industry || 'Service'} Solutions`,
       rating: (4.5 + Math.random() * 0.4).toFixed(1),
       reviewCount: Math.floor(200 + Math.random() * 150),
-      responseRate: Math.floor(80 + Math.random() * 20),
       monthlyReviews: Math.floor(8 + Math.random() * 12),
     },
     {
       name: `${location} ${industry || 'Business'} Center`,
       rating: (3.8 + Math.random() * 0.9).toFixed(1),
       reviewCount: Math.floor(60 + Math.random() * 100),
-      responseRate: Math.floor(20 + Math.random() * 40),
       monthlyReviews: Math.floor(2 + Math.random() * 5),
     },
     {
       name: `Quality ${industry || 'Service'} Co`,
       rating: (4.1 + Math.random() * 0.6).toFixed(1),
       reviewCount: Math.floor(100 + Math.random() * 150),
-      responseRate: Math.floor(50 + Math.random() * 30),
       monthlyReviews: Math.floor(4 + Math.random() * 8),
     },
   ];
@@ -281,7 +264,6 @@ function generateMockData(businessName, location, industry) {
   competitors.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
 
   // Calculate your metrics
-  const yourResponseRate = Math.floor(10 + Math.random() * 30); // Intentionally low to show opportunity
   const yourMonthlyReviews = Math.floor(1 + Math.random() * 4);
 
   // Keywords analysis
@@ -300,19 +282,17 @@ function generateMockData(businessName, location, industry) {
       you: {
         rating: yourRating,
         reviewCount: yourReviews,
-        responseRate: yourResponseRate,
         monthlyReviews: yourMonthlyReviews,
       },
       average: {
         rating: avgRating,
         reviewCount: avgReviews,
-        responseRate: Math.floor(competitors.reduce((sum, c) => sum + c.responseRate, 0) / competitors.length),
         monthlyReviews: Math.floor(competitors.reduce((sum, c) => sum + c.monthlyReviews, 0) / competitors.length),
       },
       leader: competitors[0],
       competitors,
       missingKeywords,
-      opportunities: generateOpportunities(yourResponseRate, yourMonthlyReviews, avgRating, yourRating),
+      opportunities: generateOpportunities(yourMonthlyReviews, avgRating, yourRating),
     },
     competitorCount: competitors.length,
     generatedAt: new Date().toISOString(),
@@ -320,18 +300,8 @@ function generateMockData(businessName, location, industry) {
 }
 
 // Generate improvement opportunities based on data
-function generateOpportunities(responseRate, monthlyReviews, avgRating, yourRating) {
+function generateOpportunities(monthlyReviews, avgRating, yourRating) {
   const opportunities = [];
-
-  if (responseRate < 50) {
-    opportunities.push({
-      type: 'response_rate',
-      title: 'Low Review Response Rate',
-      description: `You're only responding to ${responseRate}% of reviews. Competitors average 65%+`,
-      impact: 'high',
-      automation: 'Automated review response system',
-    });
-  }
 
   if (monthlyReviews < 5) {
     opportunities.push({

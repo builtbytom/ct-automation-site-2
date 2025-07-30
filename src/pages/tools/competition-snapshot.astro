@@ -292,7 +292,6 @@ import Footer from '../../components/Footer.astro';
       // Determine status colors
       const ratingStatus = parseFloat(you.rating) >= parseFloat(average.rating) ? 'text-green-600' : 'text-red-600';
       const reviewStatus = you.reviewCount >= average.reviewCount ? 'text-green-600' : 'text-red-600';
-      const responseStatus = you.responseRate >= 50 ? 'text-green-600' : 'text-red-600';
       const velocityStatus = you.monthlyReviews >= average.monthlyReviews ? 'text-green-600' : 'text-red-600';
 
       resultsContainer.innerHTML = `
@@ -305,7 +304,7 @@ import Footer from '../../components/Footer.astro';
         </div>
         
         <!-- Overview Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <!-- Rating Card -->
           <div class="bg-white rounded-lg shadow-lg p-6">
             <div class="flex items-center justify-between mb-4">
@@ -354,29 +353,6 @@ import Footer from '../../components/Footer.astro';
             </div>
           </div>
 
-          <!-- Response Rate Card -->
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="font-semibold text-gray-700">Response Rate</h3>
-              <svg class="w-5 h-5 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-            </div>
-            <div class="space-y-2">
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">You:</span>
-                <span class="font-bold text-xl ${responseStatus}">${you.responseRate}%</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Average:</span>
-                <span class="font-medium">${average.responseRate}%</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Leader:</span>
-                <span class="font-medium text-green-600">${leader.responseRate}%</span>
-              </div>
-            </div>
-          </div>
 
           <!-- Monthly Reviews Card -->
           <div class="bg-white rounded-lg shadow-lg p-6">
@@ -448,7 +424,6 @@ import Footer from '../../components/Footer.astro';
                   <th class="text-left py-2 px-4 font-medium text-gray-700">Business</th>
                   <th class="text-center py-2 px-4 font-medium text-gray-700">Rating</th>
                   <th class="text-center py-2 px-4 font-medium text-gray-700">Reviews</th>
-                  <th class="text-center py-2 px-4 font-medium text-gray-700">Response Rate</th>
                   <th class="text-center py-2 px-4 font-medium text-gray-700">Monthly Growth</th>
                 </tr>
               </thead>
@@ -461,7 +436,6 @@ import Footer from '../../components/Footer.astro';
                     </td>
                     <td class="text-center py-3 px-4">${comp.rating} ⭐</td>
                     <td class="text-center py-3 px-4">${comp.reviewCount}</td>
-                    <td class="text-center py-3 px-4">${comp.responseRate}%</td>
                     <td class="text-center py-3 px-4">${comp.monthlyReviews}/mo</td>
                   </tr>
                 `).join('')}

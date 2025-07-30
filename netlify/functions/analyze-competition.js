@@ -87,14 +87,27 @@ exports.handler = async (event, context) => {
     }
 
     try {
-      // Search for the business and competitors
-      const searchQuery = industry 
-        ? `${industry} near ${location}`
-        : `businesses near ${businessName} ${location}`;
+      // First try to find the specific business
+      const businessSearchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(businessName + ' ' + location)}&key=${GOOGLE_PLACES_API_KEY}`;
       
-      const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(searchQuery)}&key=${GOOGLE_PLACES_API_KEY}`;
+      console.log('Searching for business:', businessName, location);
+      const businessSearchResponse = await fetch(businessSearchUrl);
+      const businessSearchData = await businessSearchResponse.json();
       
-      console.log('Searching for competitors:', searchQuery);
+      let userBusiness = null;
+      if (businessSearchData.status === 'OK' && businessSearchData.results.length > 0) {
+        userBusiness = businessSearchData.results[0];
+        console.log('Found user business:', userBusiness.name, userBusiness.rating, userBusiness.user_ratings_total);
+      }
+      
+      // Then search for competitors
+      const competitorQuery = industry 
+        ? `${industry} in ${location}`
+        : `restaurants in ${location}`;
+      
+      const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(competitorQuery)}&key=${GOOGLE_PLACES_API_KEY}`;
+      
+      console.log('Searching for competitors:', competitorQuery);
       const searchResponse = await fetch(searchUrl);
       const searchData = await searchResponse.json();
 
@@ -105,15 +118,10 @@ exports.handler = async (event, context) => {
 
       // Process results
       const places = searchData.results || [];
-      
-      // Try to find the user's business
-      const userBusiness = places.find(place => 
-        place.name.toLowerCase().includes(businessName.toLowerCase())
-      );
 
-      // Get competitor data
+      // Get competitor data (exclude the user's business if found)
       const competitors = places
-        .filter(place => place.name.toLowerCase() !== businessName.toLowerCase())
+        .filter(place => !userBusiness || place.place_id !== userBusiness.place_id)
         .slice(0, 5)
         .map(place => ({
           name: place.name,
@@ -139,10 +147,10 @@ exports.handler = async (event, context) => {
         location,
         analysis: {
           you: {
-            rating: userBusiness ? userBusiness.rating : 0,
-            reviewCount: userBusiness ? userBusiness.user_ratings_total : 0,
+            rating: userBusiness ? (userBusiness.rating || 0) : 0,
+            reviewCount: userBusiness ? (userBusiness.user_ratings_total || 0) : 0,
             responseRate: Math.floor(Math.random() * 40), // Estimate low for opportunity
-            monthlyReviews: userBusiness ? Math.floor(userBusiness.user_ratings_total / 24) : 0,
+            monthlyReviews: userBusiness ? Math.floor((userBusiness.user_ratings_total || 0) / 24) : 0,
           },
           average: {
             rating: avgRating,

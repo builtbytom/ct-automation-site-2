@@ -101,9 +101,14 @@ exports.handler = async (event, context) => {
       }
       
       // Then search for competitors
-      const competitorQuery = industry 
+      let competitorQuery = industry && industry !== 'restaurant'
         ? `${industry} in ${location}`
         : `restaurants in ${location}`;
+      
+      // Special handling for salons/spas
+      if (industry === 'salon' || industry === 'spa') {
+        competitorQuery = `hair salon beauty spa in ${location}`;
+      }
       
       const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(competitorQuery)}&key=${GOOGLE_PLACES_API_KEY}`;
       

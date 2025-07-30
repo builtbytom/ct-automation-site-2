@@ -1,0 +1,153 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout 
+  title="Free Business Tools | CT Business Automations"
+  description="Free tools to help Connecticut businesses save time and beat their competition. No email required."
+  keywords="free business tools, Connecticut business resources, competitor analysis, automation tools"
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-24 pb-12 px-4 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500">
+    <div class="container mx-auto max-w-4xl text-center relative z-10">
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
+        Free Tools for Connecticut Businesses
+      </h1>
+      
+      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        Real tools that solve real problems. No email required, no sales pitch. Just helpful resources from someone who's been there.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tools Grid -->
+  <section class="py-16 px-4 bg-white">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Competition Snapshot Tool -->
+        <a href="/tools/competition-snapshot" class="group block">
+          <div class="bg-gray-50 rounded-lg p-8 h-full hover:shadow-xl transition-all hover:-translate-y-1 border-2 border-transparent hover:border-coral-500">
+            <div class="bg-coral-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            
+            <h3 class="font-display text-2xl text-charcoal mb-3 group-hover:text-coral-500 transition-colors">
+              Competition Snapshot
+            </h3>
+            
+            <p class="text-gray-600 mb-4">
+              See how your business stacks up against local competitors on Google. Get ratings, reviews, and response rate comparisons in 60 seconds.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Free Forever</span>
+              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">No Email Required</span>
+              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">Real Google Data</span>
+            </div>
+            
+            <span class="text-coral-500 font-medium group-hover:underline">
+              Try it now →
+            </span>
+          </div>
+        </a>
+
+        <!-- Coming Soon Tools -->
+        <div class="bg-gray-100 rounded-lg p-8 opacity-60">
+          <div class="bg-gray-200 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          
+          <h3 class="font-display text-2xl text-gray-600 mb-3">
+            Review Response Generator
+          </h3>
+          
+          <p class="text-gray-500 mb-4">
+            AI-powered responses to customer reviews that sound like you, not a robot. Respond to reviews 10x faster.
+          </p>
+          
+          <span class="text-gray-400 font-medium">
+            Coming Soon
+          </span>
+        </div>
+
+        <div class="bg-gray-100 rounded-lg p-8 opacity-60">
+          <div class="bg-gray-200 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          
+          <h3 class="font-display text-2xl text-gray-600 mb-3">
+            ROI Calculator
+          </h3>
+          
+          <p class="text-gray-500 mb-4">
+            Calculate exactly how much time and money automation would save your specific business.
+          </p>
+          
+          <span class="text-gray-400 font-medium">
+            Coming Soon
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Free Section -->
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="container mx-auto max-w-3xl text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-charcoal mb-6">
+        Why Give Away Free Tools?
+      </h2>
+      
+      <div class="text-lg text-gray-600 space-y-4 text-left">
+        <p>
+          Simple. I believe in generosity-based marketing. No tricks, no "free trial then surprise charges," no selling your email to spam lists.
+        </p>
+        
+        <p>
+          These tools solve real problems I've seen Connecticut businesses struggle with. If they help you, great. If you want more help automating your business, even better.
+        </p>
+        
+        <p>
+          But there's no catch. Use them as much as you want. Share them with other business owners. The value speaks for itself.
+        </p>
+      </div>
+      
+      <div class="mt-8">
+        <img src="/tom-headshot.png" alt="Tom Lucia" class="w-20 h-20 rounded-full mx-auto mb-2" />
+        <p class="text-sm text-gray-600">- Tom Lucia, Founder</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-4 bg-gradient-to-br from-navy-900 to-navy-800">
+    <div class="container mx-auto max-w-3xl text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white mb-4">
+        Want a Tool That Solves Your Specific Problem?
+      </h2>
+      <p class="text-lg text-white/90 mb-8">
+        Tell me what manual task is killing your productivity. If enough people have the same problem, I'll build a free tool for it.
+      </p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform">
+        Suggest a Tool
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

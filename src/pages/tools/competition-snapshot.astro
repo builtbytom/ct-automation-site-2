@@ -1,0 +1,507 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout 
+  title="Free Competition Analysis Tool | CT Business Automations"
+  description="See how your Connecticut business stacks up against local competitors on Google. Get ratings, reviews, and response rate comparisons in 60 seconds."
+  keywords="competitor analysis tool, local business competition, Google reviews comparison, Connecticut business analysis"
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-24 pb-12 px-4 bg-gradient-to-br from-navy-900 via-navy-800 to-coral-500">
+    <div class="container mx-auto max-w-4xl text-center relative z-10">
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white/90 text-sm mb-6">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        100% Free Tool
+      </div>
+      
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
+        How Does Your Business<br />Stack Up Locally?
+      </h1>
+      
+      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        Get a competitive analysis in 60 seconds. See your Google ratings, review counts, and response rates compared to local competitors.
+      </p>
+
+      <div class="flex flex-wrap gap-4 justify-center text-white/80 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Real Google Data
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          No Email Required
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Instant Results
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Form Section -->
+  <section class="py-16 px-4 bg-white">
+    <div class="container mx-auto max-w-2xl">
+      <div class="bg-gray-50 rounded-2xl p-8 shadow-lg">
+        <form id="competition-form" class="space-y-6">
+          <div>
+            <label for="business-name" class="block text-sm font-medium text-gray-700 mb-2">
+              Your Business Name
+            </label>
+            <input
+              type="text"
+              id="business-name"
+              name="businessName"
+              required
+              placeholder="e.g., Kate's Salon"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-coral-500 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="location" class="block text-sm font-medium text-gray-700 mb-2">
+              Location
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              required
+              placeholder="e.g., Derby, CT"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-coral-500 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="industry" class="block text-sm font-medium text-gray-700 mb-2">
+              Industry (Optional)
+            </label>
+            <select
+              id="industry"
+              name="industry"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-coral-500 transition-colors"
+            >
+              <option value="">Select your industry...</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="salon">Salon/Spa</option>
+              <option value="contractor">Contractor</option>
+              <option value="retail">Retail Store</option>
+              <option value="medical">Medical/Dental</option>
+              <option value="automotive">Automotive</option>
+              <option value="professional">Professional Services</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            id="analyze-button"
+            class="w-full bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          >
+            Analyze My Competition →
+          </button>
+        </form>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden">
+          <div class="text-center py-12">
+            <div class="inline-flex items-center gap-3">
+              <svg class="animate-spin h-8 w-8 text-coral-500" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span class="text-lg text-gray-600">Analyzing local competition...</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-4">This usually takes 10-15 seconds</p>
+          </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="hidden">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-6 mt-6">
+            <p class="text-red-700 font-medium">Oops! Something went wrong.</p>
+            <p class="text-red-600 text-sm mt-1" id="error-message">Please try again or contact support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section (Initially Hidden) -->
+  <section id="results-section" class="hidden py-16 px-4 bg-gray-50">
+    <div class="container mx-auto max-w-6xl">
+      <div id="results-container">
+        <!-- Results will be dynamically inserted here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-16 px-4 bg-white">
+    <div class="container mx-auto max-w-6xl">
+      <h2 class="font-display text-3xl sm:text-4xl text-center text-charcoal mb-12">
+        What You'll Discover
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="bg-coral-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl text-charcoal mb-2">Rating Comparison</h3>
+          <p class="text-gray-600">See how your star rating stacks up against local competitors and the industry average.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="bg-coral-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl text-charcoal mb-2">Response Rates</h3>
+          <p class="text-gray-600">Discover if you're losing customers because competitors respond to reviews faster.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="bg-coral-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl text-charcoal mb-2">Growth Velocity</h3>
+          <p class="text-gray-600">Learn who's growing fastest with monthly review counts and keyword analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-4 bg-gradient-to-br from-navy-900 to-navy-800">
+    <div class="container mx-auto max-w-3xl text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white mb-4">
+        Ready to Beat Your Competition?
+      </h2>
+      <p class="text-lg text-white/90 mb-8">
+        This free tool shows you where you're losing. Our automation services help you win.
+      </p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-coral-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform">
+        Get Help Automating
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Form handling
+  const form = document.getElementById('competition-form') as HTMLFormElement;
+  const loadingState = document.getElementById('loading-state');
+  const errorState = document.getElementById('error-state');
+  const resultsSection = document.getElementById('results-section');
+  const resultsContainer = document.getElementById('results-container');
+  const analyzeButton = document.getElementById('analyze-button') as HTMLButtonElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(form);
+    const businessName = formData.get('businessName');
+    const location = formData.get('location');
+    const industry = formData.get('industry');
+
+    // Reset states
+    errorState?.classList.add('hidden');
+    resultsSection?.classList.add('hidden');
+    
+    // Show loading
+    form.classList.add('hidden');
+    loadingState?.classList.remove('hidden');
+    analyzeButton.disabled = true;
+
+    try {
+      // Call API (will implement the actual function next)
+      const response = await fetch('/.netlify/functions/analyze-competition', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          businessName,
+          location,
+          industry,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to analyze competition');
+      }
+
+      const data = await response.json();
+      
+      // Display results
+      displayResults(data);
+      
+    } catch (error) {
+      console.error('Error:', error);
+      
+      // Show error
+      loadingState?.classList.add('hidden');
+      form.classList.remove('hidden');
+      errorState?.classList.remove('hidden');
+      
+      const errorMessage = document.getElementById('error-message');
+      if (errorMessage) {
+        errorMessage.textContent = 'Unable to analyze competition right now. Please try again later.';
+      }
+    } finally {
+      analyzeButton.disabled = false;
+    }
+  });
+
+  function displayResults(data: any) {
+    // Hide loading, show results
+    loadingState?.classList.add('hidden');
+    resultsSection?.classList.remove('hidden');
+
+    if (resultsContainer) {
+      const analysis = data.analysis;
+      const you = analysis.you;
+      const average = analysis.average;
+      const leader = analysis.leader;
+
+      // Determine status colors
+      const ratingStatus = parseFloat(you.rating) >= parseFloat(average.rating) ? 'text-green-600' : 'text-red-600';
+      const reviewStatus = you.reviewCount >= average.reviewCount ? 'text-green-600' : 'text-red-600';
+      const responseStatus = you.responseRate >= 50 ? 'text-green-600' : 'text-red-600';
+      const velocityStatus = you.monthlyReviews >= average.monthlyReviews ? 'text-green-600' : 'text-red-600';
+
+      resultsContainer.innerHTML = `
+        <div class="text-center mb-8">
+          <h2 class="font-display text-3xl sm:text-4xl text-charcoal mb-2">
+            ${data.businessName} vs Local Competition
+          </h2>
+          <p class="text-gray-600">Analysis based on ${data.competitorCount} local competitors in ${data.location}</p>
+          ${data.cached ? '<p class="text-sm text-gray-500 mt-1">Cached result from ' + data.cacheAge + ' minutes ago</p>' : ''}
+        </div>
+        
+        <!-- Overview Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <!-- Rating Card -->
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-semibold text-gray-700">Rating</h3>
+              <svg class="w-5 h-5 text-coral-500" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">You:</span>
+                <span class="font-bold text-xl ${ratingStatus}">${you.rating} ⭐</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">Average:</span>
+                <span class="font-medium">${average.rating} ⭐</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">Leader:</span>
+                <span class="font-medium text-green-600">${leader.rating} ⭐</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review Count Card -->
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-semibold text-gray-700">Total Reviews</h3>
+              <svg class="w-5 h-5 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+              </svg>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">You:</span>
+                <span class="font-bold text-xl ${reviewStatus}">${you.reviewCount}</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">Average:</span>
+                <span class="font-medium">${average.reviewCount}</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">Leader:</span>
+                <span class="font-medium text-green-600">${leader.reviewCount}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Response Rate Card -->
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-semibold text-gray-700">Response Rate</h3>
+              <svg class="w-5 h-5 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">You:</span>
+                <span class="font-bold text-xl ${responseStatus}">${you.responseRate}%</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">Average:</span>
+                <span class="font-medium">${average.responseRate}%</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">Leader:</span>
+                <span class="font-medium text-green-600">${leader.responseRate}%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Monthly Reviews Card -->
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-semibold text-gray-700">Monthly Growth</h3>
+              <svg class="w-5 h-5 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+              </svg>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">You:</span>
+                <span class="font-bold text-xl ${velocityStatus}">${you.monthlyReviews}/mo</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">Average:</span>
+                <span class="font-medium">${average.monthlyReviews}/mo</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-600">Leader:</span>
+                <span class="font-medium text-green-600">${leader.monthlyReviews}/mo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Opportunities Section -->
+        ${analysis.opportunities && analysis.opportunities.length > 0 ? `
+          <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h3 class="font-display text-2xl text-charcoal mb-6">Growth Opportunities Found</h3>
+            <div class="space-y-4">
+              ${analysis.opportunities.map(opp => `
+                <div class="border-l-4 ${opp.impact === 'high' ? 'border-red-500' : 'border-yellow-500'} pl-4 py-2">
+                  <h4 class="font-semibold text-lg text-charcoal">${opp.title}</h4>
+                  <p class="text-gray-600 mb-2">${opp.description}</p>
+                  <p class="text-sm text-coral-500 font-medium">
+                    ✨ Automation solution: ${opp.automation}
+                  </p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Missing Keywords -->
+        ${analysis.missingKeywords && analysis.missingKeywords.length > 0 ? `
+          <div class="bg-gray-50 rounded-lg p-6 mb-8">
+            <h3 class="font-semibold text-lg text-charcoal mb-3">Keywords Your Competitors Use (But You Don't)</h3>
+            <div class="flex flex-wrap gap-2">
+              ${analysis.missingKeywords.map(keyword => `
+                <span class="bg-white px-3 py-1 rounded-full text-sm text-gray-700 border border-gray-200">
+                  ${keyword}
+                </span>
+              `).join('')}
+            </div>
+            <p class="text-sm text-gray-600 mt-3">
+              These keywords help customers find businesses like yours. Add them to your Google Business Profile.
+            </p>
+          </div>
+        ` : ''}
+
+        <!-- Competitors List -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <h3 class="font-display text-2xl text-charcoal mb-6">Top Local Competitors</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left py-2 px-4 font-medium text-gray-700">Business</th>
+                  <th class="text-center py-2 px-4 font-medium text-gray-700">Rating</th>
+                  <th class="text-center py-2 px-4 font-medium text-gray-700">Reviews</th>
+                  <th class="text-center py-2 px-4 font-medium text-gray-700">Response Rate</th>
+                  <th class="text-center py-2 px-4 font-medium text-gray-700">Monthly Growth</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${analysis.competitors.map((comp, index) => `
+                  <tr class="border-b border-gray-100 ${index === 0 ? 'bg-green-50' : ''}">
+                    <td class="py-3 px-4">
+                      ${comp.name}
+                      ${index === 0 ? '<span class="text-xs text-green-600 font-medium ml-2">LEADER</span>' : ''}
+                    </td>
+                    <td class="text-center py-3 px-4">${comp.rating} ⭐</td>
+                    <td class="text-center py-3 px-4">${comp.reviewCount}</td>
+                    <td class="text-center py-3 px-4">${comp.responseRate}%</td>
+                    <td class="text-center py-3 px-4">${comp.monthlyReviews}/mo</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="bg-gradient-to-br from-navy-900 to-navy-800 rounded-lg p-8 text-center text-white">
+          <h3 class="font-display text-2xl mb-4">Ready to Beat Your Competition?</h3>
+          <p class="text-white/90 mb-6 max-w-2xl mx-auto">
+            We can automate your review responses, increase your review velocity, and help you rank higher than your competitors.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" class="bg-coral-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-coral-400 transition-all hover:scale-105 transform inline-block">
+              Get Automation Help →
+            </a>
+            <button 
+              onclick="window.print()" 
+              class="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/30 transition-all inline-block"
+            >
+              Download Report
+            </button>
+          </div>
+        </div>
+        
+        <div class="text-center mt-8">
+          <button 
+            onclick="location.reload()" 
+            class="text-coral-500 hover:text-coral-400 font-medium"
+          >
+            ← Analyze Another Business
+          </button>
+        </div>
+      `;
+    }
+  }
+</script>
+
+<style>
+  /* Add any custom styles if needed */
+</style>

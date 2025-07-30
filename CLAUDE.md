@@ -4,6 +4,16 @@
 
 Building a white-label business automation platform where Tom provides automation services to Connecticut businesses at $2,500 setup + $400/month recurring.
 
+### 🆕 Free Competition Analysis Tool (July 30, 2025)
+- **URL**: /tools/competition-snapshot
+- **Purpose**: Lead generation through generosity marketing
+- **Status**: Built with mock data, ready for Google Places API
+- **Features**: 
+  - Compare ratings, reviews, response rates vs competitors
+  - Identify missing keywords and growth opportunities
+  - Natural tie-in to automation services
+  - 24-hour caching and rate limiting built in
+
 ## 🏗️ Current Infrastructure (July 23, 2025)
 
 ### Live Services

@@ -101,13 +101,25 @@ exports.handler = async (event, context) => {
       }
       
       // Then search for competitors
-      let competitorQuery = industry && industry !== 'restaurant'
-        ? `${industry} in ${location}`
-        : `restaurants in ${location}`;
+      let competitorQuery;
       
-      // Special handling for salons/spas
-      if (industry === 'salon' || industry === 'spa') {
-        competitorQuery = `hair salon beauty spa in ${location}`;
+      // Special handling for different industries
+      if (industry === 'salon') {
+        competitorQuery = `hair salon OR beauty salon OR nail salon in ${location}`;
+      } else if (industry === 'spa') {
+        competitorQuery = `spa OR day spa OR beauty spa in ${location}`;
+      } else if (industry === 'contractor') {
+        competitorQuery = `contractor OR construction OR home improvement in ${location}`;
+      } else if (industry === 'retail') {
+        competitorQuery = `retail store OR shop in ${location}`;
+      } else if (industry === 'medical') {
+        competitorQuery = `doctor OR medical clinic OR dentist in ${location}`;
+      } else if (industry === 'automotive') {
+        competitorQuery = `auto repair OR car service OR mechanic in ${location}`;
+      } else if (industry && industry !== 'restaurant') {
+        competitorQuery = `${industry} in ${location}`;
+      } else {
+        competitorQuery = `restaurants in ${location}`;
       }
       
       const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(competitorQuery)}&key=${GOOGLE_PLACES_API_KEY}`;

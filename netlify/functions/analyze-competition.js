@@ -104,32 +104,54 @@ exports.handler = async (event, context) => {
       let competitorQuery;
       
       // Special handling for different industries
-      if (industry === 'salon') {
-        competitorQuery = `hair salons near ${location}`;
-      } else if (industry === 'spa') {
-        competitorQuery = `spas near ${location}`;
-      } else if (industry === 'contractor') {
-        competitorQuery = `contractors near ${location}`;
-      } else if (industry === 'retail') {
-        competitorQuery = `retail stores near ${location}`;
-      } else if (industry === 'medical') {
-        competitorQuery = `medical clinics near ${location}`;
-      } else if (industry === 'automotive') {
-        competitorQuery = `auto repair near ${location}`;
-      } else if (industry && industry !== 'restaurant') {
+      const industrySearchTerms = {
+        salon: 'hair salons nail salons',
+        spa: 'spa day spa massage',
+        contractor: 'general contractor home improvement',
+        plumber: 'plumber plumbing service',
+        electrician: 'electrician electrical contractor',
+        hvac: 'hvac heating cooling air conditioning',
+        landscaping: 'landscaping lawn care',
+        retail: 'retail store shop',
+        medical: 'doctor medical clinic healthcare',
+        dental: 'dentist dental office',
+        veterinary: 'veterinarian animal hospital',
+        automotive: 'auto repair mechanic car service',
+        fitness: 'gym fitness center health club',
+        real_estate: 'real estate agency realtor',
+        insurance: 'insurance agency agent',
+        accounting: 'accountant cpa tax service',
+        law: 'lawyer attorney law firm',
+        daycare: 'daycare childcare preschool',
+        cleaning: 'cleaning service house cleaning',
+      };
+      
+      if (industrySearchTerms[industry]) {
+        competitorQuery = `${industrySearchTerms[industry]} near ${location}`;
+      } else if (industry) {
         competitorQuery = `${industry} near ${location}`;
       } else {
-        competitorQuery = `restaurants near ${location}`;
+        competitorQuery = `businesses near ${location}`;
       }
       
       // Add type parameter for certain industries
+      const placeTypes = {
+        salon: 'beauty_salon',
+        spa: 'spa',
+        restaurant: 'restaurant',
+        dental: 'dentist',
+        veterinary: 'veterinary_care',
+        fitness: 'gym',
+        real_estate: 'real_estate_agency',
+        insurance: 'insurance_agency',
+        accounting: 'accounting',
+        law: 'lawyer',
+        // Note: Many industries don't have specific Google place types
+      };
+      
       let placeType = '';
-      if (industry === 'salon') {
-        placeType = '&type=beauty_salon';
-      } else if (industry === 'spa') {
-        placeType = '&type=spa';
-      } else if (industry === 'restaurant') {
-        placeType = '&type=restaurant';
+      if (placeTypes[industry]) {
+        placeType = `&type=${placeTypes[industry]}`;
       }
       
       const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(competitorQuery)}${placeType}&key=${GOOGLE_PLACES_API_KEY}`;

@@ -105,24 +105,34 @@ exports.handler = async (event, context) => {
       
       // Special handling for different industries
       if (industry === 'salon') {
-        competitorQuery = `hair salon OR beauty salon OR nail salon in ${location}`;
+        competitorQuery = `hair salons near ${location}`;
       } else if (industry === 'spa') {
-        competitorQuery = `spa OR day spa OR beauty spa in ${location}`;
+        competitorQuery = `spas near ${location}`;
       } else if (industry === 'contractor') {
-        competitorQuery = `contractor OR construction OR home improvement in ${location}`;
+        competitorQuery = `contractors near ${location}`;
       } else if (industry === 'retail') {
-        competitorQuery = `retail store OR shop in ${location}`;
+        competitorQuery = `retail stores near ${location}`;
       } else if (industry === 'medical') {
-        competitorQuery = `doctor OR medical clinic OR dentist in ${location}`;
+        competitorQuery = `medical clinics near ${location}`;
       } else if (industry === 'automotive') {
-        competitorQuery = `auto repair OR car service OR mechanic in ${location}`;
+        competitorQuery = `auto repair near ${location}`;
       } else if (industry && industry !== 'restaurant') {
-        competitorQuery = `${industry} in ${location}`;
+        competitorQuery = `${industry} near ${location}`;
       } else {
-        competitorQuery = `restaurants in ${location}`;
+        competitorQuery = `restaurants near ${location}`;
       }
       
-      const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(competitorQuery)}&key=${GOOGLE_PLACES_API_KEY}`;
+      // Add type parameter for certain industries
+      let placeType = '';
+      if (industry === 'salon') {
+        placeType = '&type=beauty_salon';
+      } else if (industry === 'spa') {
+        placeType = '&type=spa';
+      } else if (industry === 'restaurant') {
+        placeType = '&type=restaurant';
+      }
+      
+      const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(competitorQuery)}${placeType}&key=${GOOGLE_PLACES_API_KEY}`;
       
       console.log('Searching for competitors:', competitorQuery);
       const searchResponse = await fetch(searchUrl);

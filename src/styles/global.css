@@ -23,7 +23,26 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+    @apply font-display;
+  }
+  
+  /* Tighter tracking only for large headings */
+  h1 {
+    @apply tracking-tight;
+  }
+  
+  /* Better readability for medium headings */
+  h2, h3 {
+    @apply tracking-normal;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Article titles and similar */
+  .text-xl.font-semibold,
+  .text-lg.font-bold,
+  .text-xl.font-bold {
+    letter-spacing: 0.01em;
+    line-height: 1.4;
   }
   
   p {

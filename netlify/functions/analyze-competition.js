@@ -1,6 +1,48 @@
 // Competition Analysis Function
 // Analyzes local business competition using Google Places API
 
+// Calculate distance between two points in miles
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 3959; // Radius of the Earth in miles
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return Math.round(R * c * 10) / 10; // Round to 1 decimal
+}
+
+// Generate missing keywords based on competitor analysis
+function generateMissingKeywords(userBusiness, competitors, industry) {
+  const keywords = [];
+  
+  // Industry-specific keywords
+  const industryKeywords = {
+    salon: ['online booking', 'walk-ins welcome', 'gift cards', 'color specialist'],
+    restaurant: ['delivery', 'takeout', 'outdoor seating', 'reservations'],
+    contractor: ['free estimates', 'licensed & insured', 'emergency service', '24/7'],
+    medical: ['new patients', 'telehealth', 'same day appointments', 'accepts insurance'],
+    retail: ['curbside pickup', 'online shopping', 'free shipping', 'returns accepted'],
+  };
+  
+  // Add relevant industry keywords
+  if (industryKeywords[industry]) {
+    keywords.push(...industryKeywords[industry]);
+  } else {
+    // Generic keywords
+    keywords.push('online booking', 'free consultation', 'appointments available');
+  }
+  
+  // Check for missing online presence indicators
+  if (!userBusiness?.website) {
+    keywords.push('visit our website');
+  }
+  
+  return keywords.slice(0, 5); // Return top 5
+}
+
 // Rate limiting setup
 const rateLimit = new Map();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
@@ -168,18 +210,52 @@ exports.handler = async (event, context) => {
       // Process results
       const places = searchData.results || [];
 
-      // Get competitor data (exclude the user's business if found)
-      const competitors = places
-        .filter(place => !userBusiness || place.place_id !== userBusiness.place_id)
-        .slice(0, 5)
-        .map(place => ({
+      // Get detailed data for user business if found
+      let userBusinessDetails = null;
+      if (userBusiness && userBusiness.place_id) {
+        try {
+          const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${userBusiness.place_id}&fields=name,rating,user_ratings_total,opening_hours,website,photos,geometry&key=${GOOGLE_PLACES_API_KEY}`;
+          const detailsResponse = await fetch(detailsUrl);
+          const detailsData = await detailsResponse.json();
+          if (detailsData.status === 'OK') {
+            userBusinessDetails = detailsData.result;
+          }
+        } catch (err) {
+          console.error('Error fetching user business details:', err);
+        }
+      }
+
+      // Get competitor data with additional fields
+      const competitors = [];
+      const userLat = userBusinessDetails?.geometry?.location?.lat;
+      const userLng = userBusinessDetails?.geometry?.location?.lng;
+      
+      for (const place of places.filter(p => !userBusiness || p.place_id !== userBusiness.place_id).slice(0, 5)) {
+        const competitor = {
           name: place.name,
           rating: place.rating || 0,
           reviewCount: place.user_ratings_total || 0,
           monthlyReviews: Math.floor((place.user_ratings_total || 0) / 24), // Estimate
           address: place.formatted_address,
           placeId: place.place_id,
-        }));
+          hasWebsite: !!place.website,
+          photoCount: place.photos?.length || 0,
+          isOpen: place.opening_hours?.open_now,
+          priceLevel: place.price_level,
+        };
+        
+        // Calculate distance if we have user's location
+        if (userLat && userLng && place.geometry?.location) {
+          const distance = calculateDistance(
+            userLat, userLng,
+            place.geometry.location.lat,
+            place.geometry.location.lng
+          );
+          competitor.distance = distance;
+        }
+        
+        competitors.push(competitor);
+      }
 
       // Calculate averages
       const avgRating = competitors.length > 0 
@@ -189,24 +265,51 @@ exports.handler = async (event, context) => {
         ? Math.floor(competitors.reduce((sum, c) => sum + c.reviewCount, 0) / competitors.length)
         : 0;
 
+      // Additional analysis
+      const competitorsWithin1Mile = competitors.filter(c => c.distance && c.distance <= 1).length;
+      const competitorsWithWebsite = competitors.filter(c => c.hasWebsite).length;
+      const avgPhotoCount = competitors.length > 0
+        ? Math.floor(competitors.reduce((sum, c) => sum + c.photoCount, 0) / competitors.length)
+        : 0;
+      
+      // Hours analysis
+      let hoursComparison = null;
+      if (userBusinessDetails?.opening_hours?.weekday_text) {
+        hoursComparison = {
+          isOpen: userBusinessDetails.opening_hours.open_now,
+          weekdayText: userBusinessDetails.opening_hours.weekday_text,
+          // Note: Detailed hours comparison would require parsing weekday_text
+        };
+      }
+
       // Build response
       const analysisData = {
         businessName,
         location,
         analysis: {
           you: {
-            rating: userBusiness ? (userBusiness.rating || 0) : 0,
-            reviewCount: userBusiness ? (userBusiness.user_ratings_total || 0) : 0,
-            monthlyReviews: userBusiness ? Math.floor((userBusiness.user_ratings_total || 0) / 24) : 0,
+            rating: userBusinessDetails ? (userBusinessDetails.rating || userBusiness?.rating || 0) : 0,
+            reviewCount: userBusinessDetails ? (userBusinessDetails.user_ratings_total || userBusiness?.user_ratings_total || 0) : 0,
+            monthlyReviews: userBusinessDetails ? Math.floor((userBusinessDetails.user_ratings_total || userBusiness?.user_ratings_total || 0) / 24) : 0,
+            hasWebsite: !!userBusinessDetails?.website,
+            photoCount: userBusinessDetails?.photos?.length || 0,
+            hoursData: hoursComparison,
           },
           average: {
             rating: avgRating,
             reviewCount: avgReviews,
             monthlyReviews: Math.floor(avgReviews / 24),
+            photoCount: avgPhotoCount,
           },
           leader: competitors[0] || { name: 'No competitors found', rating: 0, reviewCount: 0 },
           competitors: competitors,
-          missingKeywords: ['online booking', 'appointment scheduling', 'text reminders'],
+          insights: {
+            competitorsWithin1Mile,
+            closestCompetitor: competitors.find(c => c.distance)?.distance || null,
+            competitorsWithWebsite,
+            websitePercentage: competitors.length > 0 ? Math.round((competitorsWithWebsite / competitors.length) * 100) : 0,
+          },
+          missingKeywords: generateMissingKeywords(userBusinessDetails, competitors, industry),
           opportunities: [],
         },
         competitorCount: competitors.length,
@@ -222,6 +325,38 @@ exports.handler = async (event, context) => {
           description: `Your ${analysisData.analysis.you.rating} star rating is below the local average of ${avgRating}`,
           impact: 'high',
           automation: 'Automated review request campaigns to happy customers',
+        });
+      }
+      
+      // Online presence opportunities
+      if (!analysisData.analysis.you.hasWebsite && analysisData.analysis.insights.websitePercentage > 50) {
+        analysisData.analysis.opportunities.push({
+          type: 'online_presence',
+          title: 'Missing Website',
+          description: `${analysisData.analysis.insights.websitePercentage}% of your competitors have websites. You're missing online visibility.`,
+          impact: 'high',
+          automation: 'Quick website setup with automated content updates',
+        });
+      }
+      
+      if (analysisData.analysis.you.photoCount < avgPhotoCount) {
+        analysisData.analysis.opportunities.push({
+          type: 'visual_content',
+          title: 'Low Photo Count',
+          description: `You have ${analysisData.analysis.you.photoCount} photos. Competitors average ${avgPhotoCount}. More photos = more clicks.`,
+          impact: 'medium',
+          automation: 'Automated photo reminders and upload assistance',
+        });
+      }
+      
+      // Proximity warning
+      if (competitorsWithin1Mile >= 3) {
+        analysisData.analysis.opportunities.push({
+          type: 'proximity',
+          title: 'High Local Competition',
+          description: `${competitorsWithin1Mile} direct competitors within 1 mile. Need to differentiate strongly.`,
+          impact: 'high',
+          automation: 'Hyperlocal SEO and targeted review campaigns',
         });
       }
 
@@ -277,30 +412,45 @@ function generateMockData(businessName, location, industry) {
       rating: (4.2 + Math.random() * 0.7).toFixed(1),
       reviewCount: Math.floor(150 + Math.random() * 200),
       monthlyReviews: Math.floor(5 + Math.random() * 10),
+      distance: (0.5 + Math.random() * 2).toFixed(1),
+      hasWebsite: Math.random() > 0.3,
+      photoCount: Math.floor(10 + Math.random() * 30),
     },
     {
       name: `${location} ${industry || 'Business'} Experts`,
       rating: (4.0 + Math.random() * 0.8).toFixed(1),
       reviewCount: Math.floor(80 + Math.random() * 120),
       monthlyReviews: Math.floor(3 + Math.random() * 7),
+      distance: (0.8 + Math.random() * 3).toFixed(1),
+      hasWebsite: Math.random() > 0.4,
+      photoCount: Math.floor(5 + Math.random() * 25),
     },
     {
       name: `Premier ${industry || 'Service'} Solutions`,
       rating: (4.5 + Math.random() * 0.4).toFixed(1),
       reviewCount: Math.floor(200 + Math.random() * 150),
       monthlyReviews: Math.floor(8 + Math.random() * 12),
+      distance: (1.2 + Math.random() * 2).toFixed(1),
+      hasWebsite: true,
+      photoCount: Math.floor(20 + Math.random() * 40),
     },
     {
       name: `${location} ${industry || 'Business'} Center`,
       rating: (3.8 + Math.random() * 0.9).toFixed(1),
       reviewCount: Math.floor(60 + Math.random() * 100),
       monthlyReviews: Math.floor(2 + Math.random() * 5),
+      distance: (0.3 + Math.random() * 1.5).toFixed(1),
+      hasWebsite: Math.random() > 0.5,
+      photoCount: Math.floor(3 + Math.random() * 15),
     },
     {
       name: `Quality ${industry || 'Service'} Co`,
       rating: (4.1 + Math.random() * 0.6).toFixed(1),
       reviewCount: Math.floor(100 + Math.random() * 150),
       monthlyReviews: Math.floor(4 + Math.random() * 8),
+      distance: (2.0 + Math.random() * 3).toFixed(1),
+      hasWebsite: Math.random() > 0.2,
+      photoCount: Math.floor(8 + Math.random() * 20),
     },
   ];
 
@@ -319,6 +469,11 @@ function generateMockData(businessName, location, industry) {
     'free estimates',
   ].slice(0, Math.floor(2 + Math.random() * 3));
 
+  // Calculate additional insights
+  const competitorsWithin1Mile = competitors.filter(c => parseFloat(c.distance) <= 1).length;
+  const competitorsWithWebsite = competitors.filter(c => c.hasWebsite).length;
+  const avgPhotoCount = Math.floor(competitors.reduce((sum, c) => sum + c.photoCount, 0) / competitors.length);
+  
   return {
     businessName,
     location,
@@ -327,14 +482,26 @@ function generateMockData(businessName, location, industry) {
         rating: yourRating,
         reviewCount: yourReviews,
         monthlyReviews: yourMonthlyReviews,
+        hasWebsite: Math.random() > 0.4,
+        photoCount: Math.floor(5 + Math.random() * 20),
+        hoursData: {
+          isOpen: Math.random() > 0.3,
+        },
       },
       average: {
         rating: avgRating,
         reviewCount: avgReviews,
         monthlyReviews: Math.floor(competitors.reduce((sum, c) => sum + c.monthlyReviews, 0) / competitors.length),
+        photoCount: avgPhotoCount,
       },
       leader: competitors[0],
       competitors,
+      insights: {
+        competitorsWithin1Mile,
+        closestCompetitor: competitors[0].distance,
+        competitorsWithWebsite,
+        websitePercentage: Math.round((competitorsWithWebsite / competitors.length) * 100),
+      },
       missingKeywords,
       opportunities: generateOpportunities(yourMonthlyReviews, avgRating, yourRating),
     },

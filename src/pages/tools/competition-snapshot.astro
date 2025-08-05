@@ -126,6 +126,24 @@ import Footer from '../../components/Footer.astro';
           >
             Analyze My Competition →
           </button>
+          
+          <!-- Optional email for detailed report -->
+          <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <label class="flex items-start gap-3">
+              <input type="checkbox" id="want-report" class="mt-1" />
+              <div>
+                <span class="font-medium text-gray-700">Get a detailed PDF report</span>
+                <p class="text-sm text-gray-600 mt-1">Optional: Enter your email to receive a comprehensive analysis with industry benchmarks and monthly tracking.</p>
+              </div>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@email.com"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg mt-3 hidden focus:ring-2 focus:ring-coral-500 focus:border-coral-500"
+            />
+          </div>
         </form>
 
         <!-- Loading State -->
@@ -232,6 +250,21 @@ import Footer from '../../components/Footer.astro';
   const resultsSection = document.getElementById('results-section');
   const resultsContainer = document.getElementById('results-container');
   const analyzeButton = document.getElementById('analyze-button') as HTMLButtonElement;
+  
+  // Handle optional email field
+  const wantReportCheckbox = document.getElementById('want-report') as HTMLInputElement;
+  const emailField = document.getElementById('email') as HTMLInputElement;
+  
+  wantReportCheckbox?.addEventListener('change', (e) => {
+    if ((e.target as HTMLInputElement).checked) {
+      emailField.classList.remove('hidden');
+      emailField.required = true;
+    } else {
+      emailField.classList.add('hidden');
+      emailField.required = false;
+      emailField.value = '';
+    }
+  });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -241,6 +274,8 @@ import Footer from '../../components/Footer.astro';
     const businessName = formData.get('businessName');
     const location = formData.get('location');
     const industry = formData.get('industry');
+    const email = formData.get('email');
+    const wantsReport = wantReportCheckbox?.checked;
 
     // Reset states
     errorState?.classList.add('hidden');
@@ -262,6 +297,7 @@ import Footer from '../../components/Footer.astro';
           businessName,
           location,
           industry,
+          email: wantsReport ? email : null,
         }),
       });
 
@@ -378,17 +414,76 @@ import Footer from '../../components/Footer.astro';
             <div class="space-y-2">
               <div class="flex justify-between items-center">
                 <span class="text-sm text-gray-600">You:</span>
-                <span class="font-bold text-xl ${velocityStatus}">${you.monthlyReviews}/mo</span>
+                <span class="font-bold text-xl ${velocityStatus}">~${you.monthlyReviews}/mo</span>
               </div>
               <div class="flex justify-between items-center">
                 <span class="text-sm text-gray-600">Average:</span>
-                <span class="font-medium">${average.monthlyReviews}/mo</span>
+                <span class="font-medium">~${average.monthlyReviews}/mo</span>
               </div>
               <div class="flex justify-between items-center">
                 <span class="text-sm text-gray-600">Leader:</span>
-                <span class="font-medium text-green-600">${leader.monthlyReviews}/mo</span>
+                <span class="font-medium text-green-600">~${leader.monthlyReviews}/mo</span>
               </div>
             </div>
+            <p class="text-xs text-gray-500 mt-3">*Estimated based on total reviews</p>
+          </div>
+        </div>
+
+        <!-- New Insights Section -->
+        <div class="bg-blue-50 rounded-lg p-6 mb-8 border border-blue-200">
+          <h3 class="font-display text-xl text-charcoal mb-4">Key Insights</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${analysis.insights.closestCompetitor ? `
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <div>
+                  <p class="font-medium text-gray-800">Proximity Alert</p>
+                  <p class="text-sm text-gray-600">Closest competitor: ${analysis.insights.closestCompetitor} miles away</p>
+                  ${analysis.insights.competitorsWithin1Mile > 0 ? `<p class="text-sm text-gray-600">${analysis.insights.competitorsWithin1Mile} competitors within 1 mile</p>` : ''}
+                </div>
+              </div>
+            ` : ''}
+            
+            ${analysis.insights.websitePercentage !== undefined ? `
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                </svg>
+                <div>
+                  <p class="font-medium text-gray-800">Online Presence</p>
+                  <p class="text-sm text-gray-600">${analysis.insights.websitePercentage}% of competitors have websites</p>
+                  <p class="text-sm ${you.hasWebsite ? 'text-green-600' : 'text-red-600'}">${you.hasWebsite ? '✓ You have a website' : '✗ You need a website'}</p>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${you.photoCount !== undefined ? `
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <div>
+                  <p class="font-medium text-gray-800">Visual Content</p>
+                  <p class="text-sm text-gray-600">You have ${you.photoCount} photos</p>
+                  <p class="text-sm text-gray-600">Competitors average: ${average.photoCount} photos</p>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${you.hoursData ? `
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                  <p class="font-medium text-gray-800">Current Status</p>
+                  <p class="text-sm ${you.hoursData.isOpen ? 'text-green-600' : 'text-red-600'}">${you.hoursData.isOpen ? '✓ Open Now' : '✗ Closed Now'}</p>
+                </div>
+              </div>
+            ` : ''}
           </div>
         </div>
 
@@ -438,6 +533,8 @@ import Footer from '../../components/Footer.astro';
                   <th class="text-center py-2 px-4 font-medium text-gray-700">Rating</th>
                   <th class="text-center py-2 px-4 font-medium text-gray-700">Reviews</th>
                   <th class="text-center py-2 px-4 font-medium text-gray-700">Monthly Growth</th>
+                  <th class="text-center py-2 px-4 font-medium text-gray-700">Distance</th>
+                  <th class="text-center py-2 px-4 font-medium text-gray-700">Online</th>
                 </tr>
               </thead>
               <tbody>
@@ -449,7 +546,12 @@ import Footer from '../../components/Footer.astro';
                     </td>
                     <td class="text-center py-3 px-4">${comp.rating} ⭐</td>
                     <td class="text-center py-3 px-4">${comp.reviewCount}</td>
-                    <td class="text-center py-3 px-4">${comp.monthlyReviews}/mo</td>
+                    <td class="text-center py-3 px-4">~${comp.monthlyReviews}/mo</td>
+                    <td class="text-center py-3 px-4">${comp.distance ? comp.distance + ' mi' : '-'}</td>
+                    <td class="text-center py-3 px-4">
+                      ${comp.hasWebsite ? '<span class="text-green-600">✓</span>' : '<span class="text-red-600">✗</span>'}
+                      ${comp.photoCount > 0 ? '<span class="text-xs text-gray-500 ml-1">(' + comp.photoCount + ' photos)</span>' : ''}
+                    </td>
                   </tr>
                 `).join('')}
               </tbody>

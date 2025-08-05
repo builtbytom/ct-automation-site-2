@@ -6,34 +6,17 @@ import Footer from '../components/Footer.astro';
 // Categories removed - focusing on actual articles we have
 
 const articles = [
+  // Featured/Latest - solve immediate pain points
   {
     title: "Stop Losing $3,000/Month to No-Shows (Fix It in 24 Hours)",
     excerpt: "No-shows are killing your revenue. Here's the dead-simple automated reminder system that cut no-shows by 80% for a Hartford salon.",
     category: "Problem Solvers",
     readTime: "5 min",
-    slug: "stop-losing-money-to-no-shows"
+    slug: "stop-losing-money-to-no-shows",
+    featured: true
   },
-  {
-    title: "The $5,000 Data Entry Problem Every Connecticut Business Has",
-    excerpt: "How much is manual data entry actually costing you? We do the math and it's not pretty. Plus my $1,200 shipping mistake story.",
-    category: "Cost Savings",
-    readTime: "4 min",
-    slug: "data-entry-problem"
-  },
-  {
-    title: "What NOT to Automate (My $30,000 Mistake)",
-    excerpt: "I learned the hard way that not everything should be automated. Here's what cost me $30,000 in dead inventory.",
-    category: "Lessons Learned",
-    readTime: "4 min",
-    slug: "what-not-to-automate"
-  },
-  {
-    title: "The Big Three: Start Your Automation Journey for Under $1,000",
-    excerpt: "Most Connecticut businesses should start with these three automations. Here's exactly how to implement them and what they'll cost.",
-    category: "Getting Started",
-    readTime: "5 min",
-    slug: "big-three-automation"
-  },
+  
+  // Getting Started - for newcomers
   {
     title: "What is Business Automation?",
     excerpt: "No robots, no buzzwords. Just computers handling the repetitive stuff so you can focus on what makes money.",
@@ -42,18 +25,20 @@ const articles = [
     slug: "what-is-business-automation"
   },
   {
+    title: "The Big Three: Start Your Automation Journey for Under $1,000",
+    excerpt: "Most Connecticut businesses should start with these three automations. Here's exactly how to implement them and what they'll cost.",
+    category: "Getting Started",
+    readTime: "5 min",
+    slug: "big-three-automation"
+  },
+  
+  // Real Stories - build trust
+  {
     title: "Connecticut Contractor Saves $3,200/Month (Here's How)",
     excerpt: "A Stamford contractor was losing his mind over QuickBooks. Then he automated it. Now he's actually home for dinner.",
     category: "Real Stories",
     readTime: "5 min",
     slug: "connecticut-contractor-quickbooks"
-  },
-  {
-    title: "Restaurant Invoice Automation ROI Calculator",
-    excerpt: "Calculate exactly how much time and money you'll save by automating supplier invoices.",
-    category: "ROI Calculators",
-    readTime: "5 min",
-    slug: "restaurant-invoice-roi"
   },
   {
     title: "Real Connecticut Businesses: Before & After Automation",
@@ -62,6 +47,35 @@ const articles = [
     readTime: "5 min",
     slug: "ct-business-examples"
   },
+  
+  // Problem Solvers - specific issues
+  {
+    title: "The $5,000 Data Entry Problem Every Connecticut Business Has",
+    excerpt: "How much is manual data entry actually costing you? We do the math and it's not pretty. Plus my $1,200 shipping mistake story.",
+    category: "Cost Savings",
+    readTime: "4 min",
+    slug: "data-entry-problem"
+  },
+  
+  // Tools & Calculators
+  {
+    title: "Restaurant Invoice Automation ROI Calculator",
+    excerpt: "Calculate exactly how much time and money you'll save by automating supplier invoices.",
+    category: "ROI Calculators",
+    readTime: "5 min",
+    slug: "restaurant-invoice-roi"
+  },
+  
+  // Learn from Mistakes
+  {
+    title: "What NOT to Automate (My $30,000 Mistake)",
+    excerpt: "I learned the hard way that not everything should be automated. Here's what cost me $30,000 in dead inventory.",
+    category: "Lessons Learned",
+    readTime: "4 min",
+    slug: "what-not-to-automate"
+  },
+  
+  // Comprehensive Guides
   {
     title: "Business Automation for Connecticut Small Businesses",
     excerpt: "No buzzwords, just real talk about letting computers handle the repetitive stuff so you can focus on what makes money.",
